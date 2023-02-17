@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
+    private MovementState m_MovementState = MovementState.IDLE;
+
     [SerializeField]float m_JumpPower = 14f;
     [SerializeField]float m_SideMovementPower = 7f;
 

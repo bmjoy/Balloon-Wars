@@ -6,7 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Tutorial Assets/Pixel Adventure 1/Scenes/Demo.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Menu/Main menu.unity
+    guid: f8510a94d755f854583d4a3c9643b5a6
+  - enabled: 1
+    path: Assets/Scenes/Menu/Game menu.unity
+    guid: 3a19494087e64ee40b67edeaa5e1c2ab
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: bee863b997d571740897c0916e1076f6, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 62fada7dfdfa1a840a57cfc69463a072, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 38d20dd20fb9b084b8daa28b383c67e6, type: 2}

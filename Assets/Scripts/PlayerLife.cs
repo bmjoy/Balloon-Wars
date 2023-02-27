@@ -11,6 +11,9 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D m_Rigidbody;
     private bool m_IsDissolving = false;
     private float m_Fade = 1f;
+    
+    [SerializeField] private AudioSource m_SharpTrapSound;
+    [SerializeField] private AudioSource m_BurnSound;
 
     void Start()
     {
@@ -48,6 +51,7 @@ public class PlayerLife : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Fire"))
         {
+            m_BurnSound.Play();
             m_Rigidbody.bodyType = RigidbodyType2D.Static;
             m_IsDissolving = true;
         }
@@ -55,6 +59,7 @@ public class PlayerLife : MonoBehaviour
 
     private void Die()
     {
+        m_SharpTrapSound.Play();
         m_Rigidbody.bodyType = RigidbodyType2D.Static;
         m_Animator.SetTrigger("trap_death");
     }

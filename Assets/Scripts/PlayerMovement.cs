@@ -6,17 +6,19 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Rigidbody2D m_Rb;
+    private BoxCollider2D m_Collider;
+    private Animator m_Animator;
+    private SpriteRenderer m_Sprite;
+
     private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
 
     [SerializeField] private float m_JumpPower = 14f;
     [SerializeField] private float m_SideMovementPower = 7f;
     [SerializeField] private LayerMask jumpableGround;
-
-    private Rigidbody2D m_Rb;
-    private BoxCollider2D m_Collider;
-    private Animator m_Animator;
-    private SpriteRenderer m_Sprite;
     private float m_DirectionX = 0f;
+
+    [SerializeField] private AudioSource m_JumpSoundEffect;
 
     // Start is called before the first frame update
     private void Start()
@@ -44,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
+            m_JumpSoundEffect.Play();
             m_Rb.velocity = new Vector2(m_Rb.velocity.x, m_JumpPower);
         }
     }

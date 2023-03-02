@@ -16,6 +16,11 @@ public class SceneNavigator : MonoBehaviour
         StartCoroutine(loadWantedScene("Main menu"));
     }
 
+    public void MoveToClassicGame()
+    {
+        StartCoroutine(loadWantedScene("Classic"));
+    }
+
     private IEnumerator loadWantedScene(string sceneName)
     {
         transition.SetTrigger("start");

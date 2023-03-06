@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -32,23 +33,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //  if you want a smooth stop and not a hard stop then change it to 
-        //  GetAxis instead of GetAxis raw, so it changes the axis gradually.
-        m_DirectionX = Input.GetAxisRaw("Horizontal");
-
-        updateMovementState();
+        if (m_Rb.bodyType != RigidbodyType2D.Static) 
+        {
+            updateMovementState();
+        }
+        
         updateAnimationState();
     }
 
     private void updateMovementState()
     {
         m_Rb.velocity = new Vector2(m_DirectionX * m_SideMovementPower, m_Rb.velocity.y);
-
-        if (Input.GetButtonDown("Jump") && isGrounded())
-        {
-            m_JumpSoundEffect.Play();
-            m_Rb.velocity = new Vector2(m_Rb.velocity.x, m_JumpPower);
-        }
     }
 
     private void updateAnimationState()
@@ -85,5 +80,23 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded()
     {
         return Physics2D.BoxCast(m_Collider.bounds.center, m_Collider.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        m_DirectionX = context.ReadValue<float>();
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed && isGrounded())
+        {
+            m_JumpSoundEffect.Play();
+            m_Rb.velocity = new Vector2(m_Rb.velocity.x, m_JumpPower);
+        }
+        else if (context.canceled && m_Rb.velocity.y > 0.1f)
+        {
+            m_Rb.velocity = new Vector2(m_Rb.velocity.x, m_Rb.velocity.y * 0.5f);
+        }
     }
 }

@@ -33,7 +33,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        updateMovementState();
+        if (m_Rb.bodyType != RigidbodyType2D.Static) 
+        {
+            updateMovementState();
+        }
+        
         updateAnimationState();
     }
 

@@ -11,15 +11,23 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D m_Collider;
     private Animator m_Animator;
     private SpriteRenderer m_Sprite;
+    private ConstantForce2D m_ConstantForce;
 
     private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
 
-    [SerializeField] private float m_JumpPower = 14f;
     [SerializeField] private float m_SideMovementPower = 7f;
-    [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private LayerMask m_JumpableGround;
+    [SerializeField] private float m_InflatingForce = 1f; 
+    [SerializeField] private float m_IdleForce = -0.2f;
+    [SerializeField] private float m_DeflatingForce = -1f; 
     private float m_DirectionX = 0f;
 
     [SerializeField] private AudioSource m_JumpSoundEffect;
+    [SerializeField] private AudioSource m_InflatingSoundEffect;
+    [SerializeField] private AudioSource m_DeflatingSoundEffect;
+
+    private bool m_InflatePerformed = false;
+    private bool m_DeflatePerformed = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -28,22 +36,22 @@ public class PlayerMovement : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         m_Sprite = GetComponent<SpriteRenderer>();
         m_Collider = GetComponent<BoxCollider2D>();
+        m_ConstantForce = GetComponent<ConstantForce2D>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (m_Rb.bodyType != RigidbodyType2D.Static) 
-        {
-            updateMovementState();
-        }
-        
+        updateMovementState();
         updateAnimationState();
     }
 
     private void updateMovementState()
     {
-        m_Rb.velocity = new Vector2(m_DirectionX * m_SideMovementPower, m_Rb.velocity.y);
+        if (m_Rb.bodyType != RigidbodyType2D.Static) 
+        {
+            m_Rb.velocity = new Vector2(m_DirectionX * m_SideMovementPower, m_Rb.velocity.y);
+        }
     }
 
     private void updateAnimationState()
@@ -79,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded()
     {
-        return Physics2D.BoxCast(m_Collider.bounds.center, m_Collider.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+        return Physics2D.BoxCast(m_Collider.bounds.center, m_Collider.bounds.size, 0f, Vector2.down, .1f, m_JumpableGround);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -87,16 +95,57 @@ public class PlayerMovement : MonoBehaviour
         m_DirectionX = context.ReadValue<float>();
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void Inflate(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded())
+        if (context.performed)
         {
-            m_JumpSoundEffect.Play();
-            m_Rb.velocity = new Vector2(m_Rb.velocity.x, m_JumpPower);
+            m_InflatePerformed = true;
+            Debug.Log("Inflate performed");
+            m_InflatingSoundEffect.Play();
+            ResetVerticalVelocity();
+            m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
         }
-        else if (context.canceled && m_Rb.velocity.y > 0.1f)
+        else if (context.canceled)
         {
-            m_Rb.velocity = new Vector2(m_Rb.velocity.x, m_Rb.velocity.y * 0.5f);
+            m_InflatePerformed = false;
+            Debug.Log("Inflate canceled");
+            m_InflatingSoundEffect.Stop();
+            if(!m_DeflatePerformed)
+            {
+                ResetVerticalVelocity();
+                m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
+            }
+        }
+    }
+
+    public void Deflate(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            m_DeflatePerformed = true;
+            Debug.Log("Deflate performed");
+            m_DeflatingSoundEffect.Play();
+            ResetVerticalVelocity();
+            m_ConstantForce.relativeForce = new Vector2(0, m_DeflatingForce);
+        }
+        else if (context.canceled)
+        {
+            m_DeflatePerformed = false;
+            Debug.Log("Deflate canceled");
+            m_DeflatingSoundEffect.Stop();
+            if(!m_InflatePerformed)
+            {  
+                ResetVerticalVelocity();
+                m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
+            }
+        }
+    }
+
+    public void ResetVerticalVelocity()
+    {
+        if (m_Rb.bodyType != RigidbodyType2D.Static) 
+        {
+            m_Rb.velocity = new Vector2(m_Rb.velocity.x, 0);
         }
     }
 }

@@ -6,9 +6,18 @@
             "id": "d3db55b0-fb1c-4088-a6da-6c308878f8ee",
             "actions": [
                 {
-                    "name": "Jump",
+                    "name": "Inflate",
                     "type": "Button",
                     "id": "4cec15de-b410-4535-a164-2965973b01e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Deflate",
+                    "type": "Button",
+                    "id": "0073ef29-a1d0-4728-aee1-b51dd32e3425",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -32,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Inflate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -43,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Inflate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -54,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "Inflate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -123,6 +132,39 @@
                     "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "08b97ee5-e45f-48b9-91eb-a146612b3f91",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deflate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6c646d23-edc7-4bbe-9e17-26ba2977b27f",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deflate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6fecc29-5257-4b73-aa68-115139e37c38",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Deflate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

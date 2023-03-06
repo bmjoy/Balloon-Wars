@@ -28,9 +28,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""d3db55b0-fb1c-4088-a6da-6c308878f8ee"",
             ""actions"": [
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Inflate"",
                     ""type"": ""Button"",
                     ""id"": ""4cec15de-b410-4535-a164-2965973b01e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Deflate"",
+                    ""type"": ""Button"",
+                    ""id"": ""0073ef29-a1d0-4728-aee1-b51dd32e3425"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -54,7 +63,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""Inflate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -65,7 +74,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""Inflate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -76,7 +85,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""Inflate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -145,6 +154,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08b97ee5-e45f-48b9-91eb-a146612b3f91"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Deflate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c646d23-edc7-4bbe-9e17-26ba2977b27f"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Deflate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6fecc29-5257-4b73-aa68-115139e37c38"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Deflate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -153,7 +195,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Movement input
         m_Movementinput = asset.FindActionMap("Movement input", throwIfNotFound: true);
-        m_Movementinput_Jump = m_Movementinput.FindAction("Jump", throwIfNotFound: true);
+        m_Movementinput_Inflate = m_Movementinput.FindAction("Inflate", throwIfNotFound: true);
+        m_Movementinput_Deflate = m_Movementinput.FindAction("Deflate", throwIfNotFound: true);
         m_Movementinput_Walk = m_Movementinput.FindAction("Walk", throwIfNotFound: true);
     }
 
@@ -216,13 +259,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Movement input
     private readonly InputActionMap m_Movementinput;
     private List<IMovementinputActions> m_MovementinputActionsCallbackInterfaces = new List<IMovementinputActions>();
-    private readonly InputAction m_Movementinput_Jump;
+    private readonly InputAction m_Movementinput_Inflate;
+    private readonly InputAction m_Movementinput_Deflate;
     private readonly InputAction m_Movementinput_Walk;
     public struct MovementinputActions
     {
         private @PlayerControls m_Wrapper;
         public MovementinputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Jump => m_Wrapper.m_Movementinput_Jump;
+        public InputAction @Inflate => m_Wrapper.m_Movementinput_Inflate;
+        public InputAction @Deflate => m_Wrapper.m_Movementinput_Deflate;
         public InputAction @Walk => m_Wrapper.m_Movementinput_Walk;
         public InputActionMap Get() { return m_Wrapper.m_Movementinput; }
         public void Enable() { Get().Enable(); }
@@ -233,9 +278,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MovementinputActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MovementinputActionsCallbackInterfaces.Add(instance);
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
+            @Inflate.started += instance.OnInflate;
+            @Inflate.performed += instance.OnInflate;
+            @Inflate.canceled += instance.OnInflate;
+            @Deflate.started += instance.OnDeflate;
+            @Deflate.performed += instance.OnDeflate;
+            @Deflate.canceled += instance.OnDeflate;
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
@@ -243,9 +291,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IMovementinputActions instance)
         {
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
+            @Inflate.started -= instance.OnInflate;
+            @Inflate.performed -= instance.OnInflate;
+            @Inflate.canceled -= instance.OnInflate;
+            @Deflate.started -= instance.OnDeflate;
+            @Deflate.performed -= instance.OnDeflate;
+            @Deflate.canceled -= instance.OnDeflate;
             @Walk.started -= instance.OnWalk;
             @Walk.performed -= instance.OnWalk;
             @Walk.canceled -= instance.OnWalk;
@@ -268,7 +319,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public MovementinputActions @Movementinput => new MovementinputActions(this);
     public interface IMovementinputActions
     {
-        void OnJump(InputAction.CallbackContext context);
+        void OnInflate(InputAction.CallbackContext context);
+        void OnDeflate(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
     }
 }

@@ -10,9 +10,12 @@ public class VolumeController : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] AudioSource backgroundMusic;
+    [SerializeField] AudioButton musicButton;
+    [SerializeField] AudioButton sfxButton;
 
-    private const string MUSIC_KEY = "music_key";
-    private const string SFX_KEY = "sfx_key";
+    public const string MUSIC_KEY = "music_key";
+    public const string SFX_KEY = "sfx_key";
+    public const float muteValue = 0.0001f;
 
     private void Start() 
     {
@@ -29,48 +32,40 @@ public class VolumeController : MonoBehaviour
 
     public void setMusicAudioLevel(float sliderValue)
     {
-        mixer.SetFloat("MusicVolume", Mathf.Log10(sliderValue)*20);
+        setAudioLevel(sliderValue, "MusicVolume", musicButton);
     }
 
     public void setSFXAudioLevel(float sliderValue)
     {
-        mixer.SetFloat("SFXVolume", Mathf.Log10(sliderValue)*20);
+        setAudioLevel(sliderValue, "SFXVolume", sfxButton);
     }
 
-    public void setMute(bool isMusic, bool toMute)
+    public void setAudioLevel(float sliderValue, string MixerVolumeName, AudioButton button)
     {
-        if(isMusic)
+        bool wasMuted = button.IsMuted;
+        bool nowMuted = sliderValue == muteValue;
+
+        mixer.SetFloat(MixerVolumeName, Mathf.Log10(sliderValue)*20);
+
+        if (wasMuted || nowMuted)
         {
-            setMusicMute(toMute);
-        }
-        else
-        {
-            setSFXMute(toMute);
-        }
-    }
-    public void setMusicMute(bool toMute)
-    {
-        if (toMute)
-        {
-            PlayerPrefs.SetFloat(MUSIC_KEY, musicSlider.value);
-            musicSlider.value = 0.0001f;
-        }
-        else
-        {
-            musicSlider.value = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);
+            button.SwichState();
         }
     }
 
-        public void setSFXMute(bool toMute)
+    public void setMuteOrUnMute(AudioButton button)
     {
-        if (toMute)
+        string Key = button.IsMusic ? MUSIC_KEY : SFX_KEY;
+        Slider slider = button.IsMusic ? musicSlider : sfxSlider;
+
+        if(!button.IsMuted) // need to mute
         {
-            PlayerPrefs.SetFloat(SFX_KEY, sfxSlider.value);
-            musicSlider.value = 0.0001f;
+            PlayerPrefs.SetFloat(Key, slider.value);
+            slider.value = muteValue;
         }
-        else
+        else // need to unmute
         {
-            sfxSlider.value = PlayerPrefs.GetFloat(SFX_KEY, 1f);
+            slider.value = PlayerPrefs.GetFloat(Key, 1f);
         }
     }
 }

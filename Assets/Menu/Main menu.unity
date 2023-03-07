@@ -693,7 +693,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 824452347}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1431,6 +1431,8 @@ RectTransform:
   m_LocalScale: {x: 1.0315002, y: 1.0315002, z: 1.0315002}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 912540059}
+  - {fileID: 1100303307}
   - {fileID: 306966383}
   - {fileID: 833872704}
   - {fileID: 1253222511}
@@ -1515,7 +1517,7 @@ RectTransform:
   - {fileID: 1341676059}
   - {fileID: 1716319369}
   m_Father: {fileID: 824452347}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1690,15 +1692,15 @@ RectTransform:
   m_GameObject: {fileID: 912540058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0314965, y: 1.0314965, z: 1.0314965}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1962409358}
-  m_RootOrder: 2
+  m_Father: {fileID: 824452347}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.94147, y: 59.94763}
+  m_AnchoredPosition: {x: -95.919945, y: 43.575027}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &912540060
@@ -1747,11 +1749,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1991203116}
         m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
-        m_MethodName: setSFXMute
-        m_Mode: 6
+        m_MethodName: setMuteOrUnMute
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 912540063}
+          m_ObjectArgumentAssemblyTypeName: AudioButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1810,7 +1812,6 @@ MonoBehaviour:
   icon: {fileID: 912540061}
   VoiceImage: {fileID: 21300000, guid: b8e16813b16744e499e3ed7c8295d4ff, type: 3}
   MuteImage: {fileID: 21300000, guid: 785c41531ad796c46ae0414c0af43244, type: 3}
-  volumeController: {fileID: 1991203116}
   IsMusic: 1
 --- !u!1 &915781572
 GameObject:
@@ -2278,15 +2279,15 @@ RectTransform:
   m_GameObject: {fileID: 1100303306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0314965, y: 1.0314965, z: 1.0314965}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1962409358}
-  m_RootOrder: 3
+  m_Father: {fileID: 824452347}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.94147, y: -0.678772}
+  m_AnchoredPosition: {x: -95.919945, y: -15.199994}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1100303308
@@ -2333,13 +2334,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1991203115}
-        m_TargetAssemblyTypeName: AudioButtons, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1991203116}
+        m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
+        m_MethodName: setMuteOrUnMute
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 1100303311}
+          m_ObjectArgumentAssemblyTypeName: AudioButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2398,7 +2399,6 @@ MonoBehaviour:
   icon: {fileID: 1100303309}
   VoiceImage: {fileID: 21300000, guid: 5ea9f1dca66fb734e83262da7506d1bd, type: 3}
   MuteImage: {fileID: 21300000, guid: b8fcf6778d2130040a5ff7f17c5453f6, type: 3}
-  volumeController: {fileID: 1991203116}
   IsMusic: 0
 --- !u!1 &1108599859
 GameObject:
@@ -2675,7 +2675,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 824452347}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3275,7 +3275,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 824452347}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3636,7 +3636,7 @@ RectTransform:
   - {fileID: 724263231}
   - {fileID: 1573198581}
   m_Father: {fileID: 824452347}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4005,8 +4005,6 @@ Transform:
   m_Children:
   - {fileID: 547712646}
   - {fileID: 824452347}
-  - {fileID: 912540059}
-  - {fileID: 1100303307}
   m_Father: {fileID: 1323931282}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4043,6 +4041,8 @@ MonoBehaviour:
   musicSlider: {fileID: 833872705}
   sfxSlider: {fileID: 1725804157}
   backgroundMusic: {fileID: 432851868}
+  musicButton: {fileID: 912540063}
+  sfxButton: {fileID: 1100303311}
 --- !u!4 &1991203117
 Transform:
   m_ObjectHideFlags: 0

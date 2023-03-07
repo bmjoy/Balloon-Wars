@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator m_Animator;
     private SpriteRenderer m_Sprite;
     private ConstantForce2D m_ConstantForce;
+    private bool wasOnGround = false;
 
     private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
 
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource m_JumpSoundEffect;
     [SerializeField] private AudioSource m_InflatingSoundEffect;
     [SerializeField] private AudioSource m_DeflatingSoundEffect;
+    [SerializeField] private AirTank airTank;
 
     private bool m_InflatePerformed = false;
     private bool m_DeflatePerformed = false;
@@ -42,8 +44,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        addAirToTankIfGrounded();
         updateMovementState();
         updateAnimationState();
+    }
+
+    private void addAirToTankIfGrounded()
+    {
+        if (!wasOnGround && isGrounded())
+        {
+            wasOnGround = true;
+            airTank.startAddAir();
+        }
+        else if (wasOnGround && !isGrounded())
+        {
+            wasOnGround = false;
+            airTank.StopAllCoroutines();
+        }
     }
 
     private void updateMovementState()
@@ -101,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         {
             m_InflatePerformed = true;
             Debug.Log("Inflate performed");
+            airTank.startReduceAir();
             m_InflatingSoundEffect.Play();
             ResetVerticalVelocity();
             m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
@@ -109,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
         {
             m_InflatePerformed = false;
             Debug.Log("Inflate canceled");
+            airTank.StopAllCoroutines();
             m_InflatingSoundEffect.Stop();
             if(!m_DeflatePerformed)
             {

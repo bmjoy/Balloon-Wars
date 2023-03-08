@@ -171,13 +171,14 @@ MonoBehaviour:
   m_SideMovementPower: 7
   m_JumpableGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_InflatingForce: 5
-  m_IdleForce: -0.5
-  m_DeflatingForce: -5
+  m_IdleForce: -4
+  m_DeflatingForce: -8
   m_JumpSoundEffect: {fileID: 4761094339282079075}
   m_InflatingSoundEffect: {fileID: 5431535629232312231}
   m_DeflatingSoundEffect: {fileID: 1354190044}
+  airTank: {fileID: 0}
 --- !u!114 &1114943328
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         m_Collider = GetComponent<BoxCollider2D>();
         m_ConstantForce = GetComponent<ConstantForce2D>();
         airTank.AirFinished += InflateCancelLogic;
+        m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
     }
 
     // Update is called once per frame
@@ -131,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
     private void InflatePerformedLogic()
     {
         m_InflatePerformed = true;
-        Debug.Log("Inflate performed");
+        // Debug.Log("Inflate performed");
         airTank.StartReduceAir();
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
@@ -141,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
     private void InflateCancelLogic()
     {
         m_InflatePerformed = false;
-        Debug.Log("Inflate canceled");
+        // Debug.Log("Inflate canceled");
         airTank.StopReduceAir();
         m_InflatingSoundEffect.Stop();
         if(!m_DeflatePerformed)

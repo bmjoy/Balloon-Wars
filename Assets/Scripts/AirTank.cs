@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AirTank : MonoBehaviour
 {
-    [SerializeField] [Range(5f, 20f)] float reduceAirSpeed = 10f;
-    [SerializeField] [Range(5f, 20f)] float addAirSpeed = 10f;
+    [SerializeField] [Range(5f, 100f)] float reduceAirSpeed = 10f;
+    [SerializeField] [Range(5f, 100f)] float addAirSpeed = 10f;
+    [SerializeField] TextMeshProUGUI AirPercentage;
     [SerializeField] private Image AirAmountImage;
-    private float TimeBetweenReduces, TimeBetweenIncrements;
 
     public int AirAmount{set;get;} = 100; 
     private float AIR_DELTA;
@@ -17,16 +18,32 @@ public class AirTank : MonoBehaviour
     private void Start()
     {
         AIR_DELTA = AirAmountImage.rectTransform.sizeDelta.x / 100f;
-        TimeBetweenReduces = 1f / reduceAirSpeed;
-        TimeBetweenIncrements = 1f / addAirSpeed;
+        updatePercentageTextToAirAmount();
+    }
+
+    private float timeBetweenReduces()
+    {
+        return 1f / reduceAirSpeed;
+    }
+
+    private float timeBetweenIncrements()
+    {
+        return 1f / addAirSpeed;
+    }
+
+    private void updatePercentageTextToAirAmount()
+    {
+        string percentageText = AirAmount.ToString() + "%";
+        AirPercentage.SetText(percentageText);
     }
 
     private IEnumerator reduceAir()
     {
         while(AirAmount != 0)
         {
-            yield return new WaitForSeconds(TimeBetweenReduces);
+            yield return new WaitForSeconds(timeBetweenReduces());
             AirAmount--;
+            updatePercentageTextToAirAmount();
             addWidthToImage(AirAmountImage, -AIR_DELTA);
         }
         StopAllCoroutines();
@@ -36,8 +53,9 @@ public class AirTank : MonoBehaviour
     {
         while(AirAmount != 100)
         {
-            yield return new WaitForSeconds(TimeBetweenIncrements);
+            yield return new WaitForSeconds(timeBetweenIncrements());
             AirAmount++;
+            updatePercentageTextToAirAmount();
             addWidthToImage(AirAmountImage, AIR_DELTA);
         }
         StopAllCoroutines();

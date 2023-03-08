@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         m_Sprite = GetComponent<SpriteRenderer>();
         m_Collider = GetComponent<BoxCollider2D>();
         m_ConstantForce = GetComponent<ConstantForce2D>();
+        airTank.AirFinished += InflateCancelLogic;
     }
 
     // Update is called once per frame
@@ -54,12 +55,12 @@ public class PlayerMovement : MonoBehaviour
         if (!wasOnGround && isGrounded())
         {
             wasOnGround = true;
-            airTank.startAddAir();
+            airTank.StartAddAir();
         }
         else if (wasOnGround && !isGrounded())
         {
             wasOnGround = false;
-            airTank.StopAllCoroutines();
+            airTank.StopAddAir();
         }
     }
 
@@ -114,26 +115,39 @@ public class PlayerMovement : MonoBehaviour
 
     public void Inflate(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (airTank.AirAmount != 0)
         {
-            m_InflatePerformed = true;
-            Debug.Log("Inflate performed");
-            airTank.startReduceAir();
-            m_InflatingSoundEffect.Play();
-            ResetVerticalVelocity();
-            m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
-        }
-        else if (context.canceled)
-        {
-            m_InflatePerformed = false;
-            Debug.Log("Inflate canceled");
-            airTank.StopAllCoroutines();
-            m_InflatingSoundEffect.Stop();
-            if(!m_DeflatePerformed)
+            if (context.performed)
             {
-                ResetVerticalVelocity();
-                m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
+                InflatePerformedLogic();
             }
+            else if (context.canceled)
+            {
+                InflateCancelLogic();
+            }
+        }
+    }
+
+    private void InflatePerformedLogic()
+    {
+        m_InflatePerformed = true;
+        Debug.Log("Inflate performed");
+        airTank.StartReduceAir();
+        m_InflatingSoundEffect.Play();
+        ResetVerticalVelocity();
+        m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
+    }
+
+    private void InflateCancelLogic()
+    {
+        m_InflatePerformed = false;
+        Debug.Log("Inflate canceled");
+        airTank.StopReduceAir();
+        m_InflatingSoundEffect.Stop();
+        if(!m_DeflatePerformed)
+        {
+            ResetVerticalVelocity();
+            m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
         }
     }
 
@@ -142,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             m_DeflatePerformed = true;
-            Debug.Log("Deflate performed");
+            // Debug.Log("Deflate performed");
             m_DeflatingSoundEffect.Play();
             ResetVerticalVelocity();
             m_ConstantForce.relativeForce = new Vector2(0, m_DeflatingForce);
@@ -150,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         else if (context.canceled)
         {
             m_DeflatePerformed = false;
-            Debug.Log("Deflate canceled");
+            // Debug.Log("Deflate canceled");
             m_DeflatingSoundEffect.Stop();
             if(!m_InflatePerformed)
             {  

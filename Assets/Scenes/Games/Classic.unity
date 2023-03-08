@@ -1078,8 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ea1a6559a8c04897893153765c0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reduceAirSpeed: 10
-  addAirSpeed: 10
+  reduceAirSpeed: 120
+  addAirSpeed: 120
   AirPercentage: {fileID: 550253539}
   AirAmountImage: {fileID: 901780423}
 --- !u!1 &382499622
@@ -100277,6 +100277,10 @@ PrefabInstance:
       propertyPath: airTank
       value: 
       objectReference: {fileID: 374792240}
+    - target: {fileID: 4761094339282079079, guid: 0ec7679427be6de4ab4a86aca68ceb3f, type: 3}
+      propertyPath: m_JumpableGround.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ec7679427be6de4ab4a86aca68ceb3f, type: 3}
 --- !u!1001 &6093787907895510697

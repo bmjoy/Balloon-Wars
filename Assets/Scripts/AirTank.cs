@@ -7,18 +7,29 @@ using TMPro;
 
 public class AirTank : MonoBehaviour
 {
-    [SerializeField] [Range(5f, 100f)] float reduceAirSpeed = 10f;
-    [SerializeField] [Range(5f, 100f)] float addAirSpeed = 10f;
+    [SerializeField] [Range(20f, 200f)] float reduceAirSpeed = 120f;
+    [SerializeField] [Range(20f, 200f)] float addAirSpeed = 120f;
     [SerializeField] TextMeshProUGUI AirPercentage;
     [SerializeField] private Image AirAmountImage;
 
+
     public int AirAmount{set;get;} = 100; 
     private float AIR_DELTA;
+    private IEnumerator addAirCoroutine;
+    private IEnumerator reduceAirCoroutine;
+    public event Action AirFinished;
 
     private void Start()
     {
         AIR_DELTA = AirAmountImage.rectTransform.sizeDelta.x / 100f;
+        addAirCoroutine = addAir();
+        reduceAirCoroutine = reduceAir();
         updatePercentageTextToAirAmount();
+    }
+
+    protected void OnAirFinished()
+    {
+        AirFinished?.Invoke();
     }
 
     private float timeBetweenReduces()
@@ -46,7 +57,11 @@ public class AirTank : MonoBehaviour
             updatePercentageTextToAirAmount();
             addWidthToImage(AirAmountImage, -AIR_DELTA);
         }
-        StopAllCoroutines();
+
+        if (AirAmount == 0)
+        {
+            OnAirFinished();
+        }
     }
 
     private IEnumerator addAir()
@@ -58,7 +73,6 @@ public class AirTank : MonoBehaviour
             updatePercentageTextToAirAmount();
             addWidthToImage(AirAmountImage, AIR_DELTA);
         }
-        StopAllCoroutines();
     }
 
     private void addWidthToImage(Image image, float widthToAdd)
@@ -66,16 +80,28 @@ public class AirTank : MonoBehaviour
         Vector2 curSize = image.rectTransform.sizeDelta;
         image.rectTransform.sizeDelta = new Vector2(curSize.x + widthToAdd, curSize.y);
         image.rectTransform.position = new Vector3(
-            AirAmountImage.rectTransform.position.x + widthToAdd / 2f, AirAmountImage.rectTransform.position.y, 0);
+        AirAmountImage.rectTransform.position.x + widthToAdd / 2f, AirAmountImage.rectTransform.position.y, 0);
     }
 
-    public void startReduceAir()
+    public void StartReduceAir()
     {
-        StartCoroutine(reduceAir());
+        StartCoroutine(reduceAirCoroutine);
     }
 
-    public void startAddAir()
+    public void StartAddAir()
     {
-        StartCoroutine(addAir());
+        StartCoroutine(addAirCoroutine);
+    }
+
+    public void StopReduceAir()
+    {
+        StopCoroutine(reduceAirCoroutine);
+        reduceAirCoroutine = reduceAir();
+    }
+
+    public void StopAddAir()
+    {
+        StopCoroutine(addAirCoroutine);
+        addAirCoroutine = addAir();
     }
 }

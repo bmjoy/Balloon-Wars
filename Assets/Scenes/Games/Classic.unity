@@ -100277,10 +100277,6 @@ PrefabInstance:
       propertyPath: airTank
       value: 
       objectReference: {fileID: 374792240}
-    - target: {fileID: 4761094339282079079, guid: 0ec7679427be6de4ab4a86aca68ceb3f, type: 3}
-      propertyPath: m_DeflatingForce
-      value: -20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ec7679427be6de4ab4a86aca68ceb3f, type: 3}
 --- !u!1001 &6093787907895510697

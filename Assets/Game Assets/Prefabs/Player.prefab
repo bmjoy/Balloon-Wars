@@ -174,7 +174,7 @@ MonoBehaviour:
     m_Bits: 64
   m_InflatingForce: 5
   m_IdleForce: -4
-  m_DeflatingForce: -8
+  m_DeflatingForce: -20
   m_JumpSoundEffect: {fileID: 4761094339282079075}
   m_InflatingSoundEffect: {fileID: 5431535629232312231}
   m_DeflatingSoundEffect: {fileID: 1354190044}

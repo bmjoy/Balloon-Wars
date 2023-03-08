@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         {
             wasOnGround = true;
             airTank.StartAddAir();
+            DeflateCancelLogic();
         }
         else if (wasOnGround && !isGrounded())
         {
@@ -118,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (airTank.AirAmount != 0)
         {
-            if (context.performed)
+            if (context.performed && !m_DeflatePerformed)
             {
                 InflatePerformedLogic();
             }
@@ -132,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
     private void InflatePerformedLogic()
     {
         m_InflatePerformed = true;
-        // Debug.Log("Inflate performed");
         airTank.StartReduceAir();
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
@@ -142,7 +142,6 @@ public class PlayerMovement : MonoBehaviour
     private void InflateCancelLogic()
     {
         m_InflatePerformed = false;
-        // Debug.Log("Inflate canceled");
         airTank.StopReduceAir();
         m_InflatingSoundEffect.Stop();
         if(!m_DeflatePerformed)
@@ -154,24 +153,35 @@ public class PlayerMovement : MonoBehaviour
 
     public void Deflate(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!isGrounded())
         {
-            m_DeflatePerformed = true;
-            // Debug.Log("Deflate performed");
-            m_DeflatingSoundEffect.Play();
-            ResetVerticalVelocity();
-            m_ConstantForce.relativeForce = new Vector2(0, m_DeflatingForce);
-        }
-        else if (context.canceled)
-        {
-            m_DeflatePerformed = false;
-            // Debug.Log("Deflate canceled");
-            m_DeflatingSoundEffect.Stop();
-            if(!m_InflatePerformed)
-            {  
-                ResetVerticalVelocity();
-                m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
+            if (context.performed && !m_InflatePerformed)
+            {
+                DeflatePerformLogic();
             }
+            else if (context.canceled)
+            {
+                DeflateCancelLogic();
+            }
+        }
+    }
+
+    private void DeflatePerformLogic()
+    {
+        m_DeflatePerformed = true;
+        m_DeflatingSoundEffect.Play();
+        ResetVerticalVelocity();
+        m_ConstantForce.relativeForce = new Vector2(0, m_DeflatingForce);
+    }
+
+    private void DeflateCancelLogic()
+    {
+        m_DeflatePerformed = false;
+        m_DeflatingSoundEffect.Stop();
+        if (!m_InflatePerformed)
+        {
+            ResetVerticalVelocity();
+            m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
         }
     }
 

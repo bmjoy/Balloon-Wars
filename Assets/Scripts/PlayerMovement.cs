@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
 
     private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
 
+    
+    [SerializeField] [Range(1f, 30f)] private float m_JumpPower = 15f;
+    [SerializeField] [Range(0.05f, 0.5f)] private float m_jumpTime = 0.1f;
     [SerializeField] private float m_SideMovementPower = 7f;
     [SerializeField] private LayerMask m_JumpableGround;
     [SerializeField] private float m_InflatingForce = 1f; 
@@ -137,6 +140,17 @@ public class PlayerMovement : MonoBehaviour
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
         m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
+        if(wasOnGround)
+        {
+            m_JumpSoundEffect.Play();
+            GetComponent<Rigidbody2D>().AddForce(Vector3.up * m_JumpPower, ForceMode2D.Impulse);
+            StartCoroutine(JumpStopCoroutine());
+        }
+    }
+
+    IEnumerator JumpStopCoroutine() {
+        yield return new WaitForSeconds(m_jumpTime);
+        GetComponent<Rigidbody2D>().AddForce(Vector3.down * m_JumpPower, ForceMode2D.Impulse);        
     }
 
     private void InflateCancelLogic()

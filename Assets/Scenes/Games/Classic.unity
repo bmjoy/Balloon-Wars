@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1114943327}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 6.1452165
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -3586,7 +3586,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.1452165
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3610,7 +3610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321764921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.42, y: 1.2, z: -10}
+  m_LocalPosition: {x: -36.858204, y: 1.19972, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10173,6 +10173,14 @@ PrefabInstance:
       propertyPath: airTank
       value: 
       objectReference: {fileID: 374792240}
+    - target: {fileID: 4761094339282079079, guid: 0ec7679427be6de4ab4a86aca68ceb3f, type: 3}
+      propertyPath: m_jumpTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761094339282079079, guid: 0ec7679427be6de4ab4a86aca68ceb3f, type: 3}
+      propertyPath: m_JumpPower
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ec7679427be6de4ab4a86aca68ceb3f, type: 3}
 --- !u!1001 &6093787907895510697

@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class AirTank : MonoBehaviour
 {
+    public static AirTank Instance {get; private set;}
     [SerializeField] [Range(20f, 200f)] float reduceAirSpeed = 120f;
     [SerializeField] [Range(20f, 200f)] float addAirSpeed = 120f;
     [SerializeField] TextMeshProUGUI AirPercentage;
@@ -18,6 +18,17 @@ public class AirTank : MonoBehaviour
     private IEnumerator addAirCoroutine;
     private IEnumerator reduceAirCoroutine;
     public event Action AirFinished;
+
+    private void Awake() 
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {

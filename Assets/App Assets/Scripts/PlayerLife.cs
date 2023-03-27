@@ -1,28 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class PlayerLife : MonoBehaviour
 {
     private Material m_Material;
     private Animator m_Animator;
     private Rigidbody2D m_Rigidbody;
+
+    private PhotonView m_View;
     private bool m_IsDissolving = false;
     private float m_Fade = 1f;
     
     [SerializeField] private AudioSource m_SharpTrapSound;
     [SerializeField] private AudioSource m_BurnSound;
 
-    void Start()
+    private void Awake()
+    {
+         m_View = GetComponent<PhotonView>();
+    }
+
+    private void Start()
     {
         m_Material = GetComponent<SpriteRenderer>().material;
         m_Animator = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
+    {
+        if (m_View.IsMine)
+        {
+            UpdateDissolvingState();
+        }
+    }
+
+    private void UpdateDissolvingState()
     {
         if (m_IsDissolving)
         {
@@ -41,19 +54,25 @@ public class PlayerLife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) 
     {
-        if (collision.gameObject.CompareTag("Trap"))
+        if (m_View.IsMine)
         {
-            Die();
+            if (collision.gameObject.CompareTag("Trap"))
+            {
+                Die();
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Fire"))
+        if (m_View.IsMine)
         {
-            m_BurnSound.Play();
-            m_Rigidbody.bodyType = RigidbodyType2D.Static;
-            m_IsDissolving = true;
+            if (collider.gameObject.CompareTag("Fire"))
+            {
+                m_BurnSound.Play();
+                m_Rigidbody.bodyType = RigidbodyType2D.Static;
+                m_IsDissolving = true;
+            }
         }
     }
 
@@ -66,6 +85,9 @@ public class PlayerLife : MonoBehaviour
 
     private void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(m_View.IsMine)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

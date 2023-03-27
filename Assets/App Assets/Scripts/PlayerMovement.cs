@@ -4,9 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PhotonView m_View;
     private Rigidbody2D m_Rb;
     private BoxCollider2D m_Collider;
     private Animator m_Animator;
@@ -30,12 +32,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource m_JumpSoundEffect;
     [SerializeField] private AudioSource m_InflatingSoundEffect;
     [SerializeField] private AudioSource m_DeflatingSoundEffect;
-    [SerializeField] private AirTank airTank;
+
+    private AirTank m_AirTank;
 
     private bool m_InflatePerformed = false;
     private bool m_DeflatePerformed = false;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        m_View = GetComponent<PhotonView>();
+    }
+
     private void Start()
     {
         m_Rb = GetComponent<Rigidbody2D>();
@@ -43,16 +50,19 @@ public class PlayerMovement : MonoBehaviour
         m_Sprite = GetComponent<SpriteRenderer>();
         m_Collider = GetComponent<BoxCollider2D>();
         m_ConstantForce = GetComponent<ConstantForce2D>();
-        airTank.AirFinished += InflateCancelLogic;
+        m_AirTank = AirTank.Instance;
+        m_AirTank.AirFinished += InflateCancelLogic;
         m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        addAirToTankIfGrounded();
-        updateMovementState();
-        updateAnimationState();
+        if(m_View.IsMine)
+        {
+            addAirToTankIfGrounded();
+            updateMovementState();
+            updateAnimationState();
+        }
     }
 
     private void addAirToTankIfGrounded()
@@ -60,13 +70,13 @@ public class PlayerMovement : MonoBehaviour
         if (!wasOnGround && isGrounded())
         {
             wasOnGround = true;
-            airTank.StartAddAir();
+            m_AirTank.StartAddAir();
             DeflateCancelLogic();
         }
         else if (wasOnGround && !isGrounded())
         {
             wasOnGround = false;
-            airTank.StopAddAir();
+            m_AirTank.StopAddAir();
         }
     }
 
@@ -116,20 +126,26 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        m_DirectionX = context.ReadValue<float>();
+        if(m_View.IsMine)
+        {
+            m_DirectionX = context.ReadValue<float>();
+        }
     }
 
     public void Inflate(InputAction.CallbackContext context)
     {
-        if (airTank.AirAmount != 0)
+        if(m_View.IsMine)
         {
-            if (context.performed && !m_DeflatePerformed)
+            if (m_AirTank.AirAmount != 0)
             {
-                InflatePerformedLogic();
-            }
-            else if (context.canceled)
-            {
-                InflateCancelLogic();
+                if (context.performed && !m_DeflatePerformed)
+                {
+                    InflatePerformedLogic();
+                }
+                else if (context.canceled)
+                {
+                    InflateCancelLogic();
+                }
             }
         }
     }
@@ -137,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
     private void InflatePerformedLogic()
     {
         m_InflatePerformed = true;
-        airTank.StartReduceAir();
+        m_AirTank.StartReduceAir();
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
         if(wasOnGround)
@@ -149,18 +165,19 @@ public class PlayerMovement : MonoBehaviour
         m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
     }
 
-    IEnumerator JumpStopCoroutine(int iterations, float WaitSecondsPerIter, float JumpFotceReducePerIter) {
+    IEnumerator JumpStopCoroutine(int iterations, float WaitSecondsPerIter, float JumpForceReducePerIter) 
+    {
         yield return new WaitForSeconds(WaitSecondsPerIter);
         if(iterations > 0 && m_InflatePerformed == true){
-            GetComponent<Rigidbody2D>().AddForce(Vector3.down * JumpFotceReducePerIter, ForceMode2D.Impulse);
-            StartCoroutine(JumpStopCoroutine(iterations - 1, WaitSecondsPerIter, JumpFotceReducePerIter));
+            GetComponent<Rigidbody2D>().AddForce(Vector3.down * JumpForceReducePerIter, ForceMode2D.Impulse);
+            StartCoroutine(JumpStopCoroutine(iterations - 1, WaitSecondsPerIter, JumpForceReducePerIter));
         }
     }
 
     private void InflateCancelLogic()
     {
         m_InflatePerformed = false;
-        airTank.StopReduceAir();
+        m_AirTank.StopReduceAir();
         m_InflatingSoundEffect.Stop();
         if(!m_DeflatePerformed)
         {
@@ -171,15 +188,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void Deflate(InputAction.CallbackContext context)
     {
-        if (!isGrounded())
+        if(m_View.IsMine)
         {
-            if (context.performed && !m_InflatePerformed)
+            if (!isGrounded())
             {
-                DeflatePerformLogic();
-            }
-            else if (context.canceled)
-            {
-                DeflateCancelLogic();
+                if (context.performed && !m_InflatePerformed)
+                {
+                    DeflatePerformLogic();
+                }
+                else if (context.canceled)
+                {
+                    DeflateCancelLogic();
+                }
             }
         }
     }

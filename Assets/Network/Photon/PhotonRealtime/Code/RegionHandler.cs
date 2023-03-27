@@ -470,7 +470,9 @@ namespace Photon.Realtime
             Stopwatch sw = new Stopwatch();
             for (this.CurrentAttempt = 0; this.CurrentAttempt < Attempts; this.CurrentAttempt++)
             {
+                #pragma warning disable 0219
                 bool overtime = false;
+                #pragma warning restore 0219
                 sw.Reset();
                 sw.Start();
 
@@ -548,7 +550,9 @@ namespace Photon.Realtime
             Stopwatch sw = new Stopwatch();
             for (this.CurrentAttempt = 0; this.CurrentAttempt < Attempts; this.CurrentAttempt++)
             {
+                #pragma warning disable 0219
                 bool overtime = false;
+                #pragma warning restore 0219
                 sw.Reset();
                 sw.Start();
 

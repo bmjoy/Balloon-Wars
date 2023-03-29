@@ -6,7 +6,10 @@ using UnityEngine.Rendering;
 
 public class PhotonConnector : MonoBehaviourPunCallbacks
 {
+    private SceneNavigator m_SceneNavigator;
+
     private void Start() {
+        m_SceneNavigator = GetComponent<SceneNavigator>();
         string randomName = $"Tester{Guid.NewGuid().ToString()}";
         connectToPhoton(randomName);
     }
@@ -20,13 +23,21 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    private void createPhotonRoom(string roomName)
+    public void CreatePhotonRoom(string roomName)
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsOpen = true;
         roomOptions.IsVisible = true;
         roomOptions.MaxPlayers = 4;
         PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
+    }
+
+    public void LeavePhotonLobby()
+    {
+        if(PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.LeaveLobby();
+        }
     }
 
     public override void OnConnectedToMaster()
@@ -41,7 +52,6 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("You have connected to the Photon Lobby");
-        createPhotonRoom("TestRoom");
     }
 
     public override void OnCreatedRoom()
@@ -52,6 +62,7 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log($"You have joined the photon room {PhotonNetwork.CurrentRoom.Name}");
+        m_SceneNavigator.MoveToClassicGame();
     }
 
     public override void OnLeftRoom()

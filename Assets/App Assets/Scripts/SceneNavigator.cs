@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +19,7 @@ public class SceneNavigator : MonoBehaviour
 
     public void MoveToClassicGame()
     {
-        StartCoroutine(loadWantedScene("Classic"));
+        StartCoroutine(loadWantedGameMode("Classic"));
     }
 
     private IEnumerator loadWantedScene(string sceneName)
@@ -26,5 +27,12 @@ public class SceneNavigator : MonoBehaviour
         transition.SetTrigger("start");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName);
+    }
+
+    private IEnumerator loadWantedGameMode(string gameModeName)
+    {
+        transition.SetTrigger("start");
+        yield return new WaitForSeconds(1);
+        PhotonNetwork.LoadLevel(gameModeName);
     }
 }

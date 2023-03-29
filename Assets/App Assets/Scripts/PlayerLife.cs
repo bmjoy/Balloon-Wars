@@ -45,7 +45,7 @@ public class PlayerLife : MonoBehaviour
             {
                 m_Fade = 0f;
                 m_IsDissolving = false;
-                //RestartLevel();
+                RestartLevel();
             }
 
             m_Material.SetFloat("_Fade", m_Fade);
@@ -58,7 +58,7 @@ public class PlayerLife : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Trap"))
             {
-                //Die();
+                Die();
             }
         }
     }
@@ -87,7 +87,7 @@ public class PlayerLife : MonoBehaviour
     {
         if(m_View.IsMine)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().name);
         }
     }
 }

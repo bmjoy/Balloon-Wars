@@ -3979,6 +3979,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 375322632218274526, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[0].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 375322632218274526, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[1].SynchronizeType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3532131711306581307, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
       propertyPath: m_BoundingShape2D
       value: 

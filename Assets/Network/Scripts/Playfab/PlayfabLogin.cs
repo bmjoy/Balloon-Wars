@@ -1,7 +1,5 @@
-using System;
 using PlayFab;
 using PlayFab.ClientModels;
-using PlayFab.PfEditor.EditorModels;
 using UnityEngine;
 
 public class PlayfabLogin : MonoBehaviour

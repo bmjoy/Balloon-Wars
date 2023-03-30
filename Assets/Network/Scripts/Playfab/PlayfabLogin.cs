@@ -14,8 +14,6 @@ public class PlayfabLogin : MonoBehaviour
         {
             PlayFabSettings.TitleId = TITLE_ID;
         }
-
-        Username = "TestAccount"; // Temporary until we implement the login scene.
     }
 
     public string Username 
@@ -93,7 +91,7 @@ public class PlayfabLogin : MonoBehaviour
 
     //-----------------------------------Playfab Callbacks-----------------------------------//
 
-    private void OnLoginPlayFabSuccess(PlayFab.ClientModels.LoginResult result)
+    private void OnLoginPlayFabSuccess(LoginResult result)
     {
         Debug.Log($"You have logged into Playfab using custom id {m_Username}");
         updateDisplayName(m_Username);

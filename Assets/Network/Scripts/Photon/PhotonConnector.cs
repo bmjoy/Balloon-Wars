@@ -2,14 +2,13 @@ using UnityEngine;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine.Rendering;
 
 public class PhotonConnector : MonoBehaviourPunCallbacks
 {
-    private SceneNavigator m_SceneNavigator;
+    [SerializeField] private SceneNavigator m_SceneNavigator;
 
-    private void Start() {
-        m_SceneNavigator = GetComponent<SceneNavigator>();
+    private void Start() 
+    {
         string randomName = $"Tester{Guid.NewGuid().ToString()}";
         connectToPhoton(randomName);
     }
@@ -83,10 +82,5 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         Debug.Log($"Player has left the room: {otherPlayer.UserId}");
-    }
-
-    public override void OnMasterClientSwitched(Player newMasterClient)
-    {
-         Debug.Log($"New Master Client is {newMasterClient.UserId}");
     }
 }

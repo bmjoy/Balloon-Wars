@@ -2547,7 +2547,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5145224591395592712}
   - component: {fileID: 5145224591395592727}
-  - component: {fileID: 5145224591395592728}
   m_Layer: 0
   m_Name: Connector
   m_TagString: Untagged
@@ -2567,16 +2566,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e173bbf42f33c4ebb97bd5eeba98d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5145224591395592728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5145224591395592713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf662f21a1c5ea7478af1c7141a17bc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transition: {fileID: 5238671747876925064, guid: 807890019f4dee3408f776f1ab5f32d8, type: 3}
+  m_SceneNavigator: {fileID: 904959855}

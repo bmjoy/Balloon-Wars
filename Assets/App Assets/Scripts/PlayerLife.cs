@@ -8,10 +8,12 @@ public class PlayerLife : MonoBehaviour
     private Material m_Material;
     private Animator m_Animator;
     private Rigidbody2D m_Rigidbody;
+    private SpawnPlayers m_PlayerSpawner;
 
     private PhotonView m_View;
     private bool m_IsDissolving = false;
     private float m_Fade = 1f;
+
     
     [SerializeField] private AudioSource m_SharpTrapSound;
     [SerializeField] private AudioSource m_BurnSound;
@@ -26,6 +28,7 @@ public class PlayerLife : MonoBehaviour
         m_Material = GetComponent<SpriteRenderer>().material;
         m_Animator = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
+        m_PlayerSpawner = FindAnyObjectByType<SpawnPlayers>();
     }
 
     private void Update()
@@ -88,7 +91,7 @@ public class PlayerLife : MonoBehaviour
     {
         if(m_View.IsMine)
         {
-            PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().name);
+            m_PlayerSpawner.RespawnPlayer();
         }
     }
 }

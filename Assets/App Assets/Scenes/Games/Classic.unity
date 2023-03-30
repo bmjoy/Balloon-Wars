@@ -1726,11 +1726,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d0ee75c697981419b93acb89b54757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 5270450297519976128, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
-  m_minX: -49.27232
-  m_maxX: 43.9
-  m_minY: -19.2
-  m_maxY: 27.1
+  m_PlayerPrefab: {fileID: 5270450297519976128, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
+  m_SpawnPositions:
+  - {x: -45.61, y: -0.3}
+  - {x: -1.86, y: -2.36}
+  - {x: -42.05, y: 25.71}
+  - {x: -17.21, y: 16.68}
+  - {x: 31.61, y: 19.75}
+  - {x: 15.4, y: -7.2}
+  - {x: 3.2, y: -20.1}
+  - {x: -37.5, y: -20.1}
+  - {x: 38.9, y: -17.2}
+  - {x: -21.26, y: -0.29}
+  m_DisableTime: 5
 --- !u!4 &539242450
 Transform:
   m_ObjectHideFlags: 0

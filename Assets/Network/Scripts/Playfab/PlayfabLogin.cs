@@ -1,3 +1,4 @@
+using System;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.PfEditor.EditorModels;
@@ -64,13 +65,15 @@ public class PlayfabLogin : MonoBehaviour
          PlayFabClientAPI.UpdateUserTitleDisplayName(request ,OnDisplayNameSuccess, OnFailure);
     }
 
-    public void OnUsernameChanged()
+    public void OnUsernameChanged(string username)
     {
+        m_Username = username;
         PlayerPrefs.SetString("USERNAME", m_Username);
     }
 
-    public void OnPasswordChanged()
+    public void OnPasswordChanged(string password)
     {
+        m_Password = password;
         PlayerPrefs.SetString("PASSWORD", m_Password);
     }
 

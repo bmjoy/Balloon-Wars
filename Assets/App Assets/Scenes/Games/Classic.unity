@@ -1154,8 +1154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ea1a6559a8c04897893153765c0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reduceAirSpeed: 40
-  addAirSpeed: 40
+  reduceAirSpeed: 20
+  addAirSpeed: 100
   AirPercentage: {fileID: 550253539}
   AirAmountImage: {fileID: 901780423}
 --- !u!4 &375610062 stripped

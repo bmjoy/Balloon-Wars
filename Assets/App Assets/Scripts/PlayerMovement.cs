@@ -3,15 +3,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
 {
-    private PhotonView m_View;
+    private PhotonView m_PhotonView;
     private Rigidbody2D m_Rb;
     private BoxCollider2D m_Collider;
     private Animator m_Animator;
-    private SpriteRenderer m_Sprite;
+    private SpriteRenderer m_SpriteRenderer;
     private ConstantForce2D m_ConstantForce;
-    private bool wasOnGround = false;
+    private bool m_WasOnGround = false;
+    private bool m_FlipX;
 
     private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
 
@@ -37,14 +38,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        m_View = GetComponent<PhotonView>();
+        m_PhotonView = GetComponent<PhotonView>();
     }
 
     private void Start()
     {
         m_Rb = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
-        m_Sprite = GetComponent<SpriteRenderer>();
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_Collider = GetComponent<BoxCollider2D>();
         m_ConstantForce = GetComponent<ConstantForce2D>();
         m_AirTank = AirTank.Instance;
@@ -54,25 +55,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(m_View.IsMine)
+        if(m_PhotonView.IsMine)
         {
             addAirToTankIfGrounded();
             updateMovementState();
             updateAnimationState();
         }
+
+        if (m_SpriteRenderer.flipX != PhotonNetwork.IsMasterClient)
+        {
+            m_PhotonView.RPC("SetFlipX", RpcTarget.AllBuffered, m_SpriteRenderer.flipX);
+        }
     }
 
     private void addAirToTankIfGrounded()
     {
-        if (!wasOnGround && isGrounded())
+        if (!m_WasOnGround && isGrounded())
         {
-            wasOnGround = true;
+            m_WasOnGround = true;
             m_AirTank.StartAddAir();
             DeflateCancelLogic();
         }
-        else if (wasOnGround && !isGrounded())
+        else if (m_WasOnGround && !isGrounded())
         {
-            wasOnGround = false;
+            m_WasOnGround = false;
             m_AirTank.StopAddAir();
         }
     }
@@ -92,12 +98,12 @@ public class PlayerMovement : MonoBehaviour
         if (m_DirectionX > 0f)
         {
             state = MovementState.RUNNING;
-            m_Sprite.flipX = false;
+            SetFlipX(false);
         }
         else if (m_DirectionX < 0f)
         {
             state = MovementState.RUNNING;
-            m_Sprite.flipX = true;
+            SetFlipX(true);
         }
         else
         {
@@ -123,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if(m_View.IsMine)
+        if(m_PhotonView.IsMine)
         {
             m_DirectionX = context.ReadValue<float>();
         }
@@ -131,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Inflate(InputAction.CallbackContext context)
     {
-        if(m_View.IsMine)
+        if(m_PhotonView.IsMine)
         {
             if (m_AirTank.AirAmount != 0)
             {
@@ -153,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         m_AirTank.StartReduceAir();
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
-        if(wasOnGround)
+        if(m_WasOnGround)
         {
             m_JumpSoundEffect.Play();
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * m_JumpPower, ForceMode2D.Impulse);
@@ -185,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Deflate(InputAction.CallbackContext context)
     {
-        if(m_View.IsMine)
+        if(m_PhotonView.IsMine)
         {
             if (!isGrounded())
             {
@@ -225,6 +231,28 @@ public class PlayerMovement : MonoBehaviour
         if (m_Rb.bodyType != RigidbodyType2D.Static) 
         {
             m_Rb.velocity = new Vector2(m_Rb.velocity.x, 0);
+        }
+    }
+
+    [PunRPC]
+    void SetFlipX(bool value)
+    {
+        m_FlipX = value;
+        m_SpriteRenderer.flipX = m_FlipX;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // If this is the owner of the object, send the flipX value over the network
+            stream.SendNext(m_FlipX);
+        }
+        else
+        {
+            // If this is not the owner of the object, receive the flipX value from the network
+            m_FlipX = (bool)stream.ReceiveNext();
+            m_SpriteRenderer.flipX = m_FlipX;
         }
     }
 }

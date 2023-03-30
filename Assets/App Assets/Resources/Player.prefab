@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: -3948005157951260477}
   - component: {fileID: 375322632218274526}
   - component: {fileID: 1811017740434760684}
+  - component: {fileID: 6529962661385038622}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -908,6 +909,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: -3948005157951260477}
   - {fileID: 375322632218274526}
+  - {fileID: 6529962661385038622}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -960,10 +962,10 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 3
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: state
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: trap_death
   m_SynchronizeLayers:
   - SynchronizeType: 0
@@ -980,3 +982,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cec014274b5be43a1ae21b19607cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6529962661385038622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5270450297519976128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3

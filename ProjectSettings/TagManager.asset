@@ -9,6 +9,8 @@ TagManager:
   - Fire
   - GameMusic
   - VCamera
+  - LoginScreen
+  - LogoutScreen
   layers:
   - Default
   - TransparentFX

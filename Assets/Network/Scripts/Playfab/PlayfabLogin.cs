@@ -1,12 +1,22 @@
 using PlayFab;
+using System;
 using PlayFab.ClientModels;
 using UnityEngine;
+using System.Collections;
+using TMPro;
 
 public class PlayfabLogin : MonoBehaviour
 {
+    public static readonly string GUEST = "Guest";
+    [SerializeField] private TextMeshProUGUI ErrorText;
+    [SerializeField] [Range(2, 10)] private int ErrorTextTime;
+    [SerializeField] [Range(10, 50)] private int maxErrorLen;
+    public event Action PlayerLoggedIn;
+    public event Action PlayerLoggedOut;
+    private IEnumerator errorTextCoroutine;
     private const string TITLE_ID = "AA6A1";
-    [SerializeField] private string m_Username;
-    [SerializeField] private string m_Password;
+    public string Username{get; set;} = GUEST;
+    public string Password{get; set;}
 
     void Start()
     {
@@ -16,20 +26,21 @@ public class PlayfabLogin : MonoBehaviour
         }
     }
 
-    public string Username 
+    protected void OnPlayerLoggedOut()
     {
-        get { return m_Username; }
-        set 
-        {
-            m_Username = value;
-        }
+        PlayerLoggedOut?.Invoke();
+    }
+
+    protected void OnPlayerLoggedIn()
+    {
+        PlayerLoggedIn?.Invoke();
     }
 
     private bool isValidUsername()
     {
         bool isValid = false;
 
-        if (m_Username.Length >= 3 && m_Username.Length <= 24)
+        if (!string.IsNullOrWhiteSpace(Username) && Username.Length >= 3 && Username.Length <= 24)
         {
             isValid = true;
         }
@@ -39,18 +50,32 @@ public class PlayfabLogin : MonoBehaviour
 
     private void RegisterToPlayFab()
     {
-         Debug.Log($"Registering to Playfab as {m_Username}");
-         var request = new RegisterPlayFabUserRequest {TitleId = TITLE_ID, Username = m_Username, Password = m_Password, RequireBothUsernameAndEmail=false};
+         Debug.Log($"Registering to Playfab as {Username}");
+         var request = new RegisterPlayFabUserRequest {TitleId = TITLE_ID, Username = Username, Password = Password, RequireBothUsernameAndEmail=false};
 
          PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterPlayFabSuccess, OnFailure);
     }
 
     private void LoginWithPlayFabAccount()
     {
-        Debug.Log($"Login to Playfab as {m_Username}");
-        var request = new LoginWithPlayFabRequest {TitleId = TITLE_ID, Username = m_Username, Password = m_Password};
+        Debug.Log($"Login to Playfab as {Username}");
+        var request = new LoginWithPlayFabRequest {TitleId = TITLE_ID, Username = Username, Password = Password};
 
         PlayFabClientAPI.LoginWithPlayFab(request, OnLoginPlayFabSuccess, OnFailure);
+    }
+
+    public void LoginWithGoogleAccount()
+    {
+        Debug.Log($"Login to Playfab with google");
+        LoginWithGoogleAccountRequest request = new LoginWithGoogleAccountRequest();
+        PlayFabClientAPI.LoginWithGoogleAccount(request, OnLoginPlayFabSuccess, OnFailure);
+    }
+
+    public void LoginWithFacebookAccount()
+    {
+        Debug.Log($"Login to Playfab with facebook");
+        LoginWithFacebookRequest request = new LoginWithFacebookRequest();
+        PlayFabClientAPI.LoginWithFacebook(request, OnLoginPlayFabSuccess, OnFailure);
     }
 
     private void updateDisplayName(string displayName)
@@ -63,14 +88,14 @@ public class PlayfabLogin : MonoBehaviour
 
     public void OnUsernameChanged(string username)
     {
-        m_Username = username;
-        PlayerPrefs.SetString("USERNAME", m_Username);
+        Username = username;
+        PlayerPrefs.SetString("USERNAME", Username);
     }
 
     public void OnPasswordChanged(string password)
     {
-        m_Password = password;
-        PlayerPrefs.SetString("PASSWORD", m_Password);
+        Password = password;
+        PlayerPrefs.SetString("PASSWORD", Password);
     }
 
     public void Login()
@@ -79,6 +104,17 @@ public class PlayfabLogin : MonoBehaviour
         {  
             LoginWithPlayFabAccount();
         }
+        else
+        {
+            showErrorMsg("invalid username");
+        }
+    }
+
+    public void LogOut()
+    {
+        PlayFabClientAPI.ForgetAllCredentials();
+        Username = GUEST;
+        OnPlayerLoggedOut();
     }
 
     public void Signup()
@@ -87,19 +123,50 @@ public class PlayfabLogin : MonoBehaviour
         {  
             RegisterToPlayFab();
         }
+        else
+        {
+            showErrorMsg("invalid username");
+        }
+    }
+
+    private void showErrorMsg(string errorMsg)
+    {
+        if(errorTextCoroutine != null)
+        {
+            StopCoroutine(errorTextCoroutine);
+        } 
+        errorTextCoroutine = setError(errorMsg);
+        StartCoroutine(errorTextCoroutine);
+    }
+
+    private IEnumerator setError(string errorMsg)
+    {
+        string errorToDisplay = "Error - " + errorMsg;
+        errorToDisplay = errorToDisplay.Substring(Math.Max(errorToDisplay.IndexOf(':') + 1, 0));
+        if (errorToDisplay.Length >= maxErrorLen)
+        {
+            errorToDisplay = errorToDisplay.Substring(0, maxErrorLen - 4);
+            errorToDisplay += "...";
+        }
+        Debug.Log(errorMsg);
+        ErrorText.SetText(errorToDisplay);
+        ErrorText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(ErrorTextTime);
+        ErrorText.gameObject.SetActive(false);
     }
 
     //-----------------------------------Playfab Callbacks-----------------------------------//
 
     private void OnLoginPlayFabSuccess(LoginResult result)
     {
-        Debug.Log($"You have logged into Playfab using custom id {m_Username}");
-        updateDisplayName(m_Username);
+        Debug.Log($"You have logged into Playfab using custom id {Username}");
+        updateDisplayName(Username);
+        OnPlayerLoggedIn();
     }
 
     private void OnRegisterPlayFabSuccess(RegisterPlayFabUserResult result)
     {
-        Debug.Log($"You have registered a new Playfab account: {m_Username}");
+        Debug.Log($"You have registered a new Playfab account: {Username}");
         Login();
     }
 
@@ -110,7 +177,7 @@ public class PlayfabLogin : MonoBehaviour
 
     private void OnFailure(PlayFab.PlayFabError error)
     {
-        Debug.Log($"There was an issue with your request {error.GenerateErrorReport()}");
+        string ErrorMsg = error.GenerateErrorReport();
+        showErrorMsg(ErrorMsg);
     }
-
 }

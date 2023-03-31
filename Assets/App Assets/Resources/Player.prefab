@@ -31,7 +31,7 @@ GameObject:
   - component: {fileID: 1811017740434760684}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -911,7 +911,6 @@ MonoBehaviour:
   - {fileID: 6529962661385038622}
   - {fileID: -1631966935516862986}
   - {fileID: 375322632218274526}
-  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

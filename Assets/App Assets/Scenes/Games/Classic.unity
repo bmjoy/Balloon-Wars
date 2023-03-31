@@ -3408,33 +3408,9 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9118411c-69e6-4882-aa1a-6b6f93891102
     m_ActionName: Movement input/Walk[/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 253390fa-f019-4f4c-9114-82460e45d821
-    m_ActionName: Touch input/TouchPress[/Touchscreen/primaryTouch/press]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 89f8c6f3-270a-4b6f-a307-7e22e5f5445a
-    m_ActionName: Touch input/TouchPosition[/Touchscreen/primaryTouch/position]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1213530016}
-        m_TargetAssemblyTypeName: Dart, Assembly-CSharp
-        m_MethodName: OnHoldTouch
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 6b90d6c0-253a-4f76-aa78-2c0f0ac550be
-    m_ActionName: Touch input/TouchHold[/Touchscreen/primaryTouch/press]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Touch input
+  m_DefaultActionMap: Movement input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &1220929267
@@ -3613,7 +3589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321764921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.19153, y: 1.19997, z: -10}
+  m_LocalPosition: {x: -36.858204, y: 1.19972, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3815,6 +3791,18 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1721199826557593901, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721199826557593901, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119906534379492352, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5270450297519976128, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3861,6 +3849,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5270450297519976130, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084462671298028728, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8145688151194242774, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}

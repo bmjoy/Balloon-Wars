@@ -9,6 +9,7 @@ using TMPro;
 public class PlayfabLogin : MonoBehaviour
 {
     public static readonly string GUEST = "Guest";
+    [SerializeField] SceneNavigator m_SceneNavigator;
     [SerializeField] private TextMeshProUGUI m_ErrorText;
     [SerializeField] [Range(2, 10)] private int m_ErrorTextTime;
     [SerializeField] [Range(10, 50)] private int m_maxErrorLen;
@@ -188,6 +189,7 @@ public class PlayfabLogin : MonoBehaviour
         Debug.Log($"You have logged into Playfab using custom id {Username}");
         updateDisplayName(Username);
         OnPlayerLoggedIn();
+        m_SceneNavigator.MoveToMainMenu();
     }
 
     private void OnRegisterPlayFabSuccess(RegisterPlayFabUserResult result)

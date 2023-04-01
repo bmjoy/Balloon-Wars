@@ -10,6 +10,8 @@ TagManager:
   - GameMusic
   - VCamera
   - Playfab
+  - LoginScreen
+  - LogoutScreen
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Dart
+  - Player
   - 
   - 
   - 

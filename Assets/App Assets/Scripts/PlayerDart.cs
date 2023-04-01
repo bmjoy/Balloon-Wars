@@ -9,10 +9,14 @@ public class PlayerDart : MonoBehaviour
     private Vector2 m_DartPosition;
     private Vector2 m_DartDirection;
     private Vector2 m_DefaultDartDirection;
+    private List<GameObject> m_Points;
 
     [SerializeField] private GameObject m_DartPrefab;
+    [SerializeField] private GameObject m_PointPrefab;
     [SerializeField] private float m_ShotForce;
     [SerializeField] private Transform m_ShotPoint;
+    [SerializeField] private int m_NumOfProjectionPoints;
+    [SerializeField] private float m_SpaceBetweenPoints;
 
     private void Awake()
     {
@@ -22,11 +26,13 @@ public class PlayerDart : MonoBehaviour
     private void Start()
     {
         m_DefaultDartDirection = transform.right;
+        InitializeProjectionPoints();
     }
 
     private void Update()
     {
         AcceptTouchInputs();
+        UpdateProjectionPointsLocation();
     }
 
     private void AcceptTouchInputs()
@@ -79,5 +85,34 @@ public class PlayerDart : MonoBehaviour
         GameObject newDart = Instantiate(m_DartPrefab, m_ShotPoint.position, m_ShotPoint.rotation);
         newDart.GetComponent<Transform>().right = m_DartDirection;
         newDart.GetComponent<Rigidbody2D>().velocity = transform.right * m_ShotForce;
+    }
+
+    private void InitializeProjectionPoints()
+    {
+        m_Points = new List<GameObject>();
+
+        for(int i=0; i < m_NumOfProjectionPoints; i++)
+        {
+            m_Points.Add(Instantiate(m_PointPrefab, m_ShotPoint.position, Quaternion.identity));
+        }
+    }
+
+    private Vector2 PointPosition(float t)
+    {
+        Vector2 startingVelocity = m_DartDirection.normalized * m_ShotForce;
+        Vector2 startingPosition = (Vector2)m_ShotPoint.position;
+        Vector2 acceleration = 0.5f * Physics2D.gravity;
+        float tSquare = t*t;
+        Vector2 position = startingPosition + (startingVelocity * t) + (acceleration * tSquare);
+        
+        return position;
+    }
+
+    private void UpdateProjectionPointsLocation()
+    {
+        for (int i=0; i < m_NumOfProjectionPoints; i++)
+        {
+            m_Points[i].transform.position = PointPosition(i * m_SpaceBetweenPoints);
+        }
     }
 }

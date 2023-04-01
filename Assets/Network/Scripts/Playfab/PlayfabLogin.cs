@@ -8,21 +8,16 @@ using TMPro;
 
 public class PlayfabLogin : MonoBehaviour
 {
-    public static readonly string GUEST = "Guest";
     [SerializeField] SceneNavigator m_SceneNavigator;
     [SerializeField] private TextMeshProUGUI m_ErrorText;
     [SerializeField] [Range(2, 10)] private int m_ErrorTextTime;
     [SerializeField] [Range(10, 50)] private int m_maxErrorLen;
     [SerializeField] Button m_LoginButton;
     [SerializeField] Button m_SignupButton;
-    public event Action PlayerLoggedIn;
-    public event Action PlayerLoggedOut;
     private IEnumerator m_errorTextCoroutine;
     private const string TITLE_ID = "AA6A1";
-    public string Username{get; set;} = GUEST;
+    public string Username{get; set;}
     public string Password{get; set;}
-    private string cur_username = string.Empty;
-    private string cur_password = string.Empty;
 
     void Start()
     {
@@ -34,32 +29,30 @@ public class PlayfabLogin : MonoBehaviour
 
     //------------------ set username and password ------------------
 
-    public void setUsername(string username)
+    public void saveUsername(string username)
     {
-        Username = username;
         PlayerPrefs.SetString("USERNAME", username);
     }
-    public void setPassword(string password)
+    public void savePassword(string password)
     {
-        Password = password;
-        PlayerPrefs.SetString("Password", password);
+        PlayerPrefs.SetString("PASSWORD", password);
     }
 
-    private void setUsernameAndPassword(string username, string password)
+    private void saveUsernameAndPassword()
     {
-        setUsername(username);
-        setPassword(password);
+        saveUsername(Username);
+        savePassword(Password);
     }
 
     public void OnUsernameChanged(string username)
     {
-        cur_username = username;
+        Username = username;
         setButtonsInteractableIfValidInput();
     }
     
     public void OnPasswordChanged(string password)
     {
-        cur_password = password;
+        Password = password;
         setButtonsInteractableIfValidInput();
     }
 
@@ -75,7 +68,7 @@ public class PlayfabLogin : MonoBehaviour
 
     private void setButtonsInteractableIfValidInput()
     {
-        if (isValidUsername(cur_username) && isValidPassword(cur_password))
+        if (isValidUsername(Username) && isValidPassword(Password))
         {
             m_LoginButton.interactable = true;
             m_SignupButton.interactable = true;
@@ -87,17 +80,7 @@ public class PlayfabLogin : MonoBehaviour
         }
     }
 
-    //------------------ Login , Logout , Signup ------------------
-
-    protected void OnPlayerLoggedOut()
-    {
-        PlayerLoggedOut?.Invoke();
-    }
-
-    protected void OnPlayerLoggedIn()
-    {
-        PlayerLoggedIn?.Invoke();
-    }
+    //------------------ Login and Signup ------------------
 
     private void RegisterToPlayFab(string username, string password)
     {
@@ -139,19 +122,19 @@ public class PlayfabLogin : MonoBehaviour
 
     public void Login()
     {
-        LoginWithPlayFabAccount(cur_username, cur_password);
+        LoginWithPlayFabAccount(Username, Password);
     }
 
-    public void LogOut()
+    public void LoginWithSavedValues()
     {
-        PlayFabClientAPI.ForgetAllCredentials();
-        Username = GUEST;
-        OnPlayerLoggedOut();
+        Username = PlayerPrefs.GetString("USERNAME");
+        Password = PlayerPrefs.GetString("PASSWORD");
+        Login();
     }
 
     public void Signup()
     { 
-        RegisterToPlayFab(cur_username, cur_password);
+        RegisterToPlayFab(Username, Password);
     }
 
     //------------------ error msg ------------------
@@ -185,16 +168,15 @@ public class PlayfabLogin : MonoBehaviour
 
     private void OnLoginPlayFabSuccess(LoginResult result)
     {
-        setUsernameAndPassword(cur_username, cur_password);
+        saveUsernameAndPassword();
         Debug.Log($"You have logged into Playfab using custom id {Username}");
         updateDisplayName(Username);
-        OnPlayerLoggedIn();
         m_SceneNavigator.MoveToMainMenu();
     }
 
     private void OnRegisterPlayFabSuccess(RegisterPlayFabUserResult result)
     {
-        Debug.Log($"You have registered a new Playfab account: {cur_username}");
+        Debug.Log($"You have registered a new Playfab account: {Username}");
         Login();
     }
 

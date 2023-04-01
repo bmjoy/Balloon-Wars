@@ -5,24 +5,17 @@ using TMPro;
 
 public class NameOfPlayer : MonoBehaviour
 {
+    private static readonly string GUEST = "Guest";
     private TextMeshProUGUI m_NameText;
-    private PlayfabLogin m_PlayFab;
 
     private void Awake()
     {
         m_NameText = GetComponent<TextMeshProUGUI>();
-        m_PlayFab = FindAnyObjectByType<PlayfabLogin>();
-        m_PlayFab.PlayerLoggedIn += changeNameTextToPlayersName;
-        m_PlayFab.PlayerLoggedOut += changeNameTextToPlayersName;
     }
 
     private void Start()
     {
-        changeNameTextToPlayersName();
-    }
-
-    private void changeNameTextToPlayersName()
-    {
-        m_NameText.SetText(m_PlayFab.Username);
+        string username = PlayerPrefs.GetString("USERNAME");
+        m_NameText.SetText(!string.IsNullOrEmpty(username)? username : GUEST);
     }
 }

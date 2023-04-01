@@ -9,8 +9,9 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
 
     private void Start() 
     {
-        string randomName = $"Tester{Guid.NewGuid().ToString()}";
-        connectToPhoton(randomName);
+        string GuestName = $"Guest{Guid.NewGuid().ToString()}";
+        string Username = PlayerPrefs.GetString("USERNAME");
+        connectToPhoton(!string.IsNullOrEmpty(Username)? Username : GuestName);
     }
 
     private void connectToPhoton(string nickName)

@@ -208,7 +208,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 55227388}
-  - component: {fileID: 55227389}
   m_Layer: 5
   m_Name: User menu
   m_TagString: Untagged
@@ -238,20 +237,6 @@ RectTransform:
   m_AnchoredPosition: {x: -630, y: -2}
   m_SizeDelta: {x: 258.1103, y: 329.1475}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &55227389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55227387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650c5a1c7e38ef646b7b583ac0d77f8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LoginScreen: {fileID: 0}
-  m_LogoutScreen: {fileID: 1214904866}
 --- !u!1 &78255878
 GameObject:
   m_ObjectHideFlags: 0

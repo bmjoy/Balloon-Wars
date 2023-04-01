@@ -9,8 +9,7 @@ TagManager:
   - Fire
   - GameMusic
   - VCamera
-  - LoginScreen
-  - LogoutScreen
+  - Playfab
   layers:
   - Default
   - TransparentFX

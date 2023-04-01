@@ -1392,6 +1392,7 @@ GameObject:
   - component: {fileID: 3392816846805738441}
   - component: {fileID: 3155162978374390115}
   - component: {fileID: 1461564838654456657}
+  - component: {fileID: 7260777819355632111}
   m_Layer: 0
   m_Name: PlayerDart
   m_TagString: Untagged
@@ -1429,8 +1430,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DartPrefab: {fileID: 8539629894646217900, guid: 014a8cc5bed304e42be6e834c40f5aa0, type: 3}
+  m_PointPrefab: {fileID: 3022857984474418609, guid: e8abfe1edd02d9c4ebf2bcc785616032, type: 3}
   m_ShotForce: 13
   m_ShotPoint: {fileID: 4069800396078415960}
+  m_NumOfProjectionPoints: 50
+  m_SpaceBetweenPoints: 0.025
 --- !u!114 &1461564838654456657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,3 +1487,15 @@ MonoBehaviour:
   m_DefaultActionMap: Movement input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7260777819355632111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782147856280573157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e809cbd3235c74b987ba9cf8e1d04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

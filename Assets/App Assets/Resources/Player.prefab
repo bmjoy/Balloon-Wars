@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4069800396078415960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5056544755110669958}
   - component: {fileID: 7638730225172598854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dart GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: -1631966935516862986}
   - component: {fileID: 375322632218274526}
   - component: {fileID: 1811017740434760684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1134,7 +1134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6439738137938009468}
   - component: {fileID: 423476498886712300}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: background Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1220,7 +1220,7 @@ GameObject:
   - component: {fileID: 6881165115316760078}
   - component: {fileID: 6777870135005831851}
   - component: {fileID: 1359889490660222799}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Player Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1392,8 +1392,7 @@ GameObject:
   - component: {fileID: 3392816846805738441}
   - component: {fileID: 3155162978374390115}
   - component: {fileID: 1461564838654456657}
-  - component: {fileID: 7260777819355632111}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerDart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1487,15 +1486,3 @@ MonoBehaviour:
   m_DefaultActionMap: Movement input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7260777819355632111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7782147856280573157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7e809cbd3235c74b987ba9cf8e1d04d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

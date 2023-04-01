@@ -1,36 +1,20 @@
-using System.Data;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 public class Dart : MonoBehaviour
 {
-    private PlayerInput m_PlayerInput;
-    private InputAction m_TouchHoldAction;
-    private InputAction m_TouchPositionAction;
-
-    private void Awake()
-    {
-        m_PlayerInput = GetComponent<PlayerInput>();
-        m_TouchHoldAction = m_PlayerInput.actions["TouchHold"];
-        m_TouchPositionAction = m_PlayerInput.actions["TouchPosition"];
-    }
+    Rigidbody2D m_RigidBody;
 
     private void Start()
     {
-        
+        m_RigidBody = GetComponent<Rigidbody2D>();
+        //transform.Rotate(0, 0, -90);
     }
 
-    void Update()
+    private void Update()
     {
-        foreach (Touch touch in Input.touches) 
-        {
-            if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId)) 
-            {
-                // The touch is not over any UI element, track the position
-                Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-            }
-        }
+        float angle = Mathf.Atan2(m_RigidBody.velocity.y, m_RigidBody.velocity.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

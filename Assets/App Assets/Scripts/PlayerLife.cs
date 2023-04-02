@@ -91,6 +91,7 @@ public class PlayerLife : MonoBehaviour
     {
         if(m_View.IsMine)
         {
+            Destroy(gameObject);
             m_PlayerSpawner.RespawnPlayer();
         }
     }

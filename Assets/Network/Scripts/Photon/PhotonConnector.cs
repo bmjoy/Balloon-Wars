@@ -9,7 +9,7 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
 
     private void Start() 
     {
-        string GuestName = $"Guest{Guid.NewGuid().ToString()}";
+        string GuestName = $"Guest {Guid.NewGuid().ToString()}";
         string Username = PlayerPrefs.GetString("USERNAME");
         connectToPhoton(!string.IsNullOrEmpty(Username)? Username : GuestName);
     }

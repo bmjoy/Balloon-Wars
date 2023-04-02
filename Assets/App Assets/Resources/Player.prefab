@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7737919096320548067}
   - component: {fileID: 5031965946256611025}
-  - component: {fileID: 815124359592786133}
+  - component: {fileID: 213213848370741553}
   - component: {fileID: 7134424126375217846}
   m_Layer: 3
   m_Name: Player Name
@@ -78,7 +78,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3497370574010827833}
   m_CullTransparentMesh: 1
---- !u!114 &815124359592786133
+--- !u!114 &213213848370741553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3497370574010827833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c19a0c477b9f6942a3ed30584f34052, type: 3}
+  m_Script: {fileID: 11500000, guid: dff13aba63e8f294d8659829f6533ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7134424126375217846
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 0.05
+  m_fontSizeMin: 0.5
   m_fontSizeMax: 1
   m_fontStyle: 1
   m_HorizontalAlignment: 2
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 1
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.19258499, y: 0, z: 0.16048431, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1476,7 +1476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7782147856280573157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.59, y: -0.85, z: -1.1352654}
+  m_LocalPosition: {x: -0.4, y: -0.68, z: -1.1352654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

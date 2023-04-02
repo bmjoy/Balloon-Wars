@@ -33,6 +33,19 @@ public class Dart : MonoBehaviour
     private IEnumerator DestroyDart()
     {
         yield return new WaitForSeconds(m_DartDestroyTime);
+        StartCoroutine(fadeDartOut());
+    }
+
+    private IEnumerator fadeDartOut()
+    {
+        Color dartColor = GetComponentInChildren<Renderer>().material.color;
+        float fadeAmount = 0.1f;
+        for(int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            Color newColor = new Color(dartColor.r, dartColor.g, dartColor.b, 1 - fadeAmount * i);
+            GetComponentInChildren<Renderer>().material.color = newColor;
+        }
         Destroy(gameObject);
     }
 }

@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 2086494703872681452}
   - component: {fileID: 1991969159474038121}
   m_Layer: 3
-  m_Name: name
+  m_Name: NameLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,6 +761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad7c818a728a3b478528fb9048c5eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerDart: {fileID: 7782147856280573157}
+  m_NameLabel: {fileID: 4163227120647165666}
   m_SharpTrapSound: {fileID: 5270450297519976181}
   m_BurnSound: {fileID: 5270450297519976180}
 --- !u!82 &5270450297519976187
@@ -1461,6 +1463,8 @@ GameObject:
   - component: {fileID: 3392816846805738441}
   - component: {fileID: 3155162978374390115}
   - component: {fileID: 1461564838654456657}
+  - component: {fileID: 8587581308802975258}
+  - component: {fileID: 2894413445837079651}
   m_Layer: 8
   m_Name: PlayerDart
   m_TagString: Untagged
@@ -1555,3 +1559,59 @@ MonoBehaviour:
   m_DefaultActionMap: Movement input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8587581308802975258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782147856280573157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 2894413445837079651}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &2894413445837079651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782147856280573157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 4
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 5
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 2
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0

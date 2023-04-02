@@ -115,4 +115,12 @@ public class PlayerDart : MonoBehaviour
             m_Points[i].transform.position = PointPosition(i * m_SpaceBetweenPoints);
         }
     }
+
+    public void destroyDiractionPoints()
+    {
+        for(int i=0; i < m_NumOfProjectionPoints; i++)
+        {
+            Destroy(m_Points[i]);
+        }
+    }
 }

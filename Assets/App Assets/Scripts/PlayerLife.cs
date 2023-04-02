@@ -9,7 +9,6 @@ public class PlayerLife : MonoBehaviour
     private Animator m_Animator;
     private Rigidbody2D m_Rigidbody;
     private SpawnPlayers m_PlayerSpawner;
-
     private PhotonView m_View;
     private bool m_IsDissolving = false;
     private float m_Fade = 1f;
@@ -91,6 +90,7 @@ public class PlayerLife : MonoBehaviour
     {
         if(m_View.IsMine)
         {
+            GetComponentInChildren<PlayerDart>().destroyDiractionPoints();
             Destroy(gameObject);
             m_PlayerSpawner.RespawnPlayer();
         }

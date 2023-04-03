@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Photon.Pun;
 
 public class PlayerDart : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerDart : MonoBehaviour
     private Vector2 m_DefaultDartDirection;
     private List<GameObject> m_Points;
 
+    private PhotonView m_PhotonView;
     [SerializeField] private GameObject m_DartPrefab;
     [SerializeField] private GameObject m_PointPrefab;
     [SerializeField] private float m_ShotForce;
@@ -20,19 +22,26 @@ public class PlayerDart : MonoBehaviour
 
     private void Awake()
     {
+        m_PhotonView = GetComponent<PhotonView>();
         m_MainCamera = Camera.main;
     }
 
     private void Start()
     {
-        m_DefaultDartDirection = transform.right;
-        InitializeProjectionPoints();
+        if(m_PhotonView.IsMine)
+        {
+            m_DefaultDartDirection = transform.right;
+            InitializeProjectionPoints();
+        }
     }
 
     private void Update()
     {
-        AcceptTouchInputs();
-        UpdateProjectionPointsLocation();
+        if(m_PhotonView.IsMine)
+        {
+            AcceptTouchInputs();
+            UpdateProjectionPointsLocation();
+        }
     }
 
     private void AcceptTouchInputs()
@@ -82,7 +91,7 @@ public class PlayerDart : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject newDart = Instantiate(m_DartPrefab, m_ShotPoint.position, m_ShotPoint.rotation);
+        GameObject newDart = PhotonNetwork.Instantiate(m_DartPrefab.name, m_ShotPoint.position, m_ShotPoint.rotation);
         newDart.GetComponent<Transform>().right = m_DartDirection;
         newDart.GetComponent<Rigidbody2D>().velocity = transform.right * m_ShotForce;
     }
@@ -93,7 +102,9 @@ public class PlayerDart : MonoBehaviour
 
         for(int i=0; i < m_NumOfProjectionPoints; i++)
         {
-            m_Points.Add(Instantiate(m_PointPrefab, m_ShotPoint.position, Quaternion.identity));
+            GameObject currentPoint = PhotonNetwork.Instantiate(m_PointPrefab.name, m_ShotPoint.position, Quaternion.identity);
+            currentPoint.transform.SetParent(gameObject.transform);
+            m_Points.Add(currentPoint);
         }
     }
 
@@ -120,7 +131,7 @@ public class PlayerDart : MonoBehaviour
     {
         for(int i=0; i < m_NumOfProjectionPoints; i++)
         {
-            Destroy(m_Points[i]);
+            PhotonNetwork.Destroy(m_Points[i]);
         }
     }
 }

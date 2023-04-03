@@ -9,17 +9,18 @@ public class PlayerLife : MonoBehaviour
     private Animator m_Animator;
     private Rigidbody2D m_Rigidbody;
     private SpawnPlayers m_PlayerSpawner;
-    private PhotonView m_View;
+    private PhotonView m_PhotonView;
     private bool m_IsDissolving = false;
     private float m_Fade = 1f;
-
     
+    [SerializeField] private GameObject m_PlayerDart;
+    [SerializeField] private GameObject m_NameLabel;
     [SerializeField] private AudioSource m_SharpTrapSound;
     [SerializeField] private AudioSource m_BurnSound;
 
     private void Awake()
     {
-         m_View = GetComponent<PhotonView>();
+         m_PhotonView = GetComponent<PhotonView>();
     }
 
     private void Start()
@@ -32,7 +33,7 @@ public class PlayerLife : MonoBehaviour
 
     private void Update()
     {
-        if (m_View.IsMine)
+        if (m_PhotonView.IsMine)
         {
             UpdateDissolvingState();
         }
@@ -57,7 +58,7 @@ public class PlayerLife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) 
     {
-        if (m_View.IsMine)
+        if (m_PhotonView.IsMine)
         {
             if (collision.gameObject.CompareTag("Trap"))
             {
@@ -68,7 +69,7 @@ public class PlayerLife : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (m_View.IsMine)
+        if (m_PhotonView.IsMine)
         {
             if (collider.gameObject.CompareTag("Fire"))
             {
@@ -82,16 +83,23 @@ public class PlayerLife : MonoBehaviour
     private void Die()
     {
         m_SharpTrapSound.Play();
+        m_PhotonView.RPC("DisablePlayerObjects", RpcTarget.All);
         m_Rigidbody.bodyType = RigidbodyType2D.Static;
         m_Animator.SetTrigger("trap_death");
     }
 
+    [PunRPC]
+    private void DisablePlayerObjects()
+    {
+        m_PlayerDart.SetActive(false);
+        m_NameLabel.SetActive(false);
+    }
+
     private void RestartLevel()
     {
-        if(m_View.IsMine)
+        if(m_PhotonView.IsMine)
         {
-            GetComponentInChildren<PlayerDart>().destroyDiractionPoints();
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
             m_PlayerSpawner.RespawnPlayer();
         }
     }

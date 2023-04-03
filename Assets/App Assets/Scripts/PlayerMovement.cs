@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
+public class PlayerMovement : MonoBehaviourPunCallbacks
 {
     private PhotonView m_PhotonView;
     private Rigidbody2D m_Rb;
@@ -12,11 +12,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
     private SpriteRenderer m_SpriteRenderer;
     private ConstantForce2D m_ConstantForce;
     private bool m_WasOnGround = false;
-    private bool m_FlipX;
 
     private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
 
-    
     [SerializeField] [Range(1f, 30f)] private float m_JumpPower = 15f;
     [SerializeField] [Range(0.05f, 0.5f)] private float m_jumpTime = 0.1f;
     [SerializeField] [Range(1, 15)] private int m_jumpSmooth = 8;
@@ -61,11 +59,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
             updateMovementState();
             updateAnimationState();
         }
-
-        if (m_SpriteRenderer.flipX != PhotonNetwork.IsMasterClient)
-        {
-            m_PhotonView.RPC("SetFlipX", RpcTarget.AllBuffered, m_SpriteRenderer.flipX);
-        }
     }
 
     private void addAirToTankIfGrounded()
@@ -98,12 +91,12 @@ public class PlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
         if (m_DirectionX > 0f)
         {
             state = MovementState.RUNNING;
-            SetFlipX(false);
+            photonView.RPC("SetFlipX", RpcTarget.AllBuffered, false);
         }
         else if (m_DirectionX < 0f)
         {
             state = MovementState.RUNNING;
-            SetFlipX(true);
+            photonView.RPC("SetFlipX", RpcTarget.AllBuffered, true);
         }
         else
         {
@@ -237,22 +230,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     void SetFlipX(bool value)
     {
-        m_FlipX = value;
-        m_SpriteRenderer.flipX = m_FlipX;
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            // If this is the owner of the object, send the flipX value over the network
-            stream.SendNext(m_FlipX);
-        }
-        else
-        {
-            // If this is not the owner of the object, receive the flipX value from the network
-            m_FlipX = (bool)stream.ReceiveNext();
-            m_SpriteRenderer.flipX = m_FlipX;
-        }
+        m_SpriteRenderer.flipX = value;
     }
 }

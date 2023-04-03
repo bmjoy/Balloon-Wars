@@ -47,8 +47,14 @@ public class Dart : MonoBehaviour
         if(m_PhotonView.IsMine)
         {
             yield return new WaitForSeconds(m_DartDestroyTime);
-            m_Animator.SetTrigger("fade");
+            m_PhotonView.RPC("TriggerDartFadeAnimation", RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    private void TriggerDartFadeAnimation()
+    {
+        m_Animator.SetTrigger("fade");
     }
 
     public void DestroyDart()

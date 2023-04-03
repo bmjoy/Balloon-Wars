@@ -1,4 +1,4 @@
-using System
+using System;
 using UnityEngine;
 
 public class AddFriend : MonoBehaviour
@@ -7,7 +7,7 @@ public class AddFriend : MonoBehaviour
 
     public static Action<string> OnAddFrieand;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {

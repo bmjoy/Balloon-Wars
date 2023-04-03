@@ -6,6 +6,8 @@ public class Dart : MonoBehaviour//, IPunObservable
 {
     private Rigidbody2D m_RigidBody;
     private PhotonView m_PhotonView;
+
+    private Animator m_Animator;
     private bool m_HasHit = false;
     [SerializeField] private float m_DartDestroyTime = 3f;
 
@@ -17,6 +19,7 @@ public class Dart : MonoBehaviour//, IPunObservable
     private void Start()
     {
         m_RigidBody = GetComponent<Rigidbody2D>();
+        m_Animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -35,33 +38,23 @@ public class Dart : MonoBehaviour//, IPunObservable
             m_HasHit = true;
             m_RigidBody.velocity = Vector2.zero;
             m_RigidBody.isKinematic = true;
-            StartCoroutine(DestroyDart());
+            StartCoroutine(StartDestroyDart());
         }
     }
 
-    private IEnumerator DestroyDart()
+    private IEnumerator StartDestroyDart()
     {
         if(m_PhotonView.IsMine)
         {
             yield return new WaitForSeconds(m_DartDestroyTime);
-            StartCoroutine(fadeDartOut());
+            m_Animator.SetTrigger("fade");
         }
     }
 
-    private IEnumerator fadeDartOut()
+    public void DestroyDart()
     {
         if(m_PhotonView.IsMine)
         {
-            Color dartColor = GetComponentInChildren<Renderer>().material.color;
-            float fadeAmount = 0.1f;
-            for(int i = 0; i < 10; i++)
-            {
-                yield return new WaitForSeconds(0.1f);
-                Color newColor = new Color(dartColor.r, dartColor.g, dartColor.b, 1 - fadeAmount * i);
-                GetComponentInChildren<Renderer>().material.color = newColor;
-
-                // m_PhotonView.RPC("UpdateSpriteColor", RpcTarget.Others, newColor);
-            }
             PhotonNetwork.Destroy(gameObject);
         }
     }

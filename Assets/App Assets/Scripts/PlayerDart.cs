@@ -11,6 +11,7 @@ public class PlayerDart : MonoBehaviour
     private Vector2 m_DartDirection;
     private Vector2 m_DefaultDartDirection;
     private List<GameObject> m_Points;
+    private List<int> m_UiObjectTouches;
 
     private PhotonView m_PhotonView;
     [SerializeField] private GameObject m_DartPrefab;
@@ -30,6 +31,7 @@ public class PlayerDart : MonoBehaviour
     {
         if(m_PhotonView.IsMine)
         {
+            m_UiObjectTouches = new List<int>();
             m_DefaultDartDirection = transform.right;
             InitializeProjectionPoints();
         }
@@ -48,9 +50,16 @@ public class PlayerDart : MonoBehaviour
     {
         foreach (Touch touch in Input.touches) 
         {
+            if(touch.phase == TouchPhase.Began)
+            {
+                if (IsPointerOverUIObject())
+                {
+                    m_UiObjectTouches.Add(touch.fingerId);
+                }
+            }
             if(touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
             {
-                if (!IsPointerOverUIObject()) 
+                if (!IsPointerOverUIObject() && !m_UiObjectTouches.Contains(touch.fingerId)) 
                 {
                     m_TouchPosition = Utils.ScreenToWorld(m_MainCamera, touch.position);
                     UpdateDartPointDirection();
@@ -58,11 +67,15 @@ public class PlayerDart : MonoBehaviour
             }
             else if (touch.phase == TouchPhase.Ended)
             {
-                if (!IsPointerOverUIObject()) 
+                if (!IsPointerOverUIObject() && !m_UiObjectTouches.Contains(touch.fingerId)) 
                 {
                     m_TouchPosition = Utils.ScreenToWorld(m_MainCamera, touch.position);
                     Shoot();
                     transform.right = m_DefaultDartDirection;
+                }
+                else if (m_UiObjectTouches.Contains(touch.fingerId))
+                {
+                    m_UiObjectTouches.Remove(touch.fingerId);
                 }
             }
         }

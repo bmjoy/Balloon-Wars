@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviourPunCallbacks
+public class PlayerMovement : MonoBehaviour
 {
     private PhotonView m_PhotonView;
-    private Rigidbody2D m_Rb;
+    private Rigidbody2D m_RigidBody;
     private BoxCollider2D m_Collider;
     private Animator m_Animator;
     private SpriteRenderer m_SpriteRenderer;
@@ -37,17 +37,32 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void Awake()
     {
         m_PhotonView = GetComponent<PhotonView>();
+        m_AirTank = AirTank.Instance;
+    }
+
+    private void OnEnable()
+    {
+        if(m_PhotonView.IsMine)
+        {
+            m_AirTank.AirFinished += InflateCancelLogic;
+        }
+    }
+
+    private void OnDisable() 
+    {
+        if(m_PhotonView.IsMine)
+        {
+            m_AirTank.AirFinished -= InflateCancelLogic;
+        }
     }
 
     private void Start()
     {
-        m_Rb = GetComponent<Rigidbody2D>();
+        m_RigidBody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_Collider = GetComponent<BoxCollider2D>();
         m_ConstantForce = GetComponent<ConstantForce2D>();
-        m_AirTank = AirTank.Instance;
-        m_AirTank.AirFinished += InflateCancelLogic;
         m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
     }
 
@@ -78,9 +93,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     private void updateMovementState()
     {
-        if (m_Rb.bodyType != RigidbodyType2D.Static) 
+        if (m_RigidBody.bodyType != RigidbodyType2D.Static) 
         {
-            m_Rb.velocity = new Vector2(m_DirectionX * m_SideMovementPower, m_Rb.velocity.y);
+            m_RigidBody.velocity = new Vector2(m_DirectionX * m_SideMovementPower, m_RigidBody.velocity.y);
         }
     }
 
@@ -91,23 +106,23 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         if (m_DirectionX > 0f)
         {
             state = MovementState.RUNNING;
-            photonView.RPC("SetFlipX", RpcTarget.AllBuffered, false);
+            m_PhotonView.RPC("SetFlipX", RpcTarget.AllBuffered, false);
         }
         else if (m_DirectionX < 0f)
         {
             state = MovementState.RUNNING;
-            photonView.RPC("SetFlipX", RpcTarget.AllBuffered, true);
+            m_PhotonView.RPC("SetFlipX", RpcTarget.AllBuffered, true);
         }
         else
         {
             state = MovementState.IDLE;
         }
 
-        if (m_Rb.velocity.y > .1f)
+        if (m_RigidBody.velocity.y > .1f)
         {
             state = MovementState.JUMPING;
         }
-        else if (m_Rb.velocity.y < -.1f)
+        else if (m_RigidBody.velocity.y < -.1f)
         {
             state = MovementState.FALLING;
         }
@@ -143,19 +158,25 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
                     InflateCancelLogic();
                 }
             }
+            else
+            {
+                Debug.Log("No air in the AirTank, cannot inflate");
+            }
         }
     }
 
     private void InflatePerformedLogic()
     {
+        Debug.Log("Inflate performed");
         m_InflatePerformed = true;
         m_AirTank.StartReduceAir();
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
         if(m_WasOnGround)
         {
+            Debug.Log("Adding jump boost");
             m_JumpSoundEffect.Play();
-            GetComponent<Rigidbody2D>().AddForce(Vector3.up * m_JumpPower, ForceMode2D.Impulse);
+            m_RigidBody.AddForce(Vector3.up * m_JumpPower, ForceMode2D.Impulse);
             StartCoroutine(JumpStopCoroutine(m_jumpSmooth, m_jumpTime/(float)m_jumpSmooth, m_JumpPower/(float)m_jumpSmooth));
         }
         m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
@@ -165,13 +186,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         yield return new WaitForSeconds(WaitSecondsPerIter);
         if(iterations > 0 && m_InflatePerformed == true){
-            GetComponent<Rigidbody2D>().AddForce(Vector3.down * JumpForceReducePerIter, ForceMode2D.Impulse);
+            m_RigidBody.AddForce(Vector3.down * JumpForceReducePerIter, ForceMode2D.Impulse);
             StartCoroutine(JumpStopCoroutine(iterations - 1, WaitSecondsPerIter, JumpForceReducePerIter));
         }
     }
 
     private void InflateCancelLogic()
     {
+        Debug.Log("Inflate canceled");
         m_InflatePerformed = false;
         m_AirTank.StopReduceAir();
         m_InflatingSoundEffect.Stop();
@@ -197,6 +219,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
                     DeflateCancelLogic();
                 }
             }
+            else
+            {
+                Debug.Log("Player grounded, cannot deflate");
+            }
         }
     }
 
@@ -221,9 +247,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     public void ResetVerticalVelocity()
     {
-        if (m_Rb.bodyType != RigidbodyType2D.Static) 
+        if (m_RigidBody.bodyType != RigidbodyType2D.Static) 
         {
-            m_Rb.velocity = new Vector2(m_Rb.velocity.x, 0);
+            m_RigidBody.velocity = new Vector2(m_RigidBody.velocity.x, 0);
         }
     }
 

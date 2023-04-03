@@ -75,6 +75,7 @@ public class PlayerLife : MonoBehaviour
             {
                 m_BurnSound.Play();
                 m_Rigidbody.bodyType = RigidbodyType2D.Static;
+                m_PhotonView.RPC("DisablePlayerObjects", RpcTarget.All);
                 m_IsDissolving = true;
             }
         }
@@ -83,6 +84,7 @@ public class PlayerLife : MonoBehaviour
     private void Die()
     {
         m_SharpTrapSound.Play();
+        
         m_PhotonView.RPC("DisablePlayerObjects", RpcTarget.All);
         m_Rigidbody.bodyType = RigidbodyType2D.Static;
         m_Animator.SetTrigger("trap_death");

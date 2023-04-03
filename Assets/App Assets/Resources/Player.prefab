@@ -736,7 +736,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5270450297519976185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,7 +748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93017843de46dad4d9a5e046fb9fbd02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PineapplesText: {fileID: 0}
   m_ItemCollectionSound: {fileID: 5270450297519976186}
 --- !u!114 &5270450297519976184
 MonoBehaviour:
@@ -1463,7 +1461,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3392816846805738441}
   - component: {fileID: 3155162978374390115}
-  - component: {fileID: 1461564838654456657}
   - component: {fileID: 8587581308802975258}
   - component: {fileID: 2894413445837079651}
   m_Layer: 8
@@ -1507,58 +1504,6 @@ MonoBehaviour:
   m_ShotPoint: {fileID: 4069800396078415960}
   m_NumOfProjectionPoints: 50
   m_SpaceBetweenPoints: 0.025
---- !u!114 &1461564838654456657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7782147856280573157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4267f3f68c9ede544aa33984860f12bd, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4cec15de-b410-4535-a164-2965973b01e1
-    m_ActionName: Movement input/Inflate[/Keyboard/upArrow,/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0073ef29-a1d0-4728-aee1-b51dd32e3425
-    m_ActionName: Movement input/Deflate[/Keyboard/downArrow,/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9118411c-69e6-4882-aa1a-6b6f93891102
-    m_ActionName: Movement input/Walk[/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 96eca90f-ad38-4f5e-a985-1f9d5839eec7
-    m_ActionName: Touch/PrimaryContact[/Touchscreen/primaryTouch/press,/Simulated
-      Touchscreen/primaryTouch/press]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c9dcc352-e72c-4a61-8f12-edc7a2c8352c
-    m_ActionName: Touch/PrimaryPosition[/Touchscreen/primaryTouch/position,/Simulated
-      Touchscreen/primaryTouch/position]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Movement input
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &8587581308802975258
 MonoBehaviour:
   m_ObjectHideFlags: 0

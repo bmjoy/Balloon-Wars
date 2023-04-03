@@ -53,6 +53,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Value"",
+                    ""id"": ""e9786698-e821-4231-a62c-e0c97be91c2b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -187,6 +196,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Deflate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a620b84-4f84-4ee9-bf6c-2890ec290c51"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -246,6 +266,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movementinput_Inflate = m_Movementinput.FindAction("Inflate", throwIfNotFound: true);
         m_Movementinput_Deflate = m_Movementinput.FindAction("Deflate", throwIfNotFound: true);
         m_Movementinput_Walk = m_Movementinput.FindAction("Walk", throwIfNotFound: true);
+        m_Movementinput_Shoot = m_Movementinput.FindAction("Shoot", throwIfNotFound: true);
         // Touch
         m_Touch = asset.FindActionMap("Touch", throwIfNotFound: true);
         m_Touch_PrimaryContact = m_Touch.FindAction("PrimaryContact", throwIfNotFound: true);
@@ -314,6 +335,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movementinput_Inflate;
     private readonly InputAction m_Movementinput_Deflate;
     private readonly InputAction m_Movementinput_Walk;
+    private readonly InputAction m_Movementinput_Shoot;
     public struct MovementinputActions
     {
         private @PlayerControls m_Wrapper;
@@ -321,6 +343,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Inflate => m_Wrapper.m_Movementinput_Inflate;
         public InputAction @Deflate => m_Wrapper.m_Movementinput_Deflate;
         public InputAction @Walk => m_Wrapper.m_Movementinput_Walk;
+        public InputAction @Shoot => m_Wrapper.m_Movementinput_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Movementinput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -339,6 +362,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         private void UnregisterCallbacks(IMovementinputActions instance)
@@ -352,6 +378,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Walk.started -= instance.OnWalk;
             @Walk.performed -= instance.OnWalk;
             @Walk.canceled -= instance.OnWalk;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         public void RemoveCallbacks(IMovementinputActions instance)
@@ -428,6 +457,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInflate(InputAction.CallbackContext context);
         void OnDeflate(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
     public interface ITouchActions
     {

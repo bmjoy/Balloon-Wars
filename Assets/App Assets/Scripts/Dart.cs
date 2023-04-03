@@ -2,7 +2,7 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
-public class Dart : MonoBehaviour//, IPunObservable
+public class Dart : MonoBehaviour
 {
     private Rigidbody2D m_RigidBody;
     private PhotonView m_PhotonView;
@@ -58,27 +58,5 @@ public class Dart : MonoBehaviour//, IPunObservable
             PhotonNetwork.Destroy(gameObject);
         }
     }
-
-    // [PunRPC]
-    // private void UpdateSpriteColor(Color color)
-    // {
-    //     GetComponentInChildren<SpriteRenderer>().color = color;
-    // }
-
-    // public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    // {
-    //     if (stream.IsReading)
-    //     {
-    //         // If this is the owner of the object, send the flipX value over the network
-    //         Color updatedColor = (Color)stream.ReceiveNext();
-    //         GetComponentInChildren<SpriteRenderer>().color = updatedColor;
-    //     }
-    //     else
-    //     {
-    //         // Write the current color to the network
-    //         Color currentColor = GetComponentInChildren<SpriteRenderer>().color;
-    //         stream.SendNext(currentColor);
-    //     }
-    // }
 }
 

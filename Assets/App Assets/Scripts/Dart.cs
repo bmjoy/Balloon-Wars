@@ -2,7 +2,7 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
-public class Dart : MonoBehaviour, IPunObservable
+public class Dart : MonoBehaviour//, IPunObservable
 {
     private Rigidbody2D m_RigidBody;
     private PhotonView m_PhotonView;
@@ -60,32 +60,32 @@ public class Dart : MonoBehaviour, IPunObservable
                 Color newColor = new Color(dartColor.r, dartColor.g, dartColor.b, 1 - fadeAmount * i);
                 GetComponentInChildren<Renderer>().material.color = newColor;
 
-                m_PhotonView.RPC("UpdateSpriteColor", RpcTarget.Others, newColor);
+                // m_PhotonView.RPC("UpdateSpriteColor", RpcTarget.Others, newColor);
             }
             PhotonNetwork.Destroy(gameObject);
         }
     }
 
-    [PunRPC]
-    private void UpdateSpriteColor(Color color)
-    {
-        GetComponentInChildren<SpriteRenderer>().color = color;
-    }
+    // [PunRPC]
+    // private void UpdateSpriteColor(Color color)
+    // {
+    //     GetComponentInChildren<SpriteRenderer>().color = color;
+    // }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsReading)
-        {
-            // If this is the owner of the object, send the flipX value over the network
-            Color updatedColor = (Color)stream.ReceiveNext();
-            GetComponentInChildren<SpriteRenderer>().color = updatedColor;
-        }
-        else
-        {
-            // Write the current color to the network
-            Color currentColor = GetComponentInChildren<SpriteRenderer>().color;
-            stream.SendNext(currentColor);
-        }
-    }
+    // public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    // {
+    //     if (stream.IsReading)
+    //     {
+    //         // If this is the owner of the object, send the flipX value over the network
+    //         Color updatedColor = (Color)stream.ReceiveNext();
+    //         GetComponentInChildren<SpriteRenderer>().color = updatedColor;
+    //     }
+    //     else
+    //     {
+    //         // Write the current color to the network
+    //         Color currentColor = GetComponentInChildren<SpriteRenderer>().color;
+    //         stream.SendNext(currentColor);
+    //     }
+    // }
 }
 

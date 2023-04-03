@@ -381,14 +381,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4664218659304984661}
-  m_LocalRotation: {x: -0, y: -0, z: 0.29156893, w: 0.9565499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0050014383, y: 0.01200016, z: 1.1352654}
   m_LocalScale: {x: 0.16888516, y: 0.13565813, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3392816846805738441}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 33.904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7638730225172598854
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -711,6 +711,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c9dcc352-e72c-4a61-8f12-edc7a2c8352c
     m_ActionName: Touch/PrimaryPosition[/Device Simulator Touchscreen/primaryTouch/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e9786698-e821-4231-a62c-e0c97be91c2b
+    m_ActionName: Movement input/Shoot
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement input
@@ -1460,9 +1464,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3392816846805738441}
-  - component: {fileID: 3155162978374390115}
+  - component: {fileID: 2313508849000083695}
   - component: {fileID: 8587581308802975258}
   - component: {fileID: 2894413445837079651}
+  - component: {fileID: 8297244185126726396}
   m_Layer: 8
   m_Name: PlayerDart
   m_TagString: Untagged
@@ -1477,16 +1482,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7782147856280573157}
-  m_LocalRotation: {x: -0, y: -0, z: 0.057065018, w: 0.99837047}
-  m_LocalPosition: {x: -0.3986702, y: -0.6793527, z: -1.1352654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3988266, y: -0.67944, z: -1.1352654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5056544755110669958}
   m_Father: {fileID: 5270450297519976130}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.543}
---- !u!114 &3155162978374390115
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2313508849000083695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1495,7 +1500,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7782147856280573157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa75e07da0eca9e41ac5f2bf5894397d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c8287d1caeab4b439da699bec96f4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_DartPrefab: {fileID: 8539629894646217900, guid: 014a8cc5bed304e42be6e834c40f5aa0, type: 3}
@@ -1560,3 +1565,69 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &8297244185126726396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782147856280573157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4267f3f68c9ede544aa33984860f12bd, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4cec15de-b410-4535-a164-2965973b01e1
+    m_ActionName: Movement input/Inflate[/Keyboard/upArrow,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0073ef29-a1d0-4728-aee1-b51dd32e3425
+    m_ActionName: Movement input/Deflate[/Keyboard/downArrow,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9118411c-69e6-4882-aa1a-6b6f93891102
+    m_ActionName: Movement input/Walk[/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2313508849000083695}
+        m_TargetAssemblyTypeName: DartInputManager, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e9786698-e821-4231-a62c-e0c97be91c2b
+    m_ActionName: Movement input/Shoot
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96eca90f-ad38-4f5e-a985-1f9d5839eec7
+    m_ActionName: Touch/PrimaryContact[/Device Simulator Touchscreen/primaryTouch/press]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c9dcc352-e72c-4a61-8f12-edc7a2c8352c
+    m_ActionName: Touch/PrimaryPosition[/Device Simulator Touchscreen/primaryTouch/position]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Movement input
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

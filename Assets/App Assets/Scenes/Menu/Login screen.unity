@@ -693,9 +693,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 409711198}
-  - component: {fileID: 409711201}
   - component: {fileID: 409711200}
   - component: {fileID: 409711199}
+  - component: {fileID: 409711201}
   m_Layer: 5
   m_Name: username
   m_TagString: Untagged
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 409711197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c19a0c477b9f6942a3ed30584f34052, type: 3}
+  m_Script: {fileID: 11500000, guid: dcda4a80653db264b908494052805d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &468066354
@@ -2177,7 +2177,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1323931283}
         m_TargetAssemblyTypeName: SceneNavigator, Assembly-CSharp
-        m_MethodName: MoveToMainMenuAsGuest
+        m_MethodName: MoveToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2321,7 +2321,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1105349210}
   - component: {fileID: 1105349209}
-  - component: {fileID: 1105349211}
   m_Layer: 0
   m_Name: PlayfabLogin
   m_TagString: Playfab
@@ -2362,18 +2361,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1105349211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105349208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c650a8eef36a4f34fadc04f2e548f61b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1160100318
 GameObject:
   m_ObjectHideFlags: 0

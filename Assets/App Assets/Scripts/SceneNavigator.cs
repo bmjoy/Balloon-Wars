@@ -22,12 +22,6 @@ public class SceneNavigator : MonoBehaviour
         StartCoroutine(loadWantedScene("Login screen"));
     }
 
-    public void MoveToMainMenuAsGuest()
-    {
-        PlayerPrefs.SetString("USERNAME", null);
-        StartCoroutine(loadWantedScene("Main menu"));
-    }
-
     public void MoveToClassicGame()
     {
         StartCoroutine(loadWantedGameMode("Classic"));

@@ -432,7 +432,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5145224591395592727}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PhotonConnector, Assembly-CSharp
         m_MethodName: LeavePhotonLobby
         m_Mode: 1
@@ -1115,8 +1115,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5145224591395592727}
-        m_TargetAssemblyTypeName: PhotonConnector, Assembly-CSharp
+      - m_Target: {fileID: 5145224591395592714}
+        m_TargetAssemblyTypeName: PhotonRoomsConnector, Assembly-CSharp
         m_MethodName: CreatePhotonRoom
         m_Mode: 5
         m_Arguments:
@@ -2559,7 +2559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5145224591395592712}
-  - component: {fileID: 5145224591395592727}
+  - component: {fileID: 5145224591395592714}
   m_Layer: 0
   m_Name: Connector
   m_TagString: Untagged
@@ -2567,7 +2567,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5145224591395592727
+--- !u!114 &5145224591395592714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2576,7 +2576,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5145224591395592713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e173bbf42f33c4ebb97bd5eeba98d1, type: 3}
+  m_Script: {fileID: 11500000, guid: e89a50e52c3499e4481160b794f8e402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_SceneNavigator: {fileID: 904959855}

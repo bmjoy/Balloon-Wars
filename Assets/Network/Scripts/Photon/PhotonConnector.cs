@@ -1,20 +1,38 @@
 using UnityEngine;
 using System;
 using Photon.Pun;
+using PlayFab;
+using PlayFab.ClientModels;
 using Photon.Realtime;
 
 public class PhotonConnector : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private SceneNavigator m_SceneNavigator;
-
     private void Start() 
     {
-        string GuestName = $"Guest {Guid.NewGuid().ToString()}";
-        string Username = PlayerPrefs.GetString("USERNAME");
-        connectToPhoton(!string.IsNullOrEmpty(Username)? Username : GuestName);
+        if (PlayFabClientAPI.IsClientLoggedIn())
+        {
+            PlayFabClientAPI.GetPlayerProfile(new GetPlayerProfileRequest(), OnGetPlayerProfileSuccess, OnGetPlayerProfileError);
+        }
+        else
+        {
+            string GuestName = $"Guest {Guid.NewGuid().ToString()}";
+            connectToPhotonMaster(GuestName);
+        }
     }
 
-    private void connectToPhoton(string nickName)
+    private void OnGetPlayerProfileSuccess(GetPlayerProfileResult result)
+    {
+        string nickName = result.PlayerProfile.DisplayName;
+        connectToPhotonMaster(nickName);
+    }
+
+    private void OnGetPlayerProfileError(PlayFabError error)
+    {
+        Debug.LogError("GetPlayerProfile error: " + error.ErrorMessage);
+        connectToPhotonMaster($"Guest {Guid.NewGuid().ToString()}");
+    }
+
+    private void connectToPhotonMaster(string nickName)
     {
         Debug.Log($"Connect to Photon as {nickName}");
         PhotonNetwork.AuthValues = new AuthenticationValues(nickName);
@@ -23,65 +41,18 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    public void CreatePhotonRoom(string roomName)
+    public void DisconnectFromPhotonMaster(string nickName)
     {
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.IsOpen = true;
-        roomOptions.IsVisible = true;
-        roomOptions.MaxPlayers = 4;
-        PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
+        PhotonNetwork.Disconnect();
     }
 
-    public void LeavePhotonLobby()
+    public override void OnDisconnected(DisconnectCause cause)
     {
-        if(PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.LeaveLobby();
-        }
+        Debug.Log($"You have disconnected from the Photon Master Server. Cause: {cause.ToString()}");
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("You have connected to the Photon Master Server");
-        if(!PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.JoinLobby();
-        }
-    }
-
-    public override void OnJoinedLobby()
-    {
-        Debug.Log("You have connected to the Photon Lobby");
-    }
-
-    public override void OnCreatedRoom()
-    {
-        Debug.Log($"You have created a photon room named {PhotonNetwork.CurrentRoom.Name}");
-    }
-
-    public override void OnJoinedRoom()
-    {
-        Debug.Log($"You have joined the photon room {PhotonNetwork.CurrentRoom.Name}");
-        m_SceneNavigator.MoveToClassicGame();
-    }
-
-    public override void OnLeftRoom()
-    {
-        Debug.Log("You have left a photon room");
-    }
-
-    public override void OnJoinRoomFailed(short returnCode, string message)
-    {
-        Debug.Log($"You failed to join a Photon room: {message}");
-    }
-
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        Debug.Log($"Another player has joined the room: {newPlayer.UserId}");
-    }
-
-    public override void OnPlayerLeftRoom(Player otherPlayer)
-    {
-        Debug.Log($"Player has left the room: {otherPlayer.UserId}");
     }
 }

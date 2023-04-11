@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/App Assets/Scenes/Games/Classic.unity
     guid: c4741d1fee4420a429c976afafb67db1
+  - enabled: 1
+    path: Assets/App Assets/Scenes/Games/Ice Level.unity
+    guid: 23ad21a7ba8621f4b8578c3459d2fe62
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: bee863b997d571740897c0916e1076f6, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 62fada7dfdfa1a840a57cfc69463a072, type: 2}

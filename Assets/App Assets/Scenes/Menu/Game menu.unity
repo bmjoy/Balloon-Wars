@@ -1686,22 +1686,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgrounds:
-  - {fileID: 21300000, guid: d3c0b02538eedc946aa9c66d416322af, type: 3}
-  - {fileID: 21300000, guid: 6860781b8a5f33044aeca6a545421afd, type: 3}
-  - {fileID: 21300000, guid: 0aa303f9db88a9640bb2f67336615da9, type: 3}
-  - {fileID: 21300000, guid: 5ddc7175add6b7845beb910cbfd82d7b, type: 3}
-  - {fileID: 21300000, guid: 3d884a10bff902841ad9fd2d39c9fd51, type: 3}
-  - {fileID: 21300000, guid: 1e50ff0d906d7d24b9726326d5c35281, type: 3}
-  - {fileID: 21300000, guid: b13558c5b3921894b879a18442cd781a, type: 3}
-  - {fileID: 21300000, guid: 7981ae69486364b42a6412e52d7e8a85, type: 3}
-  - {fileID: 21300000, guid: 26330c81519bda04b925197e3521fa5a, type: 3}
-  - {fileID: 21300000, guid: fc2521fc31428cb43b7702392fad23f5, type: 3}
-  - {fileID: 21300000, guid: dcebc7aeb678cc6418ed1ae38e763e2a, type: 3}
-  - {fileID: 21300000, guid: 00f89d2ce1ea93c40b05731200e81e22, type: 3}
-  - {fileID: 21300000, guid: 4d8235f38650d5e4a8491d8b9005e04d, type: 3}
-  - {fileID: 21300000, guid: 9732f65862eeab7418e2b0a0c367a0c7, type: 3}
-  - {fileID: 21300000, guid: 54b93adf0f2dbba488a265486977f36b, type: 3}
-  - {fileID: 21300000, guid: db08fbb3e250ea2478c6aed7bddf87db, type: 3}
+  - {fileID: 21300000, guid: 9f9ef6587fbe2dd4f901b147970c2cb1, type: 3}
+  - {fileID: 21300000, guid: 868d6b10d2b491d41bfa4e5a50fe7330, type: 3}
   UIBackImage: {fileID: 348479330}
 --- !u!1 &1577032365
 GameObject:

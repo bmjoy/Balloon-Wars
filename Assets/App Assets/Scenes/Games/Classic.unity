@@ -2193,7 +2193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 660886190}
   - component: {fileID: 660886189}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cloudy background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

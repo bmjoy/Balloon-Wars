@@ -9,35 +9,35 @@ public class SceneNavigator : MonoBehaviour
     [SerializeField] Animator transition;
     public void MoveToGameMenu()
     {
-        StartCoroutine(loadWantedScene("Game menu"));
+        StartCoroutine(loadWantedSceneByName("Game menu"));
     }
 
     public void MoveToMainMenu()
     {
-        StartCoroutine(loadWantedScene("Main menu"));
+        StartCoroutine(loadWantedSceneByName("Main menu"));
     }
 
     public void MoveToLoginScreen()
     {
-        StartCoroutine(loadWantedScene("Login screen"));
+        StartCoroutine(loadWantedSceneByName("Login screen"));
     }
 
-    public void MoveToClassicGame()
+    public void LoadGameLevel(int LevelIndex)
     {
-        StartCoroutine(loadWantedGameMode("Classic"));
+        StartCoroutine(loadPhotonSceneByIndex(3 + LevelIndex));
     }
 
-    private IEnumerator loadWantedScene(string sceneName)
+    private IEnumerator loadWantedSceneByName(string sceneName)
     {
         transition.SetTrigger("start");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName);
     }
 
-    private IEnumerator loadWantedGameMode(string gameModeName)
+    private IEnumerator loadPhotonSceneByIndex(int sceneIndex)
     {
         transition.SetTrigger("start");
         yield return new WaitForSeconds(1);
-        PhotonNetwork.LoadLevel(gameModeName);
+        PhotonNetwork.LoadLevel(sceneIndex);
     }
 }

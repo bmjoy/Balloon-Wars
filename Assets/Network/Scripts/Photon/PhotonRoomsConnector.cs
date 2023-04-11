@@ -44,7 +44,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log($"You have joined the photon room {PhotonNetwork.CurrentRoom.Name}");
-        m_SceneNavigator.MoveToClassicGame();
+        m_SceneNavigator.LoadGameLevel(0);
     }
 
     public override void OnLeftRoom()

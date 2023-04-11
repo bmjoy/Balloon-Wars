@@ -7,24 +7,28 @@ public class MapChooser : MonoBehaviour
 {
     [SerializeField] private Sprite[] backgrounds;
     [SerializeField] private Image UIBackImage;
-    private int curMapIndex = 0;
+    [SerializeField] private Image UIDetailsBackImage;
+    public int CurMapIndex{get; set;} = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        UIBackImage.sprite = backgrounds[curMapIndex];
+        UIBackImage.sprite = backgrounds[CurMapIndex];
+        UIBackImage.sprite = backgrounds[CurMapIndex];
     }
 
     public void MoveToNextMap()
     {
-        curMapIndex = curMapIndex == backgrounds.Length - 1 ? 0 : curMapIndex + 1;
-        UIBackImage.sprite = backgrounds[curMapIndex]; 
+        CurMapIndex = CurMapIndex == backgrounds.Length - 1 ? 0 : CurMapIndex + 1;
+        UIBackImage.sprite = backgrounds[CurMapIndex]; 
+        UIDetailsBackImage.sprite = backgrounds[CurMapIndex]; 
     }
     
     public void MoveToPrevMap()
     {
-        curMapIndex = curMapIndex == 0 ? backgrounds.Length - 1 : curMapIndex - 1;
-        UIBackImage.sprite = backgrounds[curMapIndex]; 
+        CurMapIndex = CurMapIndex == 0 ? backgrounds.Length - 1 : CurMapIndex - 1;
+        UIBackImage.sprite = backgrounds[CurMapIndex];
+        UIDetailsBackImage.sprite = backgrounds[CurMapIndex];
     }
     
 }

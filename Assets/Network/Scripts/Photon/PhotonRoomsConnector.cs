@@ -5,7 +5,8 @@ using Photon.Realtime;
 
 public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private SceneNavigator m_SceneNavigator;
+    [SerializeField] private Animator m_Animator;
+    private bool m_IsCreatedRoom = false;
     private void Start()
     {
         if(!PhotonNetwork.InLobby)
@@ -39,12 +40,22 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         Debug.Log($"You have created a photon room named {PhotonNetwork.CurrentRoom.Name}");
+        m_IsCreatedRoom = true;
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log($"You have joined the photon room {PhotonNetwork.CurrentRoom.Name}");
-        m_SceneNavigator.LoadGameLevel(0);
+        if(m_IsCreatedRoom)
+        {
+            m_Animator.SetTrigger("CreateRoomToDetails");
+        }
+        else
+        {
+            m_Animator.SetTrigger("JoinRoomToDetails");
+        }
+        m_IsCreatedRoom = false;
+        m_Animator.SetTrigger("CreateRoomToDetails");
     }
 
     public override void OnLeftRoom()

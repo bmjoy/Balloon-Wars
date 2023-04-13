@@ -32,6 +32,14 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         }
     }
 
+    public void LeaveRoom()
+    {
+        if(PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+    }
+
     public override void OnJoinedLobby()
     {
         Debug.Log("You have connected to the Photon Lobby");
@@ -46,6 +54,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log($"You have joined the photon room {PhotonNetwork.CurrentRoom.Name}");
+        Debug.Log($"is created = {m_IsCreatedRoom}");
         if(m_IsCreatedRoom)
         {
             m_Animator.SetTrigger("CreateRoomToDetails");
@@ -55,7 +64,6 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
             m_Animator.SetTrigger("JoinRoomToDetails");
         }
         m_IsCreatedRoom = false;
-        m_Animator.SetTrigger("CreateRoomToDetails");
     }
 
     public override void OnLeftRoom()

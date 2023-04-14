@@ -689,7 +689,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 6.94516, y: 0, z: 5.201065, w: 0}
+  m_margin: {x: 2.6075897, y: 0, z: 20.382645, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3615,6 +3615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 946915652}
+  - component: {fileID: 946915653}
   m_Layer: 5
   m_Name: Join Room
   m_TagString: Untagged
@@ -3646,6 +3647,22 @@ RectTransform:
   m_AnchoredPosition: {x: 110.82, y: -378.95}
   m_SizeDelta: {x: 578.36, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &946915653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946915651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87bb5fba8d89494a9580b4b5c2c6287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_JoinRoomButton: {fileID: 1654915634}
+  m_RoomNameText: {fileID: 869440883}
+  m_RoomNameHeader: {fileID: 1712222532}
+  m_RoomsViewList: {fileID: 749059315}
 --- !u!1 &994568237
 GameObject:
   m_ObjectHideFlags: 0
@@ -5471,7 +5488,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1654915635}
   m_OnClick:
     m_PersistentCalls:
@@ -5861,7 +5878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1712222531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6900,8 +6917,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1267419334}
   m_HandleRect: {fileID: 1267419333}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.46960327
+  m_Value: 1.0000001
+  m_Size: 0.46960324
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

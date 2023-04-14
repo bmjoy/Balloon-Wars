@@ -14,9 +14,11 @@ public class RoomsViewList : MonoBehaviour
     [SerializeField] private GameObject m_UiRoomPrefab;
     private PhotonRoomsConnector m_PhotonRoomsConnector;
     public event Action<string> SelectedRoomChanged;
+    public string SelectedRoom { get; private set; } = null;
 
     protected void OnSelectedRoomChanged(string selectdRoom)
     {
+        SelectedRoom = selectdRoom;
         SelectedRoomChanged?.Invoke(selectdRoom);
     }
     
@@ -33,6 +35,12 @@ public class RoomsViewList : MonoBehaviour
         roomList = roomList.Where(room => room.IsOpen && room.IsVisible && room.PlayerCount < room.MaxPlayers).ToList();
         roomList = roomList.OrderBy( room => room.Name).ToList();
         m_NoRoomsAvailableTxt.gameObject.SetActive(roomList.Count == 0);
+
+        if(SelectedRoom !=null && !roomList.Any(room => room.Name == SelectedRoom))
+        {
+            OnSelectedRoomChanged(null);
+        }
+
         foreach (Transform child in m_RoomsScrollViewContent.transform)
         {
             Destroy(child.gameObject);
@@ -43,6 +51,7 @@ public class RoomsViewList : MonoBehaviour
             GameObject listItem = Instantiate(m_UiRoomPrefab, m_RoomsScrollViewContent.transform);
             listItem.GetComponentInChildren<TextMeshProUGUI>().SetText(room.Name);
             listItem.gameObject.SetActive(true);
+            listItem.GetComponent<UIRoom>().Clicked += OnSelectedRoomChanged;
         }
     }
 }

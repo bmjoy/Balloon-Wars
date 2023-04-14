@@ -2,11 +2,15 @@ using UnityEngine;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections.Generic;
 
 public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Animator m_Animator;
     private bool m_IsCreatedRoom = false;
+    public event Action<List<RoomInfo>> RoomListChanged;
+    public List<RoomInfo> RoomList { get; private set; }
+
     private void Start()
     {
         if(!PhotonNetwork.InLobby)
@@ -15,12 +19,12 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         }
     }
 
-    public void CreatePhotonRoom(string roomName)
+    public void CreatePhotonRoom(string roomName,bool isOpen = true, bool isVisible = true, byte maxPlayers = 4)
     {
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.IsOpen = true;
-        roomOptions.IsVisible = true;
-        roomOptions.MaxPlayers = 4;
+        roomOptions.IsOpen = isOpen;
+        roomOptions.IsVisible = isVisible;
+        roomOptions.MaxPlayers = maxPlayers;
         PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
     }
 
@@ -40,9 +44,17 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        Debug.Log("update room list");
+        RoomList = roomList;
+        RoomListChanged?.Invoke(roomList);
+    }
+
     public override void OnJoinedLobby()
     {
         Debug.Log("You have connected to the Photon Lobby");
+        PhotonNetwork.AddCallbackTarget(this);
     }
 
     public override void OnCreatedRoom()
@@ -69,6 +81,10 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("You have left a photon room");
+        if(!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

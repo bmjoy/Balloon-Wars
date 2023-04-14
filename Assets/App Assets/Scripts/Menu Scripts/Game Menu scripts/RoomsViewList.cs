@@ -16,7 +16,7 @@ public class RoomsViewList : MonoBehaviour
     public event Action<string> SelectedRoomChanged;
     public string SelectedRoom { get; private set; } = null;
 
-    protected void OnSelectedRoomChanged(string selectdRoom)
+    public void OnSelectedRoomChanged(string selectdRoom)
     {
         SelectedRoom = selectdRoom;
         SelectedRoomChanged?.Invoke(selectdRoom);
@@ -31,6 +31,11 @@ public class RoomsViewList : MonoBehaviour
 
     private void UpdateRoomsList(List<RoomInfo> roomList)
     {
+        if(roomList == null)
+        {
+            return;
+        }
+
         Debug.Log("updating list");
         roomList = roomList.Where(room => room.IsOpen && room.IsVisible && room.PlayerCount < room.MaxPlayers).ToList();
         roomList = roomList.OrderBy( room => room.Name).ToList();

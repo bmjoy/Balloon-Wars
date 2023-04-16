@@ -56,10 +56,9 @@ public class RoomsViewList : MonoBehaviour
             Debug.Log($"adding room {room.Name} to listView");
             GameObject listItem = Instantiate(m_UiRoomPrefab, m_RoomsScrollViewContent.transform);
             List<TMPro.TextMeshProUGUI> Labels = listItem.GetComponentsInChildren<TextMeshProUGUI>().ToList();
-            TextMeshProUGUI NameLabel = Labels.Find(Label => Label.tag == "RoomName");
-            TextMeshProUGUI PlayersLabel = Labels.Find(Label => Label.tag == "Players");
-            NameLabel.SetText(room.Name);
-            PlayersLabel.SetText($"{room.PlayerCount}/{room.MaxPlayers}");
+            Labels = Labels.OrderBy(Label => Label.gameObject.transform.position.x).ToList();
+            Labels[0].SetText(room.Name);
+            Labels[1].SetText($"{room.PlayerCount}/{room.MaxPlayers}");
             listItem.gameObject.SetActive(true);
             listItem.GetComponent<UIRoom>().Clicked += OnSelectedRoomChanged;
         }

@@ -9,14 +9,17 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
 {
     private void Start() 
     {
-        if (PlayFabClientAPI.IsClientLoggedIn())
+        if (!PhotonNetwork.IsConnected)
         {
-            PlayFabClientAPI.GetPlayerProfile(new GetPlayerProfileRequest(), OnGetPlayerProfileSuccess, OnGetPlayerProfileError);
-        }
-        else
-        {
-            string GuestName = $"Guest {Guid.NewGuid().ToString()}";
-            connectToPhotonMaster(GuestName);
+            if (PlayFabClientAPI.IsClientLoggedIn())
+            {
+                PlayFabClientAPI.GetPlayerProfile(new GetPlayerProfileRequest(), OnGetPlayerProfileSuccess, OnGetPlayerProfileError);
+            }
+            else
+            {
+                string GuestName = $"Guest {Guid.NewGuid().ToString()}";
+                connectToPhotonMaster(GuestName);
+            }
         }
     }
 

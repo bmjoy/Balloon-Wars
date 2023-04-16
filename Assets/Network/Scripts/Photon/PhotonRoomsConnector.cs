@@ -15,14 +15,11 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public event Action<List<RoomInfo>> RoomListChanged;
     public event Action<Player> PlayerAddedToList;
     public event Action<Player> PlayerRemovedFromList;
-    public List<RoomInfo> RoomList { get; private set; }
+    public List<RoomInfo> RoomList { get; private set; } = new List<RoomInfo>();
 
-    private void Start()
+    private void Start() 
     {
-        if(!PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.JoinLobby();
-        }
+        JoinPhotonLoby();
     }
 
     public void CreatePhotonRoom( 
@@ -39,6 +36,14 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         {  
             Debug.Log($"Try create room: {roomName}");
             PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+        }
+    }
+
+    private void JoinPhotonLoby()
+    {
+        if(!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
         }
     }
 
@@ -76,7 +81,6 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("You have connected to the Photon Lobby");
-        PhotonNetwork.AddCallbackTarget(this);
     }
 
     public override void OnCreatedRoom()
@@ -102,10 +106,11 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("You have left a photon room");
-        if(!PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.JoinLobby();
-        }
+    }
+
+    public override void OnLeftLobby()
+    {
+        Debug.Log("You have disConnected from the Photon Lobby");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

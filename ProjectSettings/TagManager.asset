@@ -12,6 +12,8 @@ TagManager:
   - Playfab
   - LoginScreen
   - LogoutScreen
+  - Players
+  - RoomName
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,8 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     [SerializeField] private TextMeshProUGUI m_DetailsLevelName;
     private bool m_IsCreatedRoom = false;
     public event Action<List<RoomInfo>> RoomListChanged;
+    public event Action<Player> PlayerAddedToList;
+    public event Action<Player> PlayerRemovedFromList;
     public List<RoomInfo> RoomList { get; private set; }
 
     private void Start()
@@ -33,13 +35,19 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         roomOptions.CustomRoomPropertiesForLobby = new string[] { "Level" };
         roomOptions.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable();
         roomOptions.CustomRoomProperties.Add("Level", level);
-        Debug.Log($"Try create room: {roomName}");
-        PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+        if(!PhotonNetwork.InRoom)
+        {  
+            Debug.Log($"Try create room: {roomName}");
+            PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+        }
     }
 
     public void JoinPhotonRoom(string roomName)
     {
-        PhotonNetwork.JoinRoom(roomName);
+        if(!PhotonNetwork.InRoom)
+        {  
+            PhotonNetwork.JoinRoom(roomName);
+        }
     }
 
     public void LeavePhotonLobby()
@@ -108,11 +116,13 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log($"Another player has joined the room: {newPlayer.UserId}");
+        PlayerAddedToList?.Invoke(newPlayer);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         Debug.Log($"Player has left the room: {otherPlayer.UserId}");
+        PlayerRemovedFromList?.Invoke(otherPlayer);
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)
@@ -120,4 +130,5 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         Debug.Log($"Master player was replaced to: {newMasterClient.NickName}");
         m_StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
+
 }

@@ -36,8 +36,8 @@ public class RoomsViewList : MonoBehaviour
             return;
         }
 
-        Debug.Log("updating list");
-        roomList = roomList.Where(room => room.IsOpen && room.IsVisible && room.PlayerCount < room.MaxPlayers).ToList();
+        Debug.Log("updating room list");
+        roomList = roomList.Where(room => room.IsOpen && room.PlayerCount < room.MaxPlayers).ToList();
         roomList = roomList.OrderBy( room => room.Name).ToList();
         m_NoRoomsAvailableTxt.gameObject.SetActive(roomList.Count == 0);
 
@@ -50,11 +50,16 @@ public class RoomsViewList : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        
         foreach (RoomInfo room in roomList)
         {
             Debug.Log($"adding room {room.Name} to listView");
             GameObject listItem = Instantiate(m_UiRoomPrefab, m_RoomsScrollViewContent.transform);
-            listItem.GetComponentInChildren<TextMeshProUGUI>().SetText(room.Name);
+            List<TMPro.TextMeshProUGUI> Labels = listItem.GetComponentsInChildren<TextMeshProUGUI>().ToList();
+            TextMeshProUGUI NameLabel = Labels.Find(Label => Label.tag == "RoomName");
+            TextMeshProUGUI PlayersLabel = Labels.Find(Label => Label.tag == "Players");
+            NameLabel.SetText(room.Name);
+            PlayersLabel.SetText($"{room.PlayerCount}/{room.MaxPlayers}");
             listItem.gameObject.SetActive(true);
             listItem.GetComponent<UIRoom>().Clicked += OnSelectedRoomChanged;
         }

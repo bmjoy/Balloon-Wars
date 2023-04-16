@@ -10,6 +10,7 @@ public class JoinRoom : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_RoomNameText;
     [SerializeField] private TextMeshProUGUI m_RoomNameHeader;
     [SerializeField] private RoomsViewList m_RoomsViewList;
+    [SerializeField] PhotonRoomsConnector m_PhotonRoomsConnector;
 
     private void Start() 
     {
@@ -23,5 +24,10 @@ public class JoinRoom : MonoBehaviour
         m_RoomNameText.SetText(isRoomAvailable ? roomName : string.Empty);
         m_JoinRoomButton.interactable = isRoomAvailable;
         m_RoomNameHeader.gameObject.SetActive(isRoomAvailable);
+    }
+
+    public void JoinRoomButtonClicked()
+    {
+        m_PhotonRoomsConnector.JoinPhotonRoom(m_RoomNameText.text);
     }
 }

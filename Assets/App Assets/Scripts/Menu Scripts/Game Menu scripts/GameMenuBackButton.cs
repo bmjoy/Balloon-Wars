@@ -33,7 +33,6 @@ public class GameMenuBackButton : MonoBehaviour
     public void setMenuStateCreateRoomMenu()
     {
         ChangeButtonBackAction(e_MenuState.CreateRoomMenu);
-        Debug.Log("set state to CreateRoomMenu");
     }
     public void setMenuStateJoinRoomMenu()
     {
@@ -56,7 +55,6 @@ public class GameMenuBackButton : MonoBehaviour
                 m_PhotonRoomsConnector.LeavePhotonLobby();
                 m_SceneNavigator.MoveToMainMenu();}},
             { e_MenuState.CreateRoomMenu, () => {
-                Debug.Log("back on CreateRoomMenu");
                 m_Animator.SetTrigger("CreateRoomExit");
                 setMenuStateMainMenu();} },
             { e_MenuState.JoinRoomMenu, () => {

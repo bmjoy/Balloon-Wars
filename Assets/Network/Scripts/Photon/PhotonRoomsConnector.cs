@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Animator m_Animator;
+    [SerializeField] private MapChooser m_DetailsMapChooser;
+    [SerializeField] private GameObject m_StartGameButton;
     private bool m_IsCreatedRoom = false;
     public event Action<List<RoomInfo>> RoomListChanged;
     public List<RoomInfo> RoomList { get; private set; }
@@ -19,13 +21,23 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         }
     }
 
-    public void CreatePhotonRoom(string roomName,bool isOpen = true, bool isVisible = true, byte maxPlayers = 4)
+    public void CreatePhotonRoom( 
+        string roomName, bool isVisible = true, int maxPlayers = 4, int level = 1, bool isOpen = true)
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsOpen = isOpen;
         roomOptions.IsVisible = isVisible;
-        roomOptions.MaxPlayers = maxPlayers;
-        PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
+        roomOptions.MaxPlayers = (byte)maxPlayers;
+        roomOptions.CustomRoomPropertiesForLobby = new string[] { "Level" };
+        roomOptions.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable();
+        roomOptions.CustomRoomProperties.Add("Level", level);
+        Debug.Log($"Try create room: {roomName}");
+        PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+    }
+
+    public void JoinPhotonRoom(string roomName)
+    {
+        PhotonNetwork.JoinRoom(roomName);
     }
 
     public void LeavePhotonLobby()
@@ -46,7 +58,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("update room list");
+        Debug.Log("The room list was changed");
         RoomList = roomList;
         RoomListChanged?.Invoke(roomList);
     }
@@ -65,16 +77,14 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Debug.Log($"You have joined the photon room {PhotonNetwork.CurrentRoom.Name}");
-        Debug.Log($"is created = {m_IsCreatedRoom}");
-        if(m_IsCreatedRoom)
-        {
-            m_Animator.SetTrigger("CreateRoomToDetails");
-        }
-        else
-        {
-            m_Animator.SetTrigger("JoinRoomToDetails");
-        }
+        Room curRoom = PhotonNetwork.CurrentRoom;
+        Debug.Log($"You have joined the photon room {curRoom.Name}");
+        int level = (int)PhotonNetwork.CurrentRoom.CustomProperties["Level"];
+        Debug.Log($"room details: visable = {curRoom.IsVisible}, open = {curRoom.IsOpen}," + 
+                    $" maxPlayers ={curRoom.MaxPlayers}, Level = {level}");
+        m_DetailsMapChooser.setBackImageToLevel(level);
+        m_StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        m_Animator.SetTrigger(m_IsCreatedRoom? "CreateRoomToDetails" : "JoinRoomToDetails");
         m_IsCreatedRoom = false;
     }
 
@@ -100,5 +110,11 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         Debug.Log($"Player has left the room: {otherPlayer.UserId}");
+    }
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        Debug.Log($"Master player was replaced to: {newMasterClient.NickName}");
+        m_StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 }

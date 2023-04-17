@@ -12,6 +12,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject m_StartGameButton;
     [SerializeField] private TextMeshProUGUI m_DetailsLevelName;
     private bool m_IsCreatedRoom = false;
+    private bool m_IsRestartLoby = false;
     public event Action<List<RoomInfo>> RoomListChanged;
     public event Action<Player> PlayerAddedToList;
     public event Action<Player> PlayerRemovedFromList;
@@ -21,6 +22,57 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     {
         JoinPhotonLoby();
     }
+
+    // --------- Loby ---------
+
+    private void JoinPhotonLoby()
+    {
+        if(!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
+    }
+
+    public void LeavePhotonLobby()
+    {
+        Debug.Log("Try leave loby");
+        if(PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.LeaveLobby();
+        }
+    }
+
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("You have been connected to the Photon Lobby");
+    }
+
+    public override void OnLeftLobby()
+    {
+        Debug.Log("You have been disconnected from the Photon Lobby");
+        if(m_IsRestartLoby)
+        {
+            Debug.Log("Reconnecting to Lobby");
+            JoinPhotonLoby();
+        }
+        m_IsRestartLoby = false;
+    }
+
+    public void restartLoby()
+    {
+        Debug.Log("Restart loby");
+        if(PhotonNetwork.InLobby)
+        {
+            m_IsRestartLoby = true;
+            LeavePhotonLobby();
+        }
+        else
+        {
+            JoinPhotonLoby();
+        }
+    }
+
+    // --------- Rooms ---------
 
     public void CreatePhotonRoom( 
         string roomName, bool isVisible = true, int maxPlayers = 4, int level = 1, bool isOpen = true)
@@ -39,14 +91,6 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         }
     }
 
-    private void JoinPhotonLoby()
-    {
-        if(!PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.JoinLobby();
-        }
-    }
-
     public void JoinPhotonRoom(string roomName)
     {
         if(!PhotonNetwork.InRoom)
@@ -55,32 +99,12 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         }
     }
 
-    public void LeavePhotonLobby()
-    {
-        if(PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.LeaveLobby();
-        }
-    }
-
-    public void LeaveRoom()
+    public void LeavePhotonRoom()
     {
         if(PhotonNetwork.InRoom)
         {
             PhotonNetwork.LeaveRoom();
         }
-    }
-
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        Debug.Log("The room list was changed");
-        RoomList = roomList;
-        RoomListChanged?.Invoke(roomList);
-    }
-
-    public override void OnJoinedLobby()
-    {
-        Debug.Log("You have connected to the Photon Lobby");
     }
 
     public override void OnCreatedRoom()
@@ -103,19 +127,21 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         m_IsCreatedRoom = false;
     }
 
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        Debug.Log($"You failed to join a Photon room: {message}");
+    }
+
     public override void OnLeftRoom()
     {
         Debug.Log("You have left a photon room");
     }
 
-    public override void OnLeftLobby()
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("You have disConnected from the Photon Lobby");
-    }
-
-    public override void OnJoinRoomFailed(short returnCode, string message)
-    {
-        Debug.Log($"You failed to join a Photon room: {message}");
+        Debug.Log("The room list was changed");
+        RoomList = roomList;
+        RoomListChanged?.Invoke(roomList);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -135,5 +161,4 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         Debug.Log($"Master player was replaced to: {newMasterClient.NickName}");
         m_StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
-
 }

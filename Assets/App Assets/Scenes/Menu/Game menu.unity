@@ -8269,7 +8269,7 @@ GameObject:
   - component: {fileID: 5145224591395592712}
   - component: {fileID: 5145224591395592714}
   m_Layer: 0
-  m_Name: Connector
+  m_Name: RoomConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

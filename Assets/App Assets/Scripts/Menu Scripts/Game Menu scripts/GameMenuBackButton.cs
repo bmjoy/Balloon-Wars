@@ -56,16 +56,18 @@ public class GameMenuBackButton : MonoBehaviour
                 m_SceneNavigator.MoveToMainMenu();}},
             { e_MenuState.CreateRoomMenu, () => {
                 m_Animator.SetTrigger("CreateRoomExit");
-                setMenuStateMainMenu();} },
+                setMenuStateMainMenu();
+                m_PhotonRoomsConnector.restartLoby();} },
             { e_MenuState.JoinRoomMenu, () => {
                 m_Animator.SetTrigger("JoinRoomExit");
-                setMenuStateMainMenu();} },
+                setMenuStateMainMenu();
+                m_PhotonRoomsConnector.restartLoby();} },
             { e_MenuState.CreatedRoomDetails, () => {
-                m_PhotonRoomsConnector.LeaveRoom();
+                m_PhotonRoomsConnector.LeavePhotonRoom();
                 setMenuStateCreateRoomMenu();
                 m_Animator.SetTrigger("DetailsToCreateRoom");} },
             { e_MenuState.JoinedRoomDetails, () => {
-                m_PhotonRoomsConnector.LeaveRoom();
+                m_PhotonRoomsConnector.LeavePhotonRoom();
                 setMenuStateJoinRoomMenu();
                 m_Animator.SetTrigger("DetailsToJoinRoom");} }
         };

@@ -16,6 +16,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public event Action<List<RoomInfo>> RoomListChanged;
     public event Action<Player> PlayerAddedToList;
     public event Action<Player> PlayerRemovedFromList;
+    public event Action<string> failedConnectToRoom;
     public List<RoomInfo> RoomList { get; private set; } = new List<RoomInfo>();
 
     private void Start() 
@@ -130,6 +131,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.Log($"You failed to join a Photon room: {message}");
+        failedConnectToRoom?.Invoke(message);
     }
 
     public override void OnLeftRoom()

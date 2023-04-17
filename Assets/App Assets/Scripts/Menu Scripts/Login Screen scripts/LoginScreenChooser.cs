@@ -8,6 +8,7 @@ public class LoginScreenChooser : MonoBehaviour
     [SerializeField] GameObject RememberScreen;
     void Start()
     {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         bool haveAutosave = !string.IsNullOrEmpty(PlayerPrefs.GetString("USERNAME"));
         LoginScreen.SetActive(!haveAutosave);
         RememberScreen.SetActive(haveAutosave);

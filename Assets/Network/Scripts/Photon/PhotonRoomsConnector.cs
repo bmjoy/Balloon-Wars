@@ -12,7 +12,6 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject m_StartGameButton;
     [SerializeField] private TextMeshProUGUI m_DetailsLevelName;
     private bool m_IsCreatedRoom = false;
-    private bool m_IsRestartLoby = false;
     public event Action<List<RoomInfo>> RoomListChanged;
     public event Action<Player> PlayerAddedToList;
     public event Action<Player> PlayerRemovedFromList;
@@ -38,7 +37,6 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 
     public void LeavePhotonLobby()
     {
-        Debug.Log("Try leave loby");
         if(PhotonNetwork.InLobby)
         {
             PhotonNetwork.LeaveLobby();
@@ -53,26 +51,6 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnLeftLobby()
     {
         Debug.Log("You have been disconnected from the Photon Lobby");
-        if(m_IsRestartLoby)
-        {
-            Debug.Log("Reconnecting to Lobby");
-            JoinPhotonLoby();
-        }
-        m_IsRestartLoby = false;
-    }
-
-    public void restartLoby()
-    {
-        Debug.Log("Restart loby");
-        if(PhotonNetwork.InLobby)
-        {
-            m_IsRestartLoby = true;
-            LeavePhotonLobby();
-        }
-        else
-        {
-            JoinPhotonLoby();
-        }
     }
 
     // --------- Rooms ---------
@@ -165,5 +143,11 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     {
         Debug.Log($"Master player was replaced to: {newMasterClient.NickName}");
         m_StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Rejoind Master Server");
+        JoinPhotonLoby();
     }
 }

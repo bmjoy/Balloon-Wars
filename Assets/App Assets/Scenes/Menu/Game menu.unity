@@ -1145,6 +1145,7 @@ MonoBehaviour:
   m_Animator: {fileID: 904959856}
   m_SceneNavigator: {fileID: 904959855}
   m_PhotonRoomsConnector: {fileID: 5145224591395592714}
+  m_RoomNameGenerator: {fileID: 1170859069}
 --- !u!1 &285810942
 GameObject:
   m_ObjectHideFlags: 0

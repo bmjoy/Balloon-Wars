@@ -10,6 +10,7 @@ public class GameMenuBackButton : MonoBehaviour
     [SerializeField] Animator m_Animator;
     [SerializeField] SceneNavigator m_SceneNavigator;
     [SerializeField] PhotonRoomsConnector m_PhotonRoomsConnector;
+    [SerializeField] roomNameGenerator m_RoomNameGenerator;
     public enum e_MenuState {MainMenu, CreateRoomMenu, JoinRoomMenu, CreatedRoomDetails, JoinedRoomDetails};
     private Button m_Button;
     Dictionary<e_MenuState, UnityAction> m_MenuStateBackActions;
@@ -56,16 +57,15 @@ public class GameMenuBackButton : MonoBehaviour
                 m_SceneNavigator.MoveToMainMenu();}},
             { e_MenuState.CreateRoomMenu, () => {
                 m_Animator.SetTrigger("CreateRoomExit");
-                setMenuStateMainMenu();
-                m_PhotonRoomsConnector.restartLoby();} },
+                setMenuStateMainMenu();} },
             { e_MenuState.JoinRoomMenu, () => {
                 m_Animator.SetTrigger("JoinRoomExit");
-                setMenuStateMainMenu();
-                m_PhotonRoomsConnector.restartLoby();} },
+                setMenuStateMainMenu();} },
             { e_MenuState.CreatedRoomDetails, () => {
                 m_PhotonRoomsConnector.LeavePhotonRoom();
                 setMenuStateCreateRoomMenu();
-                m_Animator.SetTrigger("DetailsToCreateRoom");} },
+                m_Animator.SetTrigger("DetailsToCreateRoom");
+                m_RoomNameGenerator.setRoomName();} },
             { e_MenuState.JoinedRoomDetails, () => {
                 m_PhotonRoomsConnector.LeavePhotonRoom();
                 setMenuStateJoinRoomMenu();

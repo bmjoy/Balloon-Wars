@@ -14,13 +14,23 @@ public class PlayersViewList : MonoBehaviour
     void Start()
     {
         m_PhotonRoomsConnector = FindObjectOfType<PhotonRoomsConnector>();
-        foreach(Player player in PhotonNetwork.PlayerList)
+        m_PhotonRoomsConnector.PlayerAddedToList += addPlayerToUIList;
+        m_PhotonRoomsConnector.PlayerRemovedFromList += removePlayerFromUIList;
+        m_PhotonRoomsConnector.PlayerJoinedRoom += InitPlayerList;
+        InitPlayerList();
+    }
+
+    private void InitPlayerList()
+    {
+        foreach (Transform child in m_PlayersScrollViewContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Player player in PhotonNetwork.PlayerList)
         {
             addPlayerToUIList(player);
         }
-        m_PhotonRoomsConnector.PlayerAddedToList += addPlayerToUIList;
-        m_PhotonRoomsConnector.PlayerRemovedFromList += removePlayerFromUIList;
-
     }
 
     private void addPlayerToUIList(Player playerToAdd)

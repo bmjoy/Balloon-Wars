@@ -17,6 +17,8 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public event Action<Player> PlayerAddedToList;
     public event Action<Player> PlayerRemovedFromList;
     public event Action<string> failedConnectToRoom;
+    public event Action PlayerJoinedRoom;
+
     public List<RoomInfo> RoomList { get; private set; } = new List<RoomInfo>();
 
     private void Start() 
@@ -118,6 +120,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     {
         Room curRoom = PhotonNetwork.CurrentRoom;
         Debug.Log($"You have joined the photon room {curRoom.Name}");
+        PlayerJoinedRoom?.Invoke();
         int level = (int)PhotonNetwork.CurrentRoom.CustomProperties["Level"];
         Debug.Log($"room details: visable = {curRoom.IsVisible}, open = {curRoom.IsOpen}," + 
                     $" maxPlayers ={curRoom.MaxPlayers}, Level = {level}");

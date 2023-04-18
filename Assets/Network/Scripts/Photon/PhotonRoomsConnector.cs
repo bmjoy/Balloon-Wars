@@ -8,16 +8,13 @@ using System.Collections.Generic;
 public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Animator m_Animator;
-    [SerializeField] private MapChooser m_DetailsMapChooser;
-    [SerializeField] private GameObject m_StartGameButton;
-    [SerializeField] private TextMeshProUGUI m_DetailsLevelName;
     private bool m_IsCreatedRoom = false;
     public event Action<List<RoomInfo>> RoomListChanged;
     public event Action<Player> PlayerAddedToList;
     public event Action<Player> PlayerRemovedFromList;
     public event Action<string> failedConnectToRoom;
     public event Action PlayerJoinedRoom;
-
+    public event Action MasterPlayerSwiched;
     public List<RoomInfo> RoomList { get; private set; } = new List<RoomInfo>();
 
     private void Start() 
@@ -97,15 +94,8 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Room curRoom = PhotonNetwork.CurrentRoom;
-        Debug.Log($"You have joined the photon room {curRoom.Name}");
+        Debug.Log($"You have joined the photon room {PhotonNetwork.CurrentRoom.Name}");
         PlayerJoinedRoom?.Invoke();
-        int level = (int)PhotonNetwork.CurrentRoom.CustomProperties["Level"];
-        Debug.Log($"room details: visable = {curRoom.IsVisible}, open = {curRoom.IsOpen}," + 
-                    $" maxPlayers ={curRoom.MaxPlayers}, Level = {level}");
-        m_DetailsMapChooser.setBackImageToLevel(level);
-        m_DetailsLevelName.SetText(curRoom.Name);
-        m_StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
         m_Animator.SetTrigger(m_IsCreatedRoom? "CreateRoomToDetails" : "JoinRoomToDetails");
         m_IsCreatedRoom = false;
     }
@@ -143,6 +133,6 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         Debug.Log($"Master player was replaced to: {newMasterClient.NickName}");
-        m_StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        MasterPlayerSwiched?.Invoke();
     }
 }

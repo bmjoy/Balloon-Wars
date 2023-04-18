@@ -23,6 +23,9 @@ public class ConnectedToMasterButton : MonoBehaviour
     }
     protected void deActivateButton()
     {
-        m_Button.interactable = false;
+        if (!m_Button.IsDestroyed())
+        {
+            m_Button.interactable = false;
+        }
     }
 }

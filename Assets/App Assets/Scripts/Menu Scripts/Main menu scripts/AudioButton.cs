@@ -5,29 +5,53 @@ using UnityEngine.UI;
 
 public class AudioButton : MonoBehaviour
 {
-    [SerializeField] Image icon;
+    private VolumeController m_VolumeController;
+    private Image m_Icon;
     [SerializeField] Sprite VoiceImage;
     [SerializeField] Sprite MuteImage;
     [SerializeField] public bool IsMusic;
+    [SerializeField] public Slider matchingSlider;
     public bool IsMuted {set; get;}
-
     private void Start()
     {
-        if (IsMusic)
+        m_VolumeController = VolumeController.Instance;
+        if(IsMusic)
         {
-            IsMuted = PlayerPrefs.GetFloat(VolumeController.MUSIC_KEY, 1f) == VolumeController.muteValue;
+            IsMuted = m_VolumeController.MusicLevel == VolumeController.muteValue;
+            m_VolumeController.MusicLevelChanged += changeStateIfNeeded;
         }
         else
         {
-            IsMuted = PlayerPrefs.GetFloat(VolumeController.SFX_KEY, 1f) == VolumeController.muteValue;
+            IsMuted = m_VolumeController.SFXLevel == VolumeController.muteValue;
+            m_VolumeController.SFXLevelChanged += changeStateIfNeeded;
         }
-
-        icon.sprite = IsMuted ? MuteImage : VoiceImage;
+        m_Icon = GetComponent<Image>();
+        m_Icon.sprite = IsMuted ? MuteImage : VoiceImage;
     }
 
-    public void SwichState()
+    private void SwichState()
     {
         IsMuted = !IsMuted;
-        icon.sprite = IsMuted ? MuteImage : VoiceImage;
+        m_Icon.sprite = IsMuted ? MuteImage : VoiceImage;
+    }
+
+    private void changeStateIfNeeded(float newLevel)
+    {
+        if (IsMuted || newLevel == VolumeController.muteValue)
+        {
+            SwichState();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(IsMusic)
+        {
+            m_VolumeController.MusicLevelChanged -= changeStateIfNeeded;
+        }
+        else
+        {
+            m_VolumeController.SFXLevelChanged -= changeStateIfNeeded;
+        }
     }
 }

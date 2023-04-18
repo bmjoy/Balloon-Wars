@@ -4746,6 +4746,7 @@ GameObject:
   - component: {fileID: 1108599860}
   - component: {fileID: 1108599863}
   - component: {fileID: 1108599862}
+  - component: {fileID: 1108599864}
   - component: {fileID: 1108599861}
   m_Layer: 5
   m_Name: Play Outside Button
@@ -4857,6 +4858,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108599859}
   m_CullTransparentMesh: 1
+--- !u!114 &1108599864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108599859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952179b62513fa34989d585cbb87a327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1143092315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5372,8 +5385,8 @@ GameObject:
   - component: {fileID: 1308268435}
   - component: {fileID: 1308268434}
   m_Layer: 0
-  m_Name: photonLogin
-  m_TagString: Untagged
+  m_Name: PhotonConnector
+  m_TagString: PhotonConnector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5545,6 +5558,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1341676058
 GameObject:
   m_ObjectHideFlags: 0
@@ -8478,6 +8492,7 @@ GameObject:
   - component: {fileID: 2112333388}
   - component: {fileID: 2112333387}
   - component: {fileID: 2112333386}
+  - component: {fileID: 2112333389}
   m_Layer: 5
   m_Name: Classic game Button
   m_TagString: Untagged
@@ -8600,6 +8615,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112333384}
   m_CullTransparentMesh: 1
+--- !u!114 &2112333389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112333384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952179b62513fa34989d585cbb87a327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2112856013
 GameObject:
   m_ObjectHideFlags: 0

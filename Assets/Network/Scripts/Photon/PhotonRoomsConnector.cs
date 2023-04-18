@@ -23,6 +23,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     private void Start() 
     {
         JoinPhotonLoby();
+        FindObjectOfType<PhotonConnector>().ConnectedToMaster += JoinPhotonLoby;
     }
 
     // --------- Loby ---------
@@ -143,11 +144,5 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     {
         Debug.Log($"Master player was replaced to: {newMasterClient.NickName}");
         m_StartGameButton.SetActive(PhotonNetwork.IsMasterClient);
-    }
-
-    public override void OnConnectedToMaster()
-    {
-        Debug.Log("Rejoind Master Server");
-        JoinPhotonLoby();
     }
 }

@@ -7,6 +7,18 @@ using Photon.Realtime;
 
 public class PhotonConnector : MonoBehaviourPunCallbacks
 {
+    public event Action ConnectedToMaster;
+    public event Action DisConnectedFromMaster;
+    public bool IsConnectedToMaster { get; private set; }
+    private void Awake() 
+    {
+        GameObject[] PhotonConnectors = GameObject.FindGameObjectsWithTag("PhotonConnector");
+        if(PhotonConnectors.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
     private void Start() 
     {
         if (!PhotonNetwork.IsConnected)
@@ -52,10 +64,14 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.Log($"You have disconnected from the Photon Master Server. Cause: {cause.ToString()}");
+        IsConnectedToMaster = false;
+        DisConnectedFromMaster?.Invoke();
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("You have connected to the Photon Master Server");
+        IsConnectedToMaster = true;
+        ConnectedToMaster?.Invoke();
     }
 }

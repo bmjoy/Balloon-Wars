@@ -14,6 +14,7 @@ TagManager:
   - LogoutScreen
   - Players
   - RoomName
+  - PhotonConnector
   layers:
   - Default
   - TransparentFX

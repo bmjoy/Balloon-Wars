@@ -5449,6 +5449,7 @@ GameObject:
   - component: {fileID: 1552289828}
   - component: {fileID: 1552289831}
   - component: {fileID: 1552289832}
+  - component: {fileID: 1552289833}
   - component: {fileID: 1552289830}
   - component: {fileID: 1552289829}
   m_Layer: 5
@@ -5602,6 +5603,18 @@ MonoBehaviour:
   m_MapChooser: {fileID: 1225423993}
   m_PlayersSlider: {fileID: 285810944}
   m_IsPrivateToggle: {fileID: 614267340}
+--- !u!114 &1552289833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552289827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952179b62513fa34989d585cbb87a327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1577032365
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,27 +37,12 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         m_PhotonView = GetComponent<PhotonView>();
-        m_AirTank = AirTank.Instance;
-    }
-
-    private void OnEnable()
-    {
-        if(m_PhotonView.IsMine)
-        {
-            m_AirTank.AirFinished += InflateCancelLogic;
-        }
-    }
-
-    private void OnDisable() 
-    {
-        if(m_PhotonView.IsMine)
-        {
-            m_AirTank.AirFinished -= InflateCancelLogic;
-        }
     }
 
     private void Start()
     {
+        m_AirTank = FindObjectOfType<AirTank>();
+        m_AirTank.AirFinished += InflateCancelLogic;
         m_RigidBody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();

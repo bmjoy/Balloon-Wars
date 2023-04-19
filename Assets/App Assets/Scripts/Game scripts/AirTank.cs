@@ -6,29 +6,16 @@ using TMPro;
 
 public class AirTank : MonoBehaviour
 {
-    public static AirTank Instance {get; private set;}
     [SerializeField] [Range(20f, 200f)] float reduceAirSpeed = 120f;
     [SerializeField] [Range(20f, 200f)] float addAirSpeed = 120f;
     [SerializeField] TextMeshProUGUI AirPercentage;
     [SerializeField] private Image AirAmountImage;
-
 
     public int AirAmount{set;get;} = 100; 
     private float AIR_DELTA;
     private IEnumerator addAirCoroutine;
     private IEnumerator reduceAirCoroutine;
     public event Action AirFinished;
-
-    private void Awake() 
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-            return;
-        }
-
-        Instance = this;
-    }
 
     private void Start()
     {
@@ -90,8 +77,6 @@ public class AirTank : MonoBehaviour
     {
         Vector2 curSize = image.rectTransform.sizeDelta;
         image.rectTransform.sizeDelta = new Vector2(curSize.x + widthToAdd, curSize.y);
-        image.rectTransform.position = new Vector3(
-        AirAmountImage.rectTransform.position.x + widthToAdd / 2f, AirAmountImage.rectTransform.position.y, 0);
     }
 
     public void StartReduceAir()

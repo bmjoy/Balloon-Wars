@@ -16,6 +16,7 @@ TagManager:
   - RoomName
   - PhotonConnector
   - VolumeController
+  - GameCanvas
   layers:
   - Default
   - TransparentFX

@@ -18,15 +18,23 @@ public class QuitGame : MonoBehaviour
             Debug.Log("Killing player");
             myPlayer.GetComponent<PlayerLife>().Die();
         }
-        StartCoroutine(QuitRoomDelayed());
+        else
+        {
+            StartCoroutine(QuitRoomDelayed());
+        }
+    }
+
+    public void returnToGameMenu()
+    {
+        PhotonNetwork.LeaveRoom();
+        Debug.Log("Left photon room");
+        m_SceneNavigator.MoveToGameMenu();
+        Debug.Log("Moved to game menu");
     }
 
     private IEnumerator QuitRoomDelayed()
     {
         yield return new WaitForSeconds(0.5f);
-        PhotonNetwork.LeaveRoom();
-        Debug.Log("Left photon room");
-        m_SceneNavigator.MoveToGameMenu();
-        Debug.Log("Moved to game menu");
+        returnToGameMenu();
     }
 }

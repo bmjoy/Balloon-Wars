@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class PlayerLife : MonoBehaviour
 {
     private Material m_Material;
     private Animator m_Animator;
+    private Animator m_ScreenAnimator;
     private Rigidbody2D m_Rigidbody;
     private SpawnPlayers m_PlayerSpawner;
     private PhotonView m_PhotonView;
@@ -29,6 +31,7 @@ public class PlayerLife : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_PlayerSpawner = FindAnyObjectByType<SpawnPlayers>();
+        m_ScreenAnimator = GameObject.FindGameObjectWithTag("GameCanvas").GetComponent<Animator>();
     }
 
     private void Update()
@@ -49,7 +52,7 @@ public class PlayerLife : MonoBehaviour
             {
                 m_Fade = 0f;
                 m_IsDissolving = false;
-                RestartLevel();
+                StartCoroutine(GameOver(0f));
             }
 
             m_Material.SetFloat("_Fade", m_Fade);
@@ -84,10 +87,17 @@ public class PlayerLife : MonoBehaviour
     public void Die()
     {
         m_SharpTrapSound.Play();
-        
         m_PhotonView.RPC("DisablePlayerObjects", RpcTarget.All);
         m_Rigidbody.bodyType = RigidbodyType2D.Static;
         m_Animator.SetTrigger("trap_death");
+        StartCoroutine(GameOver(0.3f));
+    }       
+
+    public IEnumerator GameOver(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        m_ScreenAnimator.SetTrigger("LostIn");
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
     [PunRPC]

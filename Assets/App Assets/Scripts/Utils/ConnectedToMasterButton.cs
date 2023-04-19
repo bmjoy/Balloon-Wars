@@ -8,14 +8,12 @@ using UnityEngine.UI;
 public class ConnectedToMasterButton : MonoBehaviour
 {
     Button m_Button;
-    PhotonConnector m_PhotonConnector;
     void Start()
     {
         m_Button = GetComponent<Button>();
-        m_PhotonConnector = FindObjectOfType<PhotonConnector>();
-        m_Button.interactable = m_PhotonConnector.IsConnectedToMaster;
-        m_PhotonConnector.ConnectedToMaster += activateButton;
-        m_PhotonConnector.DisConnectedFromMaster += deActivateButton;
+        m_Button.interactable = PhotonConnector.Instance.IsConnectedToMaster;
+        PhotonConnector.Instance.ConnectedToMaster += activateButton;
+        PhotonConnector.Instance.DisConnectedFromMaster += deActivateButton;
     }
     protected void activateButton()
     {

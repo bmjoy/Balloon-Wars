@@ -7,18 +7,22 @@ using Photon.Realtime;
 
 public class PhotonConnector : MonoBehaviourPunCallbacks
 {
+    public static PhotonConnector Instance { get; private set; }
     public event Action ConnectedToMaster;
     public event Action DisConnectedFromMaster;
     public bool IsConnectedToMaster { get; private set; }
-    private void Awake() 
+
+    private void Awake()
     {
-        GameObject[] PhotonConnectors = GameObject.FindGameObjectsWithTag("PhotonConnector");
-        if(PhotonConnectors.Length > 1)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
+            return;
         }
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
+
     private void Start() 
     {
         if (!PhotonNetwork.IsConnected)

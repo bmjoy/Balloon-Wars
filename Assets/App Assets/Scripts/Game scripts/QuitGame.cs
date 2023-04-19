@@ -7,18 +7,26 @@ using System.Linq;
 public class QuitGame : MonoBehaviour
 {
     [SerializeField] SceneNavigator m_SceneNavigator;
+    [SerializeField] Animator m_SettingsAnimator;
     public void QuitRoom()
     {
+        m_SettingsAnimator.SetTrigger("SettingsQuit");
         List<GameObject> players= GameObject.FindGameObjectsWithTag("Player").ToList();
         GameObject myPlayer = players.Find(player => player.GetComponent<PhotonView>().IsMine);
-        myPlayer.GetComponent<PlayerLife>().Die();
+        if(myPlayer != null)
+        {
+            Debug.Log("Killing player");
+            myPlayer.GetComponent<PlayerLife>().Die();
+        }
         StartCoroutine(QuitRoomDelayed());
     }
 
     private IEnumerator QuitRoomDelayed()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         PhotonNetwork.LeaveRoom();
+        Debug.Log("Left photon room");
         m_SceneNavigator.MoveToGameMenu();
+        Debug.Log("Moved to game menu");
     }
 }

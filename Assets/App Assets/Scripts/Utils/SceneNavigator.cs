@@ -24,6 +24,7 @@ public class SceneNavigator : MonoBehaviour
 
     public void LoadGameLevel(int LevelIndex)
     {
+        Debug.Log("loading game");
         StartCoroutine(loadPhotonSceneByIndex(3 + LevelIndex));
     }
 
@@ -38,6 +39,7 @@ public class SceneNavigator : MonoBehaviour
     {
         transition.SetTrigger("start");
         yield return new WaitForSeconds(1);
+        Debug.Log("Opening game scene");
         PhotonNetwork.LoadLevel(sceneIndex);
     }
 }

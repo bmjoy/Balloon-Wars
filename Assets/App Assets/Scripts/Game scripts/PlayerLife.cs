@@ -65,7 +65,7 @@ public class PlayerLife : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Trap"))
             {
-                Die();
+                SharpTrapDie();
             }
         }
     }
@@ -84,7 +84,7 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void SharpTrapDie()
     {
         m_SharpTrapSound.Play();
         m_PhotonView.RPC("DisablePlayerObjects", RpcTarget.All);
@@ -98,6 +98,13 @@ public class PlayerLife : MonoBehaviour
         yield return new WaitForSeconds(delay);
         m_ScreenAnimator.SetTrigger("LostIn");
         PhotonNetwork.Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        PhotonRoomInfo photonRoomInfo = FindObjectOfType<PhotonRoomInfo>();
+        if (photonRoomInfo != null)
+            photonRoomInfo.RemovePlayerFromGame(m_PhotonView.Owner);
     }
 
     [PunRPC]

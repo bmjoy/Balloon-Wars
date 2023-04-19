@@ -17,8 +17,9 @@ public class StartGame : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.IsOpen)
         {
-            Debug.Log("Starting the game for all players in room");
             PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.AutomaticallySyncScene = false;
+            Debug.Log("Starting the game for all players in room");
             photonView.RPC("RPC_StartGame", RpcTarget.All);
         }
     }

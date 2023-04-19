@@ -13,6 +13,7 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        Debug.Log("gonna spawn player");
         SpawnPlayer();
     }
 
@@ -58,9 +59,11 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
 
     public void SpawnPlayer()
     {
+        
         Vector2 freePosition = GetRandomSpawnPosition();
 
         PhotonNetwork.Instantiate(m_PlayerPrefab.name, freePosition, Quaternion.identity);
+        Debug.Log($"Spawnd player");
     }
 
     public void RespawnPlayer()

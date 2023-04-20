@@ -41,7 +41,7 @@ Balloon Wars is a thrilling multiplayer experience that is sure to keep players 
 * Room management and creation
 * Private room creation and management
 
-## Credits
+## Technologies
 
 * Unity Technologies
 * Photon Unity Networking 2

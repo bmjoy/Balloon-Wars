@@ -9,7 +9,9 @@ public class PlayerDart : MonoBehaviour
     private float m_ShotForce;
     private List<GameObject> m_Points;
     private PhotonView m_PhotonView;
+    private AudioSource m_ThrowAudioSource;
     private Vector2 m_DefaultDartDirection;
+    [SerializeField] private List<AudioClip> m_ThrowSounds;
     [SerializeField] private GameObject m_DartPrefab;
     [SerializeField] private GameObject m_PointPrefab;
     [SerializeField] [Range(5,15)] private float m_MinShotForce = 10;
@@ -45,12 +47,13 @@ public class PlayerDart : MonoBehaviour
 
     private bool isCancelingShoot()
     {
-        return m_ShotForce - m_MinShotForce < 2f;
+        return m_ShotForce - m_MinShotForce <= 1f;
     }
 
     private void Awake()
     {
         m_PhotonView = GetComponent<PhotonView>();
+        m_ThrowAudioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -67,6 +70,13 @@ public class PlayerDart : MonoBehaviour
         GameObject newDart = PhotonNetwork.Instantiate(m_DartPrefab.name, m_ShotPoint.position, m_ShotPoint.rotation);
         newDart.GetComponent<Transform>().right = ShootDirection;
         newDart.GetComponent<Rigidbody2D>().velocity = transform.right * m_ShotForce;
+        PlayRandomThrowSound();
+    }
+
+    public void PlayRandomThrowSound()
+    {
+        AudioClip audioClip = m_ThrowSounds[Random.Range(0, m_ThrowSounds.Count)];
+        m_ThrowAudioSource.PlayOneShot(audioClip);
     }
 
     private void InitializeProjectionPoints()

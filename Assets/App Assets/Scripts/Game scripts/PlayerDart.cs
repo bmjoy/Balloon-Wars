@@ -5,13 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerDart : MonoBehaviour
 {
-    public Vector2 ShootDirection{get; set;}
+    public Vector2 ShootDirection{get; private set;}
+    private float m_ShotForce;
     private List<GameObject> m_Points;
     private PhotonView m_PhotonView;
     private Vector2 m_DefaultDartDirection;
     [SerializeField] private GameObject m_DartPrefab;
     [SerializeField] private GameObject m_PointPrefab;
-    [SerializeField] [Range(10,25)] private float m_ShotForce = 16;
+    [SerializeField] [Range(5,15)] private float m_MinShotForce = 10;
+    [SerializeField] [Range(20,35)] private float m_MaxShotForce = 25;
     [SerializeField] private Transform m_ShotPoint;
     [SerializeField] [Range(30,70)] private int m_NumOfProjectionPoints = 50;
     [SerializeField] [Range(0.01f, 0.05f)] private float m_SpaceBetweenPoints = 0.025f;
@@ -22,26 +24,28 @@ public class PlayerDart : MonoBehaviour
         {
             if(context.performed || context.started)
             {
-                ShootDirection = (context.ReadValue<Vector2>()) * -1;
-                Debug.Log($"shoot direction: {ShootDirection}");
+                Vector2 ShootVector = context.ReadValue<Vector2>();
+                ShootDirection = ShootVector * -1;
+                m_ShotForce = m_MinShotForce + ShootVector.magnitude * (m_MaxShotForce - m_MinShotForce);
                 transform.right = ShootDirection;
                 UpdateProjectionPointsLocation();
+                setPointsActiveState(!isCancelingShoot());
             }
-
-            if(context.started)
+            else if(context.canceled)
             {
-                Debug.Log("Shoot started");
-                setPointsActiveState(true);
-            }
-
-            if(context.canceled)
-            {
-                Debug.Log("Shoot ended");
-                Shoot();
+                if(!isCancelingShoot())
+                {
+                    Shoot();
+                    setPointsActiveState(false);
+                }
                 transform.right = m_DefaultDartDirection;
-                setPointsActiveState(false);
             }
         }
+    }
+
+    private bool isCancelingShoot()
+    {
+        return m_ShotForce - m_MinShotForce < 2f;
     }
 
     private void Awake()

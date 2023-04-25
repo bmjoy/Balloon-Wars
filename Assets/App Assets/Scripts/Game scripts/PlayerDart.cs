@@ -70,7 +70,7 @@ public class PlayerDart : MonoBehaviour
         m_Points = new List<GameObject>();
         for(int i=0; i < m_NumOfProjectionPoints; i++)
         {
-            GameObject currentPoint = PhotonNetwork.Instantiate(m_PointPrefab.name, m_ShotPoint.position, Quaternion.identity);
+            GameObject currentPoint = Instantiate<GameObject>(m_PointPrefab, m_ShotPoint.position, Quaternion.identity);
             currentPoint.transform.SetParent(gameObject.transform);
             m_Points.Add(currentPoint);
         }

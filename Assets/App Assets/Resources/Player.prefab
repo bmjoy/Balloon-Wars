@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DartPrefab: {fileID: 8539629894646217900, guid: 014a8cc5bed304e42be6e834c40f5aa0, type: 3}
   m_PointPrefab: {fileID: 3022857984474418609, guid: e8abfe1edd02d9c4ebf2bcc785616032, type: 3}
-  m_ShotForce: 16
+  m_ShotForce: 20
   m_ShotPoint: {fileID: 4069800396078415960}
   m_NumOfProjectionPoints: 50
   m_SpaceBetweenPoints: 0.025

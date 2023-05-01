@@ -33,27 +33,15 @@ public class Dart : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if(m_PhotonView.IsMine)
-        {
-            m_HasHit = true;
-            m_RigidBody.velocity = Vector2.zero;
-            m_RigidBody.isKinematic = true;
-            StartCoroutine(StartDestroyDart());
-        }
+        m_HasHit = true;
+        m_RigidBody.velocity = Vector2.zero;
+        m_RigidBody.isKinematic = true;
+        StartCoroutine(StartDestroyDart());
     }
 
     private IEnumerator StartDestroyDart()
     {
-        if(m_PhotonView.IsMine)
-        {
-            yield return new WaitForSeconds(m_DartDestroyTime);
-            m_PhotonView.RPC("TriggerDartFadeAnimation", RpcTarget.All);
-        }
-    }
-
-    [PunRPC]
-    private void TriggerDartFadeAnimation()
-    {
+        yield return new WaitForSeconds(m_DartDestroyTime);
         m_Animator.SetTrigger("fade");
     }
 

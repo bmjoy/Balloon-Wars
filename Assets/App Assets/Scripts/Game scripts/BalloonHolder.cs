@@ -7,16 +7,27 @@ using System;
 public class BalloonHolder : MonoBehaviour
 {
     [SerializeField] private GameObject m_BalloonPrefab;
-    [SerializeField] private List<GameObject> m_Balloons;
-    public int BalloonAmount { get{ return m_Balloons.Count;}}
+    private List<GameObject> m_Balloons = new List<GameObject>();
+    private PhotonView m_PhotonView;
+    [SerializeField][Range(1,5)] private int BalloonNum = 3;
+    public int BalloonsLeft { get{ return m_Balloons.Count;}}
 
     public event Action BallonsFinishd;
 
     private void Start() 
     {
-        foreach (GameObject balloon in m_Balloons)
+        m_PhotonView = GetComponent<PhotonView>();
+        if (m_PhotonView.IsMine)
         {
-            balloon.GetComponent<Balloon>().BalloonLost += OnBalloonLost;
+            generateBalloons();
+        }
+    }
+
+    private void generateBalloons()
+    {
+        for (int i = 0; i < BalloonNum; i++)
+        {
+            AddBalloon();
         }
     }
 
@@ -27,9 +38,13 @@ public class BalloonHolder : MonoBehaviour
 
     public void AddBalloon()
     {
-        GameObject balloon = PhotonNetwork.Instantiate(m_BalloonPrefab.name, gameObject.transform.position, Quaternion.identity);
+        Vector3 playerPos = gameObject.transform.position;
+        Vector3 balloonPos = new Vector3(playerPos.x, playerPos.y + 2.5f, playerPos.z);
+        GameObject balloon = PhotonNetwork.Instantiate(m_BalloonPrefab.name, balloonPos, Quaternion.identity);
         Balloon balloonScript = balloon.GetComponent<Balloon>();
         balloonScript.ConnectingHinge.connectedBody = GetComponent<Rigidbody2D>();
+        balloonScript.ConnectingHinge.connectedAnchor = new Vector2(0,0);
+        balloonScript.ConnectingHinge.autoConfigureConnectedAnchor = true;
         m_Balloons.Add(balloon);
         balloonScript.BalloonLost += OnBalloonLost;
     }
@@ -42,8 +57,8 @@ public class BalloonHolder : MonoBehaviour
         }
         m_Balloons.RemoveAll(balloon => balloon == null);
 
-        Debug.Log($"{BalloonAmount} balloons left");
-        if(BalloonAmount == 0)
+        Debug.Log($"{BalloonsLeft} balloons left");
+        if(BalloonsLeft == 0)
         {
             OnBallonsFinishd();
             Debug.Log("No Ballons left");

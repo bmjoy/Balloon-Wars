@@ -152,14 +152,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void InflatePerformedLogic()
     {
-        Debug.Log("Inflate performed");
+        // Debug.Log("Inflate performed");
         m_InflatePerformed = true;
         m_AirTank.StartReduceAir();
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
         if(m_WasOnGround)
         {
-            Debug.Log("Adding jump boost");
+            // Debug.Log("Adding jump boost");
             m_JumpSoundEffect.Play();
             m_RigidBody.AddForce(Vector3.up * m_JumpPower, ForceMode2D.Impulse);
             StartCoroutine(JumpStopCoroutine(m_jumpSmooth, m_jumpTime/(float)m_jumpSmooth, m_JumpPower/(float)m_jumpSmooth));
@@ -178,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void InflateCancelLogic()
     {
-        Debug.Log("Inflate canceled");
+        // Debug.Log("Inflate canceled");
         m_InflatePerformed = false;
         m_AirTank.StopReduceAir();
         m_InflatingSoundEffect.Stop();

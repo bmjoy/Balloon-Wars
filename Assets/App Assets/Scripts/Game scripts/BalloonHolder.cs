@@ -38,15 +38,17 @@ public class BalloonHolder : MonoBehaviour
 
     public void AddBalloon()
     {
-        Vector3 playerPos = gameObject.transform.position;
-        Vector3 balloonPos = new Vector3(playerPos.x, playerPos.y + 2.5f, playerPos.z);
-        GameObject balloon = PhotonNetwork.Instantiate(m_BalloonPrefab.name, balloonPos, Quaternion.identity);
-        Balloon balloonScript = balloon.GetComponent<Balloon>();
-        balloonScript.ConnectingHinge.connectedBody = GetComponent<Rigidbody2D>();
-        balloonScript.ConnectingHinge.connectedAnchor = new Vector2(0,0);
-        balloonScript.ConnectingHinge.autoConfigureConnectedAnchor = true;
-        m_Balloons.Add(balloon);
-        balloonScript.BalloonLost += OnBalloonLost;
+        if(m_PhotonView.IsMine)
+        {
+            Vector3 playerPos = gameObject.transform.position;
+            Vector3 balloonPos = new Vector3(playerPos.x, playerPos.y + 2.5f, playerPos.z);
+            GameObject balloon = PhotonNetwork.Instantiate(m_BalloonPrefab.name, balloonPos, Quaternion.identity);
+            Balloon balloonScript = balloon.GetComponent<Balloon>();
+            balloonScript.AttachToPlayer();
+            m_Balloons.Add(balloon);
+            balloonScript.BalloonLost += OnBalloonLost;
+        }
+
     }
 
     public void OnBalloonLost(GameObject balloon)

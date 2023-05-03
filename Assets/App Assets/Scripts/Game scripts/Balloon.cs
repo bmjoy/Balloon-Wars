@@ -41,10 +41,10 @@ public class Balloon : MonoBehaviour
     {
         if(m_PhotonView.IsMine)
         {
-            foreach(Transform child in gameObject.transform)
-            {
-                PhotonNetwork.Destroy(child.gameObject);    
-            }
+            // foreach(Transform child in gameObject.transform)
+            // {
+            //     PhotonNetwork.Destroy(child.gameObject);    
+            // }
             PhotonNetwork.Destroy(gameObject);
         }
     }

@@ -51,16 +51,12 @@ public class Balloon : MonoBehaviour
     }
 
     [PunRPC]
-    private void AttachToPlayerToAll(string NickName)
+    private void AttachToPlayerToAll(string BalloonOwner)
     {
+        Debug.Log($"Ataching {BalloonOwner}'s Balloon on {PhotonNetwork.LocalPlayer.NickName}'s screen");
         List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList();
-        Debug.Log($"Found {players.Count} players bodies");
-        foreach (GameObject player in players)
-            Debug.Log($"user NickName: {player.GetComponent<PhotonView>().Owner.NickName}");
-        GameObject matchingPlayer = players.Find(Player => Player.GetComponent<PhotonView>().Owner.NickName == NickName);
-        Debug.Log($"Ataching Balloon To Player {NickName}, IsNull == {matchingPlayer == null}");
+        GameObject matchingPlayer = players.Find(Player => Player.GetComponent<PhotonView>().Owner.NickName == BalloonOwner);
         PlayerBody = matchingPlayer.GetComponent<Rigidbody2D>();
-        Debug.Log($"Ridgidbody, IsNull == {PlayerBody == null}");
         ConnectingHinge.connectedAnchor = new Vector2(0,0);
         ConnectingHinge.autoConfigureConnectedAnchor = true;
         ConnectingHinge.connectedBody = PlayerBody;

@@ -48,7 +48,6 @@ public class BalloonHolder : MonoBehaviour
             m_Balloons.Add(balloon);
             balloonScript.BalloonLost += OnBalloonLost;
         }
-
     }
 
     public void OnBalloonLost(GameObject balloon)
@@ -65,7 +64,5 @@ public class BalloonHolder : MonoBehaviour
             OnBallonsFinishd();
             Debug.Log("No Ballons left");
         }
-
     }
-
 }

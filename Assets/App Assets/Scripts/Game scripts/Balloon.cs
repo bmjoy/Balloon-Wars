@@ -8,12 +8,10 @@ using System.Linq;
 
 public class Balloon : MonoBehaviour
 {
-    [SerializeField] private HingeJoint2D m_ConnectingHinge;
-    public HingeJoint2D ConnectingHinge { get{return m_ConnectingHinge;} }
+    [SerializeField] private FixedJoint2D m_ConnectingJoint;
+    public FixedJoint2D ConnectingJoint { get{return m_ConnectingJoint;} }
     private PhotonView m_PhotonView;
-
     public Rigidbody2D PlayerBody { get; private set; }
-
     public event Action<GameObject> BalloonLost;
     private AudioSource m_PopAudioSource;
 
@@ -38,6 +36,10 @@ public class Balloon : MonoBehaviour
     private void popBalloon()
     {
         Debug.Log($"{m_PhotonView.Owner.NickName}'s string broke");
+        if(ConnectingJoint != null)
+        {
+            ConnectingJoint.attachedRigidbody.AddForce(Vector2.up * 1.4f);
+        }
         StartCoroutine(delayExplodeBalloon(2f));
     }
 
@@ -50,9 +52,9 @@ public class Balloon : MonoBehaviour
     public void AttachToPlayer(Rigidbody2D playerBody)
     {
         PlayerBody = playerBody;
-        ConnectingHinge.connectedAnchor = Vector2.zero;
-        ConnectingHinge.autoConfigureConnectedAnchor = true;
-        ConnectingHinge.connectedBody = playerBody;
+        ConnectingJoint.connectedBody = playerBody;
+        ConnectingJoint.autoConfigureConnectedAnchor = false;
+        ConnectingJoint.connectedAnchor = Vector2.zero;
     }
 
     public void FindAndAttachToPlayer()
@@ -71,9 +73,7 @@ public class Balloon : MonoBehaviour
         GameObject matchingPlayer = players.Find(
             Player => Player.GetComponent<PhotonView>().Owner.NickName == BalloonOwner);
         PlayerBody = matchingPlayer.GetComponent<Rigidbody2D>();
-        ConnectingHinge.connectedAnchor = new Vector2(0,0);
-        ConnectingHinge.autoConfigureConnectedAnchor = true;
-        ConnectingHinge.connectedBody = PlayerBody;
+        AttachToPlayer(PlayerBody);
     }
 
     public void DestroyBalloon()

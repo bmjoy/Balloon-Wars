@@ -41,8 +41,15 @@ public class Balloon : MonoBehaviour
         GetComponentInChildren<Animator>().SetTrigger("explode");
         Debug.Log("balloon exploded");
     }
+    public void AttachToPlayer(Rigidbody2D playerBody)
+    {
+        PlayerBody = playerBody;
+        ConnectingHinge.connectedAnchor = Vector2.zero;
+        ConnectingHinge.autoConfigureConnectedAnchor = true;
+        ConnectingHinge.connectedBody = playerBody;
+    }
 
-    public void AttachToPlayer()
+    public void FindAndAttachToPlayer()
     {
         if(m_PhotonView.IsMine)
         {

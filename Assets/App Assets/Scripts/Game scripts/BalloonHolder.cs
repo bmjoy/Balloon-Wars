@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System;
+using System.Linq;
 
 public class BalloonHolder : MonoBehaviour
 {
@@ -21,13 +22,14 @@ public class BalloonHolder : MonoBehaviour
         {
             generateBalloons();
         }
+        atachBalloonsToPlayer();
     }
 
     private void generateBalloons()
     {
         for (int i = 0; i < BalloonNum; i++)
         {
-            AddBalloon();
+            CreateBalloon();
         }
     }
 
@@ -36,17 +38,27 @@ public class BalloonHolder : MonoBehaviour
         BallonsFinishd?.Invoke();
     }
 
-    public void AddBalloon()
+    public void CreateBalloon()
     {
         if(m_PhotonView.IsMine)
         {
             Vector3 playerPos = gameObject.transform.position;
             Vector3 balloonPos = new Vector3(playerPos.x, playerPos.y + 2.5f, playerPos.z);
             GameObject balloon = PhotonNetwork.Instantiate(m_BalloonPrefab.name, balloonPos, Quaternion.identity);
-            Balloon balloonScript = balloon.GetComponent<Balloon>();
-            balloonScript.AttachToPlayer();
+            balloon.GetComponent<Balloon>().BalloonLost += OnBalloonLost;
             m_Balloons.Add(balloon);
-            balloonScript.BalloonLost += OnBalloonLost;
+        }
+    }
+
+    public void atachBalloonsToPlayer()
+    {
+        string playerOwner = m_PhotonView.Owner.NickName;
+        List<GameObject> balloons = GameObject.FindGameObjectsWithTag("Balloon").ToList();
+        balloons.RemoveAll(Balloon => Balloon.GetComponent<PhotonView>().Owner.NickName != playerOwner);
+        Debug.Log($"Ataching {balloons.Count} balloons to {playerOwner}");
+        foreach(GameObject balloon in balloons)
+        {
+            balloon.GetComponent<Balloon>().AttachToPlayer(GetComponent<Rigidbody2D>());
         }
     }
 

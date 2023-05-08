@@ -17,6 +17,7 @@ TagManager:
   - PhotonConnector
   - VolumeController
   - GameCanvas
+  - Balloon
   layers:
   - Default
   - TransparentFX

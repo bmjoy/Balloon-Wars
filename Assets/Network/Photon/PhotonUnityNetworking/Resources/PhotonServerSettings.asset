@@ -45,6 +45,7 @@ MonoBehaviour:
   - TriggerDartFadeAnimation
   - RPC_StartGame
   - AttachToPlayerToAll
+  - popBalloon
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

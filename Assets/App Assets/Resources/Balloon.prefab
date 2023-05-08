@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7953967111059868023}
   - component: {fileID: 7953967111059868009}
   - component: {fileID: 7953967111059868022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7953967111148276461}
   - component: {fileID: 7953967111148276463}
   - component: {fileID: 7953967111148276460}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: hook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 7953967111231505317}
   - component: {fileID: 2652479693398535809}
   - component: {fileID: 3402657507561008518}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 7953967111560910657}
   - component: {fileID: 7953967111560910659}
   - component: {fileID: 7953967111560910656}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 7953967111692526946}
   - component: {fileID: 7953967111692526948}
   - component: {fileID: 7953967111692526949}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 3134728906655432700}
   - component: {fileID: 7327235797012664215}
   - component: {fileID: 5102302235743320809}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Balloon
   m_TagString: Balloon
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 7953967112245776159}
   - component: {fileID: 7953967112245776145}
   - component: {fileID: 7953967112245776158}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 7953967112324838489}
   - component: {fileID: 7953967112324838488}
   - component: {fileID: 7953967112324838491}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: string
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 7953967112483986420}
   - component: {fileID: 7953967112483986422}
   - component: {fileID: 7953967112483986423}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 7953967112627396384}
   - component: {fileID: 7953967112627396386}
   - component: {fileID: 7953967112627396387}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,7 +961,7 @@ GameObject:
   - component: {fileID: 7953967112652628678}
   - component: {fileID: 7953967112652628728}
   - component: {fileID: 7953967112652628729}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 7953967112764126632}
   - component: {fileID: 7953967112764126634}
   - component: {fileID: 7953967112764126635}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1124,7 +1124,7 @@ GameObject:
   - component: {fileID: 5695100650346952318}
   - component: {fileID: 1040032110055391271}
   - component: {fileID: 261885253106933528}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Balloon top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1372,7 @@ GameObject:
   - component: {fileID: 7953967112845728124}
   - component: {fileID: 7953967112845728126}
   - component: {fileID: 7953967112845728127}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}

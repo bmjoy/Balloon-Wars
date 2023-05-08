@@ -22,7 +22,7 @@ public class BalloonHolder : MonoBehaviour
         {
             generateBalloons();
         }
-        atachBalloonsToPlayer();
+        attachBalloonsToPlayer();
     }
 
     private void generateBalloons()
@@ -38,19 +38,23 @@ public class BalloonHolder : MonoBehaviour
         BallonsFinishd?.Invoke();
     }
 
-    public void CreateBalloon()
+    private GameObject CreateBalloon()
     {
+        GameObject balloon = null;
+
         if(m_PhotonView.IsMine)
         {
             Vector3 playerPos = gameObject.transform.position;
             Vector3 balloonPos = new Vector3(playerPos.x, playerPos.y + 2.5f, playerPos.z);
-            GameObject balloon = PhotonNetwork.Instantiate(m_BalloonPrefab.name, balloonPos, Quaternion.identity);
+            balloon = PhotonNetwork.Instantiate(m_BalloonPrefab.name, balloonPos, Quaternion.identity);
             balloon.GetComponent<Balloon>().BalloonLost += OnBalloonLost;
             m_Balloons.Add(balloon);
         }
+
+        return balloon;
     }
 
-    public void atachBalloonsToPlayer()
+    private void attachBalloonsToPlayer()
     {
         string playerOwner = m_PhotonView.Owner.NickName;
         List<GameObject> balloons = GameObject.FindGameObjectsWithTag("Balloon").ToList();
@@ -59,6 +63,15 @@ public class BalloonHolder : MonoBehaviour
         foreach(GameObject balloon in balloons)
         {
             balloon.GetComponent<Balloon>().AttachToPlayer(GetComponent<Rigidbody2D>());
+        }
+    }
+
+    public void AddBalloon()
+    {
+        if(m_PhotonView.IsMine)
+        {
+            GameObject balloon = CreateBalloon();
+            balloon.GetComponent<Balloon>().FindAndAttachToPlayer();
         }
     }
 

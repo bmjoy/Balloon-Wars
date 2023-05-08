@@ -30,8 +30,14 @@ public class Balloon : MonoBehaviour
 
     public void OnStringBreak()
     {
-        Debug.Log("string broke");
         OnBalloonLost();
+        m_PhotonView.RPC("popBalloon", RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void popBalloon()
+    {
+        Debug.Log($"{m_PhotonView.Owner.NickName}'s string broke");
         StartCoroutine(delayExplodeBalloon(2f));
     }
 
@@ -53,7 +59,7 @@ public class Balloon : MonoBehaviour
     {
         if(m_PhotonView.IsMine)
         {
-            m_PhotonView.RPC("AttachToPlayerToAll", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer.NickName);
+            m_PhotonView.RPC("AttachToPlayerToAll", RpcTarget.AllBuffered, m_PhotonView.Owner.NickName);
         }
     }
 
@@ -62,7 +68,8 @@ public class Balloon : MonoBehaviour
     {
         Debug.Log($"Ataching {BalloonOwner}'s Balloon on {PhotonNetwork.LocalPlayer.NickName}'s screen");
         List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList();
-        GameObject matchingPlayer = players.Find(Player => Player.GetComponent<PhotonView>().Owner.NickName == BalloonOwner);
+        GameObject matchingPlayer = players.Find(
+            Player => Player.GetComponent<PhotonView>().Owner.NickName == BalloonOwner);
         PlayerBody = matchingPlayer.GetComponent<Rigidbody2D>();
         ConnectingHinge.connectedAnchor = new Vector2(0,0);
         ConnectingHinge.autoConfigureConnectedAnchor = true;

@@ -46,6 +46,9 @@ MonoBehaviour:
   - RPC_StartGame
   - AttachToPlayerToAll
   - popBalloon
+  - findOwnerAndAttachBalloon
+  - BreakStringForAll
+  - popBalloonRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

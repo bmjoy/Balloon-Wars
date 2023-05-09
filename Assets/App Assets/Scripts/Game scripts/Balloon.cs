@@ -9,6 +9,7 @@ using System.Linq;
 public class Balloon : MonoBehaviour
 {
     [SerializeField] private FixedJoint2D m_ConnectingJoint;
+    [SerializeField] [Range(0.5f, 3f)] private float m_JointBreakForce = 1.3f;
     public FixedJoint2D ConnectingJoint { get{return m_ConnectingJoint;} }
     private PhotonView m_PhotonView;
     public Rigidbody2D PlayerBody { get; private set; }
@@ -28,19 +29,19 @@ public class Balloon : MonoBehaviour
 
     public void OnStringBreak()
     {
+        Debug.Log($"{m_PhotonView.Owner.NickName}'s string broke");
         OnBalloonLost();
-        m_PhotonView.RPC("popBalloon", RpcTarget.All);
+        StartCoroutine(delayExplodeBalloon(2f));
     }
 
     [PunRPC]
-    private void popBalloon()
+    private void BreakStringForAll()
     {
-        Debug.Log($"{m_PhotonView.Owner.NickName}'s string broke");
-        if(ConnectingJoint != null)
+        Debug.Log("break for all called");
+        if(ConnectingJoint != null && ConnectingJoint.attachedRigidbody != null)
         {
             ConnectingJoint.attachedRigidbody.AddForce(Vector2.up * 1.4f);
-        }
-        StartCoroutine(delayExplodeBalloon(2f));
+        }    
     }
 
     private IEnumerator delayExplodeBalloon(float delay)
@@ -49,31 +50,40 @@ public class Balloon : MonoBehaviour
         GetComponentInChildren<Animator>().SetTrigger("explode");
         Debug.Log("balloon exploded");
     }
-    public void AttachToPlayer(Rigidbody2D playerBody)
+
+    [PunRPC]
+    private void popBalloonRPC()
+    {
+        OnBalloonLost();
+        GetComponentInChildren<Animator>().SetTrigger("explode");
+        Debug.Log("Balloon exploded");
+    }
+
+    public void AttachBalloonToPlayer(Rigidbody2D playerBody)
     {
         PlayerBody = playerBody;
         ConnectingJoint.connectedBody = playerBody;
         ConnectingJoint.autoConfigureConnectedAnchor = false;
         ConnectingJoint.connectedAnchor = Vector2.zero;
+        ConnectingJoint.breakForce = m_JointBreakForce;
     }
 
-    public void FindAndAttachToPlayer()
+    public void AttachBalloonToOwnerForAll()
     {
         if(m_PhotonView.IsMine)
         {
-            m_PhotonView.RPC("AttachToPlayerToAll", RpcTarget.AllBuffered, m_PhotonView.Owner.NickName);
+            m_PhotonView.RPC("findOwnerAndAttachBalloon", RpcTarget.AllBuffered, m_PhotonView.Owner.NickName);
         }
     }
 
     [PunRPC]
-    private void AttachToPlayerToAll(string BalloonOwner)
+    private void findOwnerAndAttachBalloon(string BalloonOwner)
     {
         Debug.Log($"Ataching {BalloonOwner}'s Balloon on {PhotonNetwork.LocalPlayer.NickName}'s screen");
         List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList();
         GameObject matchingPlayer = players.Find(
             Player => Player.GetComponent<PhotonView>().Owner.NickName == BalloonOwner);
-        PlayerBody = matchingPlayer.GetComponent<Rigidbody2D>();
-        AttachToPlayer(PlayerBody);
+        AttachBalloonToPlayer(matchingPlayer.GetComponent<Rigidbody2D>());
     }
 
     public void DestroyBalloon()

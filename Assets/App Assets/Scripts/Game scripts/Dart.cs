@@ -47,10 +47,7 @@ public class Dart : MonoBehaviour
 
     public void DestroyDart()
     {
-        if(m_PhotonView.IsMine)
-        {
-            PhotonNetwork.Destroy(gameObject);
-        }
+        Destroy(this.gameObject);
     }
 }
 

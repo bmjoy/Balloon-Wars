@@ -62,7 +62,7 @@ public class BalloonHolder : MonoBehaviour
         Debug.Log($"Ataching {balloons.Count} balloons to {playerOwner}");
         foreach(GameObject balloon in balloons)
         {
-            balloon.GetComponent<Balloon>().AttachToPlayer(GetComponent<Rigidbody2D>());
+            balloon.GetComponent<Balloon>().AttachBalloonToPlayer(GetComponent<Rigidbody2D>());
         }
     }
 
@@ -71,11 +71,11 @@ public class BalloonHolder : MonoBehaviour
         if(m_PhotonView.IsMine)
         {
             GameObject balloon = CreateBalloon();
-            balloon.GetComponent<Balloon>().FindAndAttachToPlayer();
+            balloon.GetComponent<Balloon>().AttachBalloonToOwnerForAll();
         }
     }
 
-    public void OnBalloonLost(GameObject balloon)
+    private void OnBalloonLost(GameObject balloon)
     {
         if(balloon != null)
         {

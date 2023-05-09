@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3181519788603740907}
   m_Layer: 7
   m_Name: Dart
-  m_TagString: Untagged
+  m_TagString: Dart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

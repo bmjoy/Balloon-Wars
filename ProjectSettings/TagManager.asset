@@ -18,6 +18,8 @@ TagManager:
   - VolumeController
   - GameCanvas
   - Balloon
+  - Dart
+  - ControllButton
   layers:
   - Default
   - TransparentFX

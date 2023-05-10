@@ -49,6 +49,7 @@ MonoBehaviour:
   - findOwnerAndAttachBalloon
   - BreakStringForAll
   - popBalloonRPC
+  - setPlayerFalling
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

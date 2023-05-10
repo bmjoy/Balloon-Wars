@@ -12,7 +12,6 @@ public class BalloonHolder : MonoBehaviour
     private PhotonView m_PhotonView;
     [SerializeField][Range(1,5)] private int BalloonNum = 3;
     public int BalloonsLeft { get{ return m_Balloons.Count;}}
-
     public event Action BallonsFinishd;
 
     private void Start() 
@@ -86,8 +85,8 @@ public class BalloonHolder : MonoBehaviour
         Debug.Log($"{BalloonsLeft} balloons left");
         if(BalloonsLeft == 0)
         {
-            OnBallonsFinishd();
             Debug.Log("No Ballons left");
+            OnBallonsFinishd();
         }
     }
 }

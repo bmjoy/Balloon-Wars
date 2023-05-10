@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 1443266714327047995}
   m_Layer: 5
   m_Name: dart stick
-  m_TagString: Untagged
+  m_TagString: ControllButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 1443266714502742029}
   m_Layer: 5
   m_Name: Inflate button
-  m_TagString: Untagged
+  m_TagString: ControllButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 1443266714591522040}
   m_Layer: 5
   m_Name: Deflate button
-  m_TagString: Untagged
+  m_TagString: ControllButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -904,7 +904,7 @@ GameObject:
   - component: {fileID: 1443266714605321298}
   m_Layer: 5
   m_Name: Left button
-  m_TagString: Untagged
+  m_TagString: ControllButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 33554431
+    rgba: 2617245695
   m_fontColor: {r: 1, g: 1, b: 1, a: 0.60784316}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1242,7 +1242,7 @@ GameObject:
   - component: {fileID: 1443266715281060181}
   m_Layer: 5
   m_Name: Right button
-  m_TagString: Untagged
+  m_TagString: ControllButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

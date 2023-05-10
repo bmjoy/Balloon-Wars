@@ -14,11 +14,13 @@ public class PlayerLife : MonoBehaviour
     private PhotonView m_PhotonView;
     private bool m_IsDissolving = false;
     private float m_Fade = 1f;
-    
+    private GameObject[] m_ControllButtons;
+    PhotonRoomInfo m_PhotonRoomInfo;
     [SerializeField] private GameObject m_PlayerDart;
     [SerializeField] private GameObject m_NameLabel;
     [SerializeField] private AudioSource m_SharpTrapSound;
     [SerializeField] private AudioSource m_BurnSound;
+    [SerializeField] private AudioSource m_FallSound; 
 
     private void Awake()
     {
@@ -32,6 +34,12 @@ public class PlayerLife : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_PlayerSpawner = FindAnyObjectByType<SpawnPlayers>();
         m_ScreenAnimator = GameObject.FindGameObjectWithTag("GameCanvas").GetComponent<Animator>();
+        m_PhotonRoomInfo = FindObjectOfType<PhotonRoomInfo>();
+        m_ControllButtons = GameObject.FindGameObjectsWithTag("ControllButton");
+        if(m_PhotonView.IsMine)
+        {
+            GetComponent<BalloonHolder>().BallonsFinishd += OutOfBalloonsDie;
+        }
     }
 
     private void Update()
@@ -91,7 +99,23 @@ public class PlayerLife : MonoBehaviour
         m_Rigidbody.bodyType = RigidbodyType2D.Static;
         m_Animator.SetTrigger("trap_death");
         StartCoroutine(GameOver(0.3f));
-    }       
+    }
+
+    public void OutOfBalloonsDie()
+    {
+        m_PhotonView.RPC("setPlayerFalling", RpcTarget.All);
+        m_FallSound.Play();
+        deActivateControllButtons();
+        StartCoroutine(GameOver(2.5f));
+    }
+
+    private void deActivateControllButtons()
+    {
+        foreach (GameObject button in m_ControllButtons)
+        {
+            button.SetActive(false);
+        }
+    }
 
     public IEnumerator GameOver(float delay)
     {
@@ -102,9 +126,15 @@ public class PlayerLife : MonoBehaviour
 
     private void OnDestroy()
     {
-        PhotonRoomInfo photonRoomInfo = FindObjectOfType<PhotonRoomInfo>();
-        if (photonRoomInfo != null)
-            photonRoomInfo.RemovePlayerFromGame(m_PhotonView.Owner);
+        removePlayerFromGame();
+    }
+
+    private void removePlayerFromGame()
+    {
+        if (m_PhotonRoomInfo != null)
+        {
+            m_PhotonRoomInfo.RemovePlayerFromGame(m_PhotonView.Owner);
+        }
     }
 
     [PunRPC]
@@ -112,6 +142,17 @@ public class PlayerLife : MonoBehaviour
     {
         m_PlayerDart.SetActive(false);
         m_NameLabel.SetActive(false);
+    }
+
+    [PunRPC]
+    private void setPlayerFalling()
+    {
+        removePlayerFromGame();
+        gameObject.GetComponent<Collider2D>().isTrigger = true;
+        m_PlayerDart.SetActive(false);
+        m_NameLabel.SetActive(false);
+        gameObject.GetComponent<Rigidbody2D>().mass = 3;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 10;
     }
 
     private void RestartLevel()

@@ -30,11 +30,11 @@ public class BaloonHitDetector : MonoBehaviour
             }
             else
             {
-                Debug.Log($"{balloonOwner.NickName}'s balloon was hit by {dartOwner}'s dart");
-                other.gameObject.GetComponent<Dart>().DestroyDart();
-                if (PhotonNetwork.IsMasterClient)
+                if(PhotonNetwork.IsMasterClient)
                 {
-                    m_PhotonView.RPC("popBalloonRPC", RpcTarget.All);
+                    m_PhotonView.RPC("popBalloonRPC", RpcTarget.All, balloonOwner.NickName, dartOwner.NickName);
+                    other.gameObject.tag = string.Empty;
+                    other.GetComponent<PhotonView>().RPC("DartHitBalloonRPC", dartOwner);
                 }
             }
         }

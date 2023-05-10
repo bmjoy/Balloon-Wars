@@ -45,6 +45,13 @@ public class Dart : MonoBehaviour
         m_Animator.SetTrigger("fade");
     }
 
+    [PunRPC]
+    private void DartHitBalloonRPC()
+    {
+        if(m_PhotonView.IsMine)
+            PhotonNetwork.Destroy(this.gameObject);
+    }
+
     public void DestroyDart()
     {
         Destroy(this.gameObject);

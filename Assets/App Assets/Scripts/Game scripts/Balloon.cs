@@ -52,8 +52,9 @@ public class Balloon : MonoBehaviour
     }
 
     [PunRPC]
-    private void popBalloonRPC()
+    private void popBalloonRPC(string BalloonOwnerName, string DartOwnerName)
     {
+        Debug.Log($"{BalloonOwnerName}'s balloon was hit by {DartOwnerName}'s dart");
         OnBalloonLost();
         GetComponentInChildren<Animator>().SetTrigger("explode");
         Debug.Log("Balloon exploded");

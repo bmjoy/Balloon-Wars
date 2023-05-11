@@ -1439,6 +1439,18 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: explode
+  - Type: 9
+    SynchronizeType: 0
+    Name: ColorBlue
+  - Type: 9
+    SynchronizeType: 0
+    Name: ColorYellow
+  - Type: 9
+    SynchronizeType: 0
+    Name: ColorPink
+  - Type: 9
+    SynchronizeType: 0
+    Name: ColorPurple
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

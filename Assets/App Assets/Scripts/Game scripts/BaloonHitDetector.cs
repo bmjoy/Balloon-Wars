@@ -33,7 +33,7 @@ public class BaloonHitDetector : MonoBehaviour
                 if(PhotonNetwork.IsMasterClient)
                 {
                     m_PhotonView.RPC("popBalloonRPC", RpcTarget.All, balloonOwner.NickName, dartOwner.NickName);
-                    other.gameObject.tag = string.Empty;
+                    other.gameObject.tag = "UsedDart";
                     other.GetComponent<PhotonView>().RPC("DartHitBalloonRPC", dartOwner);
                 }
             }

@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Unity.VisualScripting;
 using System.Collections;
+using Photon.Realtime;
 
 public class PlayerLife : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class PlayerLife : MonoBehaviour
         if(m_PhotonView.IsMine)
         {
             GetComponent<BalloonHolder>().BallonsFinishd += OutOfBalloonsDie;
+            m_PhotonRoomInfo.PlayerWon += handleWin; 
         }
     }
 
@@ -60,7 +62,7 @@ public class PlayerLife : MonoBehaviour
             {
                 m_Fade = 0f;
                 m_IsDissolving = false;
-                StartCoroutine(GameOver(0f));
+                StartCoroutine(GameOver(0f, false));
             }
 
             m_Material.SetFloat("_Fade", m_Fade);
@@ -98,7 +100,7 @@ public class PlayerLife : MonoBehaviour
         m_PhotonView.RPC("DisablePlayerObjects", RpcTarget.All);
         m_Rigidbody.bodyType = RigidbodyType2D.Static;
         m_Animator.SetTrigger("trap_death");
-        StartCoroutine(GameOver(0.3f));
+        StartCoroutine(GameOver(delay: 0.3f, didWon: false));
     }
 
     public void OutOfBalloonsDie()
@@ -106,7 +108,7 @@ public class PlayerLife : MonoBehaviour
         m_PhotonView.RPC("setPlayerFalling", RpcTarget.All);
         m_FallSound.Play();
         deActivateControllButtons();
-        StartCoroutine(GameOver(2.5f));
+        StartCoroutine(GameOver(delay: 2.5f, didWon: false));
     }
 
     private void deActivateControllButtons()
@@ -117,10 +119,10 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
-    public IEnumerator GameOver(float delay)
+    public IEnumerator GameOver(float delay, bool didWon)
     {
         yield return new WaitForSeconds(delay);
-        m_ScreenAnimator.SetTrigger("LostIn");
+        m_ScreenAnimator.SetTrigger(didWon? "WinIn" : "LostIn");
         PhotonNetwork.Destroy(this.gameObject);
     }
 
@@ -161,6 +163,16 @@ public class PlayerLife : MonoBehaviour
         {
             PhotonNetwork.Destroy(gameObject);
             m_PlayerSpawner.RespawnPlayer();
+        }
+    }
+
+    private void handleWin(Player winningPlayer)
+    {
+        if(m_PhotonView.Owner == winningPlayer)
+        {
+            Debug.Log("You Won!");
+            m_Animator.SetTrigger("trap_death");
+            StartCoroutine(GameOver(delay: 0, didWon: true));
         }
     }
 }

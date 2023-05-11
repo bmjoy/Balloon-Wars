@@ -9,7 +9,7 @@ In this game, players are tasked with eliminating their opponents by popping the
 
 The game features stunning graphics and realistic physics simulations, including dynamic balloon physics and projectile motion. With room management and creation capabilities, as well as private room options, players can easily connect and play with their friends in customized game environments.
 
-Balloon Wars is a thrilling multiplayer experience that is sure to keep players engaged and entertained. So why wait? Join the fight, grab your dart stick, and let the balloon war begin!
+Balloon Wars is a thrilling multiplayer experience that is sure to keep players engaged and entertained. So why wait? Join the fight, grab your dart stick, and let the balloon wars begin!
 ## Screenshots
 
 ### Login

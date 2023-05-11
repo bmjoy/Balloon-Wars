@@ -21,6 +21,7 @@ TagManager:
   - Dart
   - ControllButton
   - UsedDart
+  - PowerUp
   layers:
   - Default
   - TransparentFX

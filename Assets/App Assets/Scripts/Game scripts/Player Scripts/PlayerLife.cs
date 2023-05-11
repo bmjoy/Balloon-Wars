@@ -157,15 +157,6 @@ public class PlayerLife : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 10;
     }
 
-    private void RestartLevel()
-    {
-        if(m_PhotonView.IsMine)
-        {
-            PhotonNetwork.Destroy(gameObject);
-            m_PlayerSpawner.RespawnPlayer();
-        }
-    }
-
     private void handleWin(Player winningPlayer)
     {
         if(m_PhotonView.Owner == winningPlayer)

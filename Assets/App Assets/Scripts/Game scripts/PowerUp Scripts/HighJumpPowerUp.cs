@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighJumpPowerUp : MonoBehaviour
+public class HighJumpPowerUp : PowerUp
 {
-    // Start is called before the first frame update
-    void Start()
+    public override int PowerUpTime {get;set;} = 20;
+
+    public override void activatePowerUp(GameObject player)
     {
-        
+        Debug.Log("activate High Jump PowerUp");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void deActivatePowerUp(GameObject player)
     {
-        
+        Debug.Log("deactivate High Jump PowerUp");
     }
 }

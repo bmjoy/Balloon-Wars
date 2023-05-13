@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowReduceAirPowerUp : MonoBehaviour
+public class SlowReduceAirPowerUp : PowerUp
 {
-    // Start is called before the first frame update
-    void Start()
+    public override int PowerUpTime {get;set;} = 15;
+
+    public override void activatePowerUp(GameObject player)
     {
-        
+        Debug.Log("activate High slow reduce air PowerUp");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void deActivatePowerUp(GameObject player)
     {
-        
+        Debug.Log("deactivate slow rduce air PowerUp");
     }
 }

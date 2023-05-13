@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FastAddAirPowerUp : MonoBehaviour
+public class FastAddAirPowerUp : PowerUp
 {
-    // Start is called before the first frame update
-    void Start()
+    public override int PowerUpTime {get;set;} = 15;
+
+    public override void activatePowerUp(GameObject player)
     {
-        
+        Debug.Log("activate Fast Add Air PowerUp");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void deActivatePowerUp(GameObject player)
     {
-        
+        Debug.Log("deactivate Fast Add Air PowerUp");
     }
 }

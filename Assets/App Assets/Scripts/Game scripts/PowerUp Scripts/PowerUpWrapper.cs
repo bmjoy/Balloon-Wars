@@ -21,7 +21,8 @@ public class PowerUpWrapper : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             string randomPowerName = m_PowerUpPrefabs[UnityEngine.Random.Range(0,m_PowerUpPrefabs.Count)].name;
-            PhotonNetwork.Instantiate(randomPowerName,this.transform.position,Quaternion.identity);
+            GameObject powerUp = PhotonNetwork.Instantiate(randomPowerName,this.transform.position,Quaternion.identity);
+            m_PhotonView.RPC("registerToPowerUp", RpcTarget.All, powerUp.GetComponent<PhotonView>().ViewID);
         }
     }
 
@@ -35,8 +36,12 @@ public class PowerUpWrapper : MonoBehaviour
 
     private void ActivatePowerUp(GameObject player, int PowerUpTime, Action<GameObject> activate, Action<GameObject> deactivate)
     {
-        StartCoroutine(StartPowerUpForTime(player, PowerUpTime, activate, deactivate));
-        m_PhotonView.RPC("destroyOldPowerUp",RpcTarget.MasterClient);
+        destroyOldPowerUp();
+        if(player.GetComponent<PhotonView>().IsMine)
+        {
+            StartCoroutine(StartPowerUpForTime(player, PowerUpTime, activate, deactivate));            
+        }
+        StartCoroutine(RespownPowerUpAfterTime(m_PowerUpCoolDown));
     }
 
     private IEnumerator StartPowerUpForTime(GameObject player, int time, Action<GameObject> activate, Action<GameObject> deactivate)
@@ -46,16 +51,16 @@ public class PowerUpWrapper : MonoBehaviour
         deactivate(player);
     }
 
-    [PunRPC]
-    private void RespawnPowerUp()
-    {
-        StartCoroutine(RespownPowerUpAfterTime(m_PowerUpCoolDown));
-    }
-
     private IEnumerator RespownPowerUpAfterTime(int time)
     {
-        destroyOldPowerUp();
         yield return new WaitForSeconds(time);
         generateNewPowerUp();
+    }
+
+    [PunRPC]
+    private void registerToPowerUp(int viewId)
+    {
+        m_CurPowerUp = PhotonView.Find(viewId).gameObject;
+        m_CurPowerUp.GetComponent<PowerUp>().PlayerHitPowerUp += ActivatePowerUp;
     }
 }

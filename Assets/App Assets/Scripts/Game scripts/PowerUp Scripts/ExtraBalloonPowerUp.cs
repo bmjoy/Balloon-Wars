@@ -8,10 +8,8 @@ public class ExtraBalloonPowerUp : PowerUp
     public override void activatePowerUp(GameObject player)
     {
         Debug.Log("activate Extra balloon PowerUp");
+        player.GetComponent<BalloonHolder>().AddBalloon();
     }
 
-    public override void deActivatePowerUp(GameObject player)
-    {
-        Debug.Log("deactivate Extra balloon PowerUp");
-    }
+    public override void deActivatePowerUp(GameObject player){}
 }

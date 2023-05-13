@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11d0b1eaed75ef47865cc00083b577c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpPower: 15
+  m_JumpForce: 15
   m_jumpTime: 0.1
   m_jumpSmooth: 8
   m_SideMovementPower: 7

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6287487882792594983
+--- !u!1 &8192689944708528098
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,62 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6287487882792594981}
-  - component: {fileID: 6287487882792594982}
-  - component: {fileID: 3008733519997579469}
+  - component: {fileID: 1525247624893154720}
+  - component: {fileID: 6904775454765180814}
+  - component: {fileID: 4789164493418091374}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: PowerUpWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6287487882792594981
+--- !u!4 &1525247624893154720
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287487882792594983}
+  m_GameObject: {fileID: 8192689944708528098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.115171, y: 4.2092576, z: -18.026205}
+  m_LocalPosition: {x: -31.004608, y: 3.8907921, z: 0.6655873}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6287487882792594982
+--- !u!114 &6904775454765180814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287487882792594983}
+  m_GameObject: {fileID: 8192689944708528098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d0ee75c697981419b93acb89b54757, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b0f950c8764ca7489cc6a8b174070b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerPrefab: {fileID: 5270450297519976128, guid: ae67de17dc363934a9fabdb824b4cbf8, type: 3}
-  m_SpawnPositions:
-  - {x: -45.61, y: -0.3}
-  - {x: -1.86, y: -2.36}
-  - {x: -42.05, y: 25.71}
-  - {x: -17.21, y: 16.68}
-  - {x: 31.61, y: 19.75}
-  - {x: 15.4, y: -7.2}
-  - {x: 3.2, y: -20.1}
-  - {x: -37.5, y: -20.1}
-  - {x: 38.9, y: -17.2}
-  - {x: -21.26, y: -0.29}
---- !u!114 &3008733519997579469
+  m_PowerUpPrefabs: []
+  m_PowerUpCoolDown: 30
+--- !u!114 &4789164493418091374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287487882792594983}
+  m_GameObject: {fileID: 8192689944708528098}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}

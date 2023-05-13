@@ -12,10 +12,12 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer m_SpriteRenderer;
     private ConstantForce2D m_ConstantForce;
     private bool m_WasOnGround = false;
-
+    public AirTank PlayerAirTank { get; private set; }
+    private bool m_InflatePerformed = false;
+    private bool m_DeflatePerformed = false;
+    private float m_DirectionX = 0f;
     private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
-
-    [SerializeField] [Range(1f, 30f)] private float m_JumpPower = 15f;
+    [SerializeField] [Range(1f, 30f)] private float m_JumpForce = 15f;
     [SerializeField] [Range(0.05f, 0.5f)] private float m_jumpTime = 0.1f;
     [SerializeField] [Range(1, 15)] private int m_jumpSmooth = 8;
     [SerializeField] private float m_SideMovementPower = 7f;
@@ -23,13 +25,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_InflatingForce = 1f; 
     [SerializeField] private float m_IdleForce = -0.2f;
     [SerializeField] private float m_DeflatingForce = -1f; 
-    private float m_DirectionX = 0f;
     [SerializeField] private AudioSource m_JumpSoundEffect;
     [SerializeField] private AudioSource m_InflatingSoundEffect;
     [SerializeField] private AudioSource m_DeflatingSoundEffect;
-    public AirTank PlayerAirTank { get; private set; }
-    private bool m_InflatePerformed = false;
-    private bool m_DeflatePerformed = false;
+    public float JumpForce
+    {
+         get{return m_JumpForce;}
+         set{m_JumpForce = value;} 
+    }
 
     private void Awake()
     {
@@ -158,8 +161,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // Debug.Log("Adding jump boost");
             m_JumpSoundEffect.Play();
-            m_RigidBody.AddForce(Vector3.up * m_JumpPower, ForceMode2D.Impulse);
-            StartCoroutine(JumpStopCoroutine(m_jumpSmooth, m_jumpTime/(float)m_jumpSmooth, m_JumpPower/(float)m_jumpSmooth));
+            m_RigidBody.AddForce(Vector3.up * m_JumpForce, ForceMode2D.Impulse);
+            StartCoroutine(JumpStopCoroutine(m_jumpSmooth, m_jumpTime/(float)m_jumpSmooth, m_JumpForce/(float)m_jumpSmooth));
         }
         m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
     }

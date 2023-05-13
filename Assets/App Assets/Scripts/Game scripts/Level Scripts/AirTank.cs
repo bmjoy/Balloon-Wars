@@ -6,8 +6,18 @@ using TMPro;
 
 public class AirTank : MonoBehaviour
 {
-    [SerializeField] [Range(20f, 200f)] float reduceAirSpeed = 120f;
-    [SerializeField] [Range(20f, 200f)] float addAirSpeed = 120f;
+    [SerializeField] [Range(5f, 200f)] private float m_reduceAirSpeed = 40f;
+    [SerializeField] [Range(20f, 200f)] private float m_addAirSpeed = 55f;
+    public float ReduceAirSpeed
+    {
+        get {return m_reduceAirSpeed;}
+        set {m_reduceAirSpeed = value;}
+    }
+    public float AddAirSpeed
+    {
+        get {return m_addAirSpeed;}
+        set {m_addAirSpeed = value;}
+    }
     [SerializeField] TextMeshProUGUI AirPercentage;
     [SerializeField] private Image AirAmountImage;
 
@@ -32,12 +42,12 @@ public class AirTank : MonoBehaviour
 
     private float timeBetweenReduces()
     {
-        return 1f / reduceAirSpeed;
+        return 1f / ReduceAirSpeed;
     }
 
     private float timeBetweenIncrements()
     {
-        return 1f / addAirSpeed;
+        return 1f / AddAirSpeed;
     }
 
     private void updatePercentageTextToAirAmount()

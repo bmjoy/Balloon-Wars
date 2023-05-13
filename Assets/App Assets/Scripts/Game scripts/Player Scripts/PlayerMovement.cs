@@ -24,13 +24,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_IdleForce = -0.2f;
     [SerializeField] private float m_DeflatingForce = -1f; 
     private float m_DirectionX = 0f;
-
     [SerializeField] private AudioSource m_JumpSoundEffect;
     [SerializeField] private AudioSource m_InflatingSoundEffect;
     [SerializeField] private AudioSource m_DeflatingSoundEffect;
-
-    private AirTank m_AirTank;
-
+    public AirTank PlayerAirTank { get; private set; }
     private bool m_InflatePerformed = false;
     private bool m_DeflatePerformed = false;
 
@@ -41,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        m_AirTank = FindObjectOfType<AirTank>();
-        m_AirTank.AirFinished += InflateCancelLogic;
+        PlayerAirTank = FindObjectOfType<AirTank>();
+        PlayerAirTank.AirFinished += InflateCancelLogic;
         m_RigidBody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -66,13 +63,13 @@ public class PlayerMovement : MonoBehaviour
         if (!m_WasOnGround && isGrounded())
         {
             m_WasOnGround = true;
-            m_AirTank.StartAddAir();
+            PlayerAirTank.StartAddAir();
             DeflateCancelLogic();
         }
         else if (m_WasOnGround && !isGrounded())
         {
             m_WasOnGround = false;
-            m_AirTank.StopAddAir();
+            PlayerAirTank.StopAddAir();
         }
     }
 
@@ -132,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(m_PhotonView.IsMine)
         {
-            if (m_AirTank.AirAmount != 0)
+            if (PlayerAirTank.AirAmount != 0)
             {
                 if (context.performed && !m_DeflatePerformed)
                 {
@@ -154,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Debug.Log("Inflate performed");
         m_InflatePerformed = true;
-        m_AirTank.StartReduceAir();
+        PlayerAirTank.StartReduceAir();
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
         if(m_WasOnGround)
@@ -180,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Debug.Log("Inflate canceled");
         m_InflatePerformed = false;
-        m_AirTank.StopReduceAir();
+        PlayerAirTank.StopReduceAir();
         m_InflatingSoundEffect.Stop();
         if(!m_DeflatePerformed)
         {

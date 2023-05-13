@@ -8,26 +8,20 @@ public abstract class PowerUp : MonoBehaviour
 {
     [SerializeField][Range(20,100)] protected int Timeout = 30;
     abstract public int PowerUpTime { get; set; }
-    public event Action<GameObject,int> PlayerHitPowerUp;
+    public event Action<GameObject,int,Action<GameObject>,Action<GameObject>> PlayerHitPowerUp;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            if (other.gameObject.GetComponent<PhotonView>().IsMine)
-            {
-                OnHitPowerUp(other.gameObject);
-            }
-            if(PhotonNetwork.IsMasterClient)
-            {
-                PhotonNetwork.Destroy(this.gameObject);
-            }
+            OnHitPowerUp(other.gameObject, activatePowerUp, deActivatePowerUp);
         }
     }
 
-    private void OnHitPowerUp(GameObject player)
+    private void OnHitPowerUp(GameObject player, Action<GameObject> activatePowerUp, Action<GameObject> deActivatePowerUp)
     {
-        PlayerHitPowerUp?.Invoke(player,PowerUpTime);
+        PlayerHitPowerUp?.Invoke(player, PowerUpTime, activatePowerUp, deActivatePowerUp);
     }
+    
     public abstract void activatePowerUp(GameObject player);
     public abstract void deActivatePowerUp(GameObject player);
 }

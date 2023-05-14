@@ -57,6 +57,8 @@ MonoBehaviour:
   - generateNewPowerUp
   - RespawnPowerUp
   - registerToPowerUp
+  - DartPopBalloonRPC
+  - TrapPopBalloonRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

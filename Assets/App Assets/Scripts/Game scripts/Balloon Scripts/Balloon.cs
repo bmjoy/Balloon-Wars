@@ -34,6 +34,13 @@ public class Balloon : MonoBehaviour
         StartCoroutine(delayExplodeBalloon(2f));
     }
 
+    public void OnBalloonHitTrap()
+    {
+        Debug.Log($"{m_PhotonView.Owner.NickName}'s Balloon hit trap");
+        OnBalloonLost();
+        StartCoroutine(delayExplodeBalloon(0f));        
+    }
+
     [PunRPC]
     private void BreakStringForAll()
     {
@@ -52,9 +59,21 @@ public class Balloon : MonoBehaviour
     }
 
     [PunRPC]
-    private void popBalloonRPC(string BalloonOwnerName, string DartOwnerName)
+    private void DartPopBalloonRPC(string BalloonOwnerName, string DartOwnerName)
     {
         Debug.Log($"{BalloonOwnerName}'s balloon was hit by {DartOwnerName}'s dart");
+        popBalloon();
+    }
+
+    [PunRPC]
+    private void TrapPopBalloonRPC(string BalloonOwnerName)
+    {
+        Debug.Log($"{BalloonOwnerName}'s balloon was hit by a trap");
+        popBalloon();
+    }
+
+    private void popBalloon()
+    {
         OnBalloonLost();
         GetComponentInChildren<Animator>().SetTrigger("explode");
         Debug.Log("Balloon exploded");

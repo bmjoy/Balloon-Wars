@@ -23,6 +23,7 @@ TagManager:
   - UsedDart
   - PowerUp
   - DartStick
+  - PowerUpsUI
   layers:
   - Default
   - TransparentFX

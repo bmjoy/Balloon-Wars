@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PowerUpPrefabs: []
   m_PowerUpCoolDown: 30
+  m_UiPowerUpPrefab: {fileID: 1379852006187672764, guid: 9cecb11568c93fc49b44bd2b4a4efff5, type: 3}
 --- !u!114 &4789164493418091374
 MonoBehaviour:
   m_ObjectHideFlags: 0

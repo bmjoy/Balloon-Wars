@@ -10,10 +10,13 @@ public class PowerUpWrapper : MonoBehaviour
     [SerializeField][Range(10,60)] int m_PowerUpCoolDown = 30;
     private GameObject m_CurPowerUp;
     private PhotonView m_PhotonView;
+    [SerializeField] GameObject m_UiPowerUpPrefab;
+    private GameObject m_UiPowerUpsContainer;
     private void Start()
     {
         m_PhotonView = GetComponent<PhotonView>();
         generateNewPowerUp();
+        m_UiPowerUpsContainer = GameObject.FindGameObjectWithTag("PowerUpsUI");
     }
 
     private void generateNewPowerUp()
@@ -47,6 +50,7 @@ public class PowerUpWrapper : MonoBehaviour
     private IEnumerator StartPowerUpForTime(GameObject player, int time, Action<GameObject> activate, Action<GameObject> deactivate)
     {
         activate(player);
+        createAndStartUiPowerUp();
         yield return new WaitForSeconds(time);
         deactivate(player);
     }
@@ -62,5 +66,15 @@ public class PowerUpWrapper : MonoBehaviour
     {
         m_CurPowerUp = PhotonView.Find(viewId).gameObject;
         m_CurPowerUp.GetComponent<PowerUp>().PlayerHitPowerUp += ActivatePowerUp;
+    }
+
+    private void createAndStartUiPowerUp()
+    {
+        GameObject UiPower = Instantiate(
+            m_UiPowerUpPrefab, Vector3.zero, Quaternion.identity, m_UiPowerUpsContainer.transform);
+        UIPowerUp UiPowerScript = UiPower.GetComponent<UIPowerUp>();
+        UiPowerScript.Image = m_CurPowerUp.GetComponent<SpriteRenderer>().sprite;
+        UiPowerScript.PowerTime = m_CurPowerUp.GetComponent<PowerUp>().PowerUpTime;
+        UiPowerScript.startTimer();
     }
 }

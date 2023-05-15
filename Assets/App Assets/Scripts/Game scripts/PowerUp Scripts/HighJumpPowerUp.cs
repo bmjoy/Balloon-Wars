@@ -5,7 +5,7 @@ using UnityEngine;
 public class HighJumpPowerUp : PowerUp
 {
     public override int PowerUpTime {get;set;} = 20;
-    private float m_JumpForceToAdd = 40f;
+    private float m_JumpForceToAdd = 20f;
     private PlayerMovement m_PlayerMovement;
     public override void activatePowerUp(GameObject player)
     {

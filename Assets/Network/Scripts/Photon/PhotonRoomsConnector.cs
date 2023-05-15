@@ -19,13 +19,13 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 
     private void Start() 
     {
-        JoinPhotonLoby();
-        PhotonConnector.Instance.ConnectedToMaster += JoinPhotonLoby;
+        JoinPhotonLobby();
+        PhotonConnector.Instance.ConnectedToMaster += JoinPhotonLobby;
     }
 
     // --------- Loby ---------
 
-    private void JoinPhotonLoby()
+    private void JoinPhotonLobby()
     {
         if(!PhotonNetwork.InLobby)
         {
@@ -138,6 +138,6 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 
     private void OnDestroy()
     {
-        PhotonConnector.Instance.ConnectedToMaster -= JoinPhotonLoby;
+        PhotonConnector.Instance.ConnectedToMaster -= JoinPhotonLobby;
     }
 }

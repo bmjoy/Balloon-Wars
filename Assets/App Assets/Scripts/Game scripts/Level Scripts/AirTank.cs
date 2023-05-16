@@ -6,21 +6,20 @@ using TMPro;
 
 public class AirTank : MonoBehaviour
 {
-    [SerializeField] [Range(5f, 200f)] private float m_reduceAirSpeed = 40f;
-    [SerializeField] [Range(20f, 200f)] private float m_addAirSpeed = 55f;
-    public float ReduceAirSpeed
+    [SerializeField] [Range(2f, 8f)] private float m_reduceAirTime = 5f;
+    [SerializeField] [Range(1f, 5f)] private float m_addAirTime = 3f;
+    public float ReduceAirTime
     {
-        get {return m_reduceAirSpeed;}
-        set {m_reduceAirSpeed = value;}
+        get => m_reduceAirTime;
+        set => m_reduceAirTime = value;
     }
-    public float AddAirSpeed
+    public float AddAirTime
     {
-        get {return m_addAirSpeed;}
-        set {m_addAirSpeed = value;}
+        get => m_addAirTime;
+        set => m_addAirTime = value;
     }
-    [SerializeField] TextMeshProUGUI AirPercentage;
-    [SerializeField] private Image AirAmountImage;
-
+    [SerializeField] TextMeshProUGUI m_AirPercentageTxt;
+    [SerializeField] private Image m_AirAmountImage;
     public int AirAmount{set;get;} = 100; 
     private float AIR_DELTA;
     private IEnumerator addAirCoroutine;
@@ -29,7 +28,7 @@ public class AirTank : MonoBehaviour
 
     private void Start()
     {
-        AIR_DELTA = AirAmountImage.rectTransform.sizeDelta.x / 100f;
+        AIR_DELTA = m_AirAmountImage.rectTransform.sizeDelta.x / 100f;
         addAirCoroutine = addAir();
         reduceAirCoroutine = reduceAir();
         updatePercentageTextToAirAmount();
@@ -40,30 +39,21 @@ public class AirTank : MonoBehaviour
         AirFinished?.Invoke();
     }
 
-    private float timeBetweenReduces()
-    {
-        return 1f / ReduceAirSpeed;
-    }
-
-    private float timeBetweenIncrements()
-    {
-        return 1f / AddAirSpeed;
-    }
-
     private void updatePercentageTextToAirAmount()
     {
         string percentageText = AirAmount.ToString() + "%";
-        AirPercentage.SetText(percentageText);
+        m_AirPercentageTxt.SetText(percentageText);
     }
 
     private IEnumerator reduceAir()
     {
-        while(AirAmount != 0)
+        while(AirAmount > 0)
         {
-            yield return new WaitForSeconds(timeBetweenReduces());
-            AirAmount--;
+            yield return null;
+            float newFillAmount = m_AirAmountImage.fillAmount - Time.deltaTime / ReduceAirTime;
+            m_AirAmountImage.fillAmount = newFillAmount > 0? newFillAmount : 0;
+            AirAmount = (int)Math.Ceiling(m_AirAmountImage.fillAmount * 100);
             updatePercentageTextToAirAmount();
-            addWidthToImage(AirAmountImage, -AIR_DELTA);
         }
 
         if (AirAmount == 0)
@@ -74,19 +64,14 @@ public class AirTank : MonoBehaviour
 
     private IEnumerator addAir()
     {
-        while(AirAmount != 100)
+        while(AirAmount < 100)
         {
-            yield return new WaitForSeconds(timeBetweenIncrements());
-            AirAmount++;
+            yield return null;
+            float newFillAmount = m_AirAmountImage.fillAmount + Time.deltaTime / AddAirTime;
+            m_AirAmountImage.fillAmount = newFillAmount < 1f? newFillAmount : 1f;
+            AirAmount = (int)(m_AirAmountImage.fillAmount * 100);
             updatePercentageTextToAirAmount();
-            addWidthToImage(AirAmountImage, AIR_DELTA);
         }
-    }
-
-    private void addWidthToImage(Image image, float widthToAdd)
-    {
-        Vector2 curSize = image.rectTransform.sizeDelta;
-        image.rectTransform.sizeDelta = new Vector2(curSize.x + widthToAdd, curSize.y);
     }
 
     public void StartReduceAir()

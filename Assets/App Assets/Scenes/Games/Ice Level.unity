@@ -930,30 +930,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6681498481697569678, guid: e3c92ab55f8f47e429daf58a8693c5cb, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1360592784005180733, guid: 5e1b3f93d16f7aa4f9a659ba0ce6f085, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 332674836313173708, guid: 333a971315d37c84b8c4cacde757bc38, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1642980305331344414, guid: 54456a503e12fd545b65c823d1ce74e0, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 6541872833538179826, guid: fc36a9e802bf9224bbff2853e57f2fb4, type: 3}
     - target: {fileID: 8192689944708528098, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
       propertyPath: m_Name
       value: PowerUpWrapper (6)
@@ -1951,30 +1927,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6681498481697569678, guid: e3c92ab55f8f47e429daf58a8693c5cb, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1360592784005180733, guid: 5e1b3f93d16f7aa4f9a659ba0ce6f085, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 332674836313173708, guid: 333a971315d37c84b8c4cacde757bc38, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1642980305331344414, guid: 54456a503e12fd545b65c823d1ce74e0, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 6541872833538179826, guid: fc36a9e802bf9224bbff2853e57f2fb4, type: 3}
     - target: {fileID: 8192689944708528098, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
       propertyPath: m_Name
       value: PowerUpWrapper (2)
@@ -2371,30 +2323,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6681498481697569678, guid: e3c92ab55f8f47e429daf58a8693c5cb, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1360592784005180733, guid: 5e1b3f93d16f7aa4f9a659ba0ce6f085, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 332674836313173708, guid: 333a971315d37c84b8c4cacde757bc38, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1642980305331344414, guid: 54456a503e12fd545b65c823d1ce74e0, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 6541872833538179826, guid: fc36a9e802bf9224bbff2853e57f2fb4, type: 3}
     - target: {fileID: 8192689944708528098, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
       propertyPath: m_Name
       value: PowerUpWrapper (7)
@@ -5352,30 +5280,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6681498481697569678, guid: e3c92ab55f8f47e429daf58a8693c5cb, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1360592784005180733, guid: 5e1b3f93d16f7aa4f9a659ba0ce6f085, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 332674836313173708, guid: 333a971315d37c84b8c4cacde757bc38, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1642980305331344414, guid: 54456a503e12fd545b65c823d1ce74e0, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 6541872833538179826, guid: fc36a9e802bf9224bbff2853e57f2fb4, type: 3}
     - target: {fileID: 8192689944708528098, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
       propertyPath: m_Name
       value: PowerUpWrapper (5)
@@ -5525,30 +5429,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6681498481697569678, guid: e3c92ab55f8f47e429daf58a8693c5cb, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1360592784005180733, guid: 5e1b3f93d16f7aa4f9a659ba0ce6f085, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 332674836313173708, guid: 333a971315d37c84b8c4cacde757bc38, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1642980305331344414, guid: 54456a503e12fd545b65c823d1ce74e0, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 6541872833538179826, guid: fc36a9e802bf9224bbff2853e57f2fb4, type: 3}
     - target: {fileID: 8192689944708528098, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
       propertyPath: m_Name
       value: PowerUpWrapper (3)
@@ -6117,7 +5997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321764921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.106068, y: 1.1997299, z: -10}
+  m_LocalPosition: {x: -36.858204, y: 1.19972, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6458,30 +6338,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6681498481697569678, guid: e3c92ab55f8f47e429daf58a8693c5cb, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1360592784005180733, guid: 5e1b3f93d16f7aa4f9a659ba0ce6f085, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 332674836313173708, guid: 333a971315d37c84b8c4cacde757bc38, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1642980305331344414, guid: 54456a503e12fd545b65c823d1ce74e0, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 6541872833538179826, guid: fc36a9e802bf9224bbff2853e57f2fb4, type: 3}
     - target: {fileID: 8192689944708528098, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
       propertyPath: m_Name
       value: PowerUpWrapper
@@ -11662,30 +11518,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6681498481697569678, guid: e3c92ab55f8f47e429daf58a8693c5cb, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1360592784005180733, guid: 5e1b3f93d16f7aa4f9a659ba0ce6f085, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 332674836313173708, guid: 333a971315d37c84b8c4cacde757bc38, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1642980305331344414, guid: 54456a503e12fd545b65c823d1ce74e0, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 6541872833538179826, guid: fc36a9e802bf9224bbff2853e57f2fb4, type: 3}
     - target: {fileID: 8192689944708528098, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
       propertyPath: m_Name
       value: PowerUpWrapper (4)
@@ -11752,30 +11584,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 6681498481697569678, guid: e3c92ab55f8f47e429daf58a8693c5cb, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1360592784005180733, guid: 5e1b3f93d16f7aa4f9a659ba0ce6f085, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 332674836313173708, guid: 333a971315d37c84b8c4cacde757bc38, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1642980305331344414, guid: 54456a503e12fd545b65c823d1ce74e0, type: 3}
-    - target: {fileID: 6904775454765180814, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
-      propertyPath: m_PowerUpPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 6541872833538179826, guid: fc36a9e802bf9224bbff2853e57f2fb4, type: 3}
     - target: {fileID: 8192689944708528098, guid: fac2e58999257874fa2cb3de3519bc1d, type: 3}
       propertyPath: m_Name
       value: PowerUpWrapper (1)

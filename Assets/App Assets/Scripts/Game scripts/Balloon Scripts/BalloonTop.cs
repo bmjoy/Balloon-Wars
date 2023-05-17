@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class BalloonTop : MonoBehaviour
 {
-    [SerializeField] Balloon m_Balloon;
-    string[] m_Colors = {"ColorRed", "ColorBlue", "ColorYellow", "ColorPurple", "ColorPink"};
-    SpriteRenderer m_SpriteRenderer;
-    PhotonView m_PhotonView;
-    PhotonView m_BalloonPhotonView;
+    [SerializeField] private Balloon m_Balloon;
+    private string[] m_Colors = {"ColorRed", "ColorBlue", "ColorYellow", "ColorPurple", "ColorPink"};
+    private SpriteRenderer m_SpriteRenderer;
+    private PhotonView m_PhotonView;
+    private PhotonView m_BalloonPhotonView;
     private bool popped = false;
-
+    private string m_regularColor;
+    
     private void Awake()
     {
         m_PhotonView = GetComponent<PhotonView>();    
@@ -37,8 +38,8 @@ public class BalloonTop : MonoBehaviour
 
     private void setRandomColor()
     {
-        int colorIndex = Random.Range(0, m_Colors.Length);
-        m_PhotonView.RPC("setColorRPC", RpcTarget.AllBuffered, m_Colors[colorIndex]);
+        m_regularColor = m_Colors[Random.Range(0, m_Colors.Length)];
+        m_PhotonView.RPC("setColorRPC", RpcTarget.AllBuffered, m_regularColor);
     }
 
     [PunRPC]
@@ -54,12 +55,22 @@ public class BalloonTop : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Trap"))
             {
-                if (!popped)
+                if (!popped && m_Balloon.MetalicAmout == 0)
                 {
                     popped = true;
                     m_BalloonPhotonView.RPC("TrapPopBalloonRPC", RpcTarget.All, m_PhotonView.Owner.NickName);
                 }
             }
         }
+    }
+
+    internal void SetMetalicColor()
+    {
+        m_PhotonView.RPC("setColorRPC", RpcTarget.AllBuffered, "ColorMetal");
+    }
+
+    internal void SetRegularColor()
+    {
+        m_PhotonView.RPC("setColorRPC", RpcTarget.AllBuffered, m_regularColor);
     }
 }

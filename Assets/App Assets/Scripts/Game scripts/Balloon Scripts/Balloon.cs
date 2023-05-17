@@ -15,11 +15,18 @@ public class Balloon : MonoBehaviour
     public Rigidbody2D PlayerBody { get; private set; }
     public event Action<GameObject> BalloonLost;
     private AudioSource m_PopAudioSource;
+    public int MetalicAmout { get; private set; } = 0;
+    private BalloonTop m_BalloonTop;
 
     private void Awake()
     {
         m_PhotonView = GetComponent<PhotonView>();
         m_PopAudioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        m_BalloonTop = GetComponentInChildren<BalloonTop>();    
     }
 
     private void OnBalloonLost()
@@ -119,6 +126,24 @@ public class Balloon : MonoBehaviour
         if(m_PopAudioSource != null)
         {
             m_PopAudioSource.Play();
+        }
+    }
+
+    public void MakeMetalic()
+    {
+        MetalicAmout ++;
+        if(MetalicAmout == 1)
+        {
+            m_BalloonTop.SetMetalicColor();
+        }
+    }
+
+    public void UnMakeMetalic()
+    {
+        MetalicAmout --;
+        if(MetalicAmout == 0)
+        {
+            m_BalloonTop.SetRegularColor();
         }
     }
 }

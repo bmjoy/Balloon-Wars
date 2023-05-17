@@ -89,4 +89,12 @@ public class BalloonHolder : MonoBehaviour
             OnBallonsFinishd();
         }
     }
+
+    public void foreachBalloon(Action<Balloon> balloonAction)
+    {
+        foreach (GameObject balloon in m_Balloons)
+        {
+            balloonAction(balloon.GetComponent<Balloon>());
+        }
+    }
 }

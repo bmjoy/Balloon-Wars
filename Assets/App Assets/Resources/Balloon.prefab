@@ -1451,6 +1451,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: ColorPurple
+  - Type: 9
+    SynchronizeType: 0
+    Name: ColorRed
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

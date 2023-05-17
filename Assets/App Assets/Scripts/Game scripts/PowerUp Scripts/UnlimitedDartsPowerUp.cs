@@ -11,12 +11,12 @@ public class UnlimitedDartsPowerUp : PowerUp
     {
         Debug.Log("activate Unlimited darts PowerUp");
         m_PlayerDart = player.GetComponentInChildren<PlayerDart>();
-        m_PlayerDart.UnlimitedDarts = true;
+        m_PlayerDart.UnlimitedDartsAmount ++;
     }
 
     public override void deActivatePowerUp(GameObject player)
     {
         Debug.Log("deactivate Unlimited darts PowerUp");
-        m_PlayerDart.UnlimitedDarts = false;
+        m_PlayerDart.UnlimitedDartsAmount --;
     }
 }

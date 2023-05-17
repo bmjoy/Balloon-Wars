@@ -11,7 +11,7 @@ public class PlayerDart : MonoBehaviour
     private PhotonView m_PhotonView;
     private AudioSource m_ThrowAudioSource;
     private Vector2 m_DefaultDartDirection;
-    public bool UnlimitedDarts { get; set; } = false;
+    public int UnlimitedDartsAmount { get; set; } = 0;
     private Animator m_DartLoaderAnimator;
     [SerializeField] private List<AudioClip> m_ThrowSounds;
     [SerializeField] private GameObject m_DartPrefab;
@@ -74,7 +74,7 @@ public class PlayerDart : MonoBehaviour
         newDart.GetComponent<Transform>().right = ShootDirection;
         newDart.GetComponent<Rigidbody2D>().velocity = transform.right * m_ShotForce;
         PlayRandomThrowSound();
-        if(!UnlimitedDarts)
+        if(UnlimitedDartsAmount == 0)
         {
             m_DartLoaderAnimator.SetTrigger("DartLoad");
         }

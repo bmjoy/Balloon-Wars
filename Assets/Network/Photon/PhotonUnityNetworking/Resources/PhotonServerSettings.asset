@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 81d79125-404d-459a-8620-dc0b748675b5
+    AppIdRealtime: 26b83347-d984-476b-8fcf-dd2a909e925b
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -60,5 +60,5 @@ MonoBehaviour:
   - DartPopBalloonRPC
   - TrapPopBalloonRPC
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1

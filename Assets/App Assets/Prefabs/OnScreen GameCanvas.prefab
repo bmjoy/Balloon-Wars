@@ -340,7 +340,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1906456
+    rgba: 4280096536
   m_fontColor: {r: 0.094752565, g: 0.090138815, b: 0.11320752, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 1443266714497302223}
   - component: {fileID: 1443266714497302259}
   - component: {fileID: 1443266714497302260}
+  - component: {fileID: 711146606705829551}
   m_Layer: 5
   m_Name: OnScreen GameCanvas
   m_TagString: GameCanvas
@@ -735,6 +736,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 6679967843408489444}
+--- !u!114 &711146606705829551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443266714497302222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a701e6c7a8c6298479ae033dfe13fb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DartStickAnimation: {fileID: 3340610750434957832}
 --- !u!1 &1443266714502742027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,7 +1722,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285276185
+    rgba: 3127648281
   m_fontColor: {r: 0.09772161, g: 0.12719831, b: 0.4245283, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6853,7 +6867,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284022786
+    rgba: 3126394882
   m_fontColor: {r: 0.007475129, g: 0, b: 0.3490566, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -7513,7 +7527,7 @@ GameObject:
   - component: {fileID: 1188446375647444688}
   m_Layer: 5
   m_Name: dart load circle
-  m_TagString: Untagged
+  m_TagString: ControllButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7915,7 +7929,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 6881182
+    rgba: 4285071262
   m_fontColor: {r: 0.6190901, g: 1, b: 0.40943396, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -8901,7 +8915,7 @@ GameObject:
   - component: {fileID: 2616698772799040946}
   m_Layer: 5
   m_Name: dart load fill
-  m_TagString: Untagged
+  m_TagString: ControllButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,0 +1,828 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Arm Left
+    m_Hash: 894990546
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Cat
+      m_Hash: 638780744
+      m_Sprite: {fileID: 9037058284771060223, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 9037058284771060223, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Death
+      m_Hash: 646380074
+      m_Sprite: {fileID: -1947508898829467460, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Dog
+      m_Hash: 962690973
+      m_Sprite: {fileID: 9112619046280815354, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 9112619046280815354, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dolphin
+      m_Hash: 998641506
+      m_Sprite: {fileID: -8986046596652787919, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8986046596652787919, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Donkey
+      m_Hash: 272759758
+      m_Sprite: {fileID: -1948571422619535096, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1948571422619535096, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Fox
+      m_Hash: 938321414
+      m_Sprite: {fileID: -5523794136218491811, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5523794136218491811, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Horse
+      m_Hash: 593166364
+      m_Sprite: {fileID: -6426490928243891941, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6426490928243891941, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Human
+      m_Hash: 614726385
+      m_Sprite: {fileID: 3368145930291333736, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3368145930291333736, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Husky
+      m_Hash: 187111878
+      m_Sprite: {fileID: 5830858772318722877, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5830858772318722877, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Jabali
+      m_Hash: 508540316
+      m_Sprite: {fileID: -541960324552619017, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -541960324552619017, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Leopard
+      m_Hash: 677380536
+      m_Sprite: {fileID: 8393681197822970532, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8393681197822970532, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion
+      m_Hash: 1072689921
+      m_Sprite: {fileID: 8490177202112071963, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8490177202112071963, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion King
+      m_Hash: 1014087502
+      m_Sprite: {fileID: -9102291050646246143, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -9102291050646246143, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lobo
+      m_Hash: 969654632
+      m_Sprite: {fileID: -199499879682876507, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -199499879682876507, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Monkey
+      m_Hash: 927902214
+      m_Sprite: {fileID: 2033739065889941844, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2033739065889941844, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Pig
+      m_Hash: 873780151
+      m_Sprite: {fileID: -8093669204157654430, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8093669204157654430, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Saber
+      m_Hash: 400114396
+      m_Sprite: {fileID: 5586555593560335055, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5586555593560335055, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Shark
+      m_Hash: 159358809
+      m_Sprite: {fileID: 7908992151039671519, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7908992151039671519, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Tiger
+      m_Hash: 646345928
+      m_Sprite: {fileID: -6963319563417577380, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6963319563417577380, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn
+      m_Hash: 390521251
+      m_Sprite: {fileID: 4368292334577174557, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4368292334577174557, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn Fake
+      m_Hash: 403404768
+      m_Sprite: {fileID: -4322588879953150402, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4322588879953150402, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Zebra
+      m_Hash: 345404082
+      m_Sprite: {fileID: -129477773031393493, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -129477773031393493, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 22
+  - m_Name: Arm Right
+    m_Hash: 527503385
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Cat
+      m_Hash: 638780744
+      m_Sprite: {fileID: 1507867720033002110, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1507867720033002110, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Death
+      m_Hash: 646380074
+      m_Sprite: {fileID: -5960983826202338760, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5960983826202338760, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dog
+      m_Hash: 962690973
+      m_Sprite: {fileID: 8719749369524273993, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8719749369524273993, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dolphin
+      m_Hash: 998641506
+      m_Sprite: {fileID: -8283304575118082806, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8283304575118082806, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Donkey
+      m_Hash: 272759758
+      m_Sprite: {fileID: -5581765016883445548, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5581765016883445548, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Fox
+      m_Hash: 938321414
+      m_Sprite: {fileID: -4758161345690975444, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4758161345690975444, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Horse
+      m_Hash: 593166364
+      m_Sprite: {fileID: -3119208313695017032, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3119208313695017032, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Human
+      m_Hash: 614726385
+      m_Sprite: {fileID: -8406461133385154607, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8406461133385154607, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Husky
+      m_Hash: 187111878
+      m_Sprite: {fileID: 5174035211493865413, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5174035211493865413, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Jabali
+      m_Hash: 508540316
+      m_Sprite: {fileID: 7630230092883798170, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7630230092883798170, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Leopard
+      m_Hash: 677380536
+      m_Sprite: {fileID: -7306793462778518467, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7306793462778518467, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion
+      m_Hash: 1072689921
+      m_Sprite: {fileID: 8099324609612461584, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8099324609612461584, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion King
+      m_Hash: 1014087502
+      m_Sprite: {fileID: 5207505445070815804, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5207505445070815804, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lobo
+      m_Hash: 969654632
+      m_Sprite: {fileID: 7274352669572105675, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7274352669572105675, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Monkey
+      m_Hash: 927902214
+      m_Sprite: {fileID: -4772645803221258477, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4772645803221258477, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Pig
+      m_Hash: 873780151
+      m_Sprite: {fileID: -131831077544293036, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -131831077544293036, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Saber
+      m_Hash: 400114396
+      m_Sprite: {fileID: 658638416286817886, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 658638416286817886, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Shark
+      m_Hash: 159358809
+      m_Sprite: {fileID: 7897430098803681613, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7897430098803681613, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Tiger
+      m_Hash: 646345928
+      m_Sprite: {fileID: 6338210409724501702, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6338210409724501702, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn
+      m_Hash: 390521251
+      m_Sprite: {fileID: -6655634354295263585, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6655634354295263585, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn Fake
+      m_Hash: 403404768
+      m_Sprite: {fileID: -8850546023928606992, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8850546023928606992, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Zebra
+      m_Hash: 345404082
+      m_Sprite: {fileID: 4219511485289292442, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4219511485289292442, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 22
+  - m_Name: Body
+    m_Hash: 999990412
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Cat
+      m_Hash: 638780744
+      m_Sprite: {fileID: -8382487957463939558, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8382487957463939558, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Death
+      m_Hash: 646380074
+      m_Sprite: {fileID: 5495357389784616033, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5495357389784616033, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dog
+      m_Hash: 962690973
+      m_Sprite: {fileID: -3272190064801760121, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3272190064801760121, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dolphin
+      m_Hash: 998641506
+      m_Sprite: {fileID: -8236434553531343183, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8236434553531343183, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Donkey
+      m_Hash: 272759758
+      m_Sprite: {fileID: -6441427534500959479, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6441427534500959479, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Fox
+      m_Hash: 938321414
+      m_Sprite: {fileID: -1164215337810351970, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1164215337810351970, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Horse
+      m_Hash: 593166364
+      m_Sprite: {fileID: -4891822287211205879, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4891822287211205879, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Human
+      m_Hash: 614726385
+      m_Sprite: {fileID: -8347680713537072142, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8347680713537072142, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Husky
+      m_Hash: 187111878
+      m_Sprite: {fileID: -3751884782051426622, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3751884782051426622, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Jabali
+      m_Hash: 508540316
+      m_Sprite: {fileID: -2350945503549833251, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2350945503549833251, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Leopard
+      m_Hash: 677380536
+      m_Sprite: {fileID: 7185039703427934502, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7185039703427934502, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion
+      m_Hash: 1072689921
+      m_Sprite: {fileID: 58051531574349960, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 58051531574349960, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion King
+      m_Hash: 1014087502
+      m_Sprite: {fileID: 6304453050677963677, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6304453050677963677, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lobo
+      m_Hash: 969654632
+      m_Sprite: {fileID: -18949349085759562, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -18949349085759562, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Monkey
+      m_Hash: 927902214
+      m_Sprite: {fileID: 9139645826953715793, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 9139645826953715793, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Pig
+      m_Hash: 873780151
+      m_Sprite: {fileID: 6358903600049358941, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6358903600049358941, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Saber
+      m_Hash: 400114396
+      m_Sprite: {fileID: 1555932466605476214, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1555932466605476214, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Shark
+      m_Hash: 159358809
+      m_Sprite: {fileID: -3133488354820735587, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3133488354820735587, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Tiger
+      m_Hash: 646345928
+      m_Sprite: {fileID: 5449319849762455816, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5449319849762455816, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn
+      m_Hash: 390521251
+      m_Sprite: {fileID: -2853701322016060757, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2853701322016060757, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn Fake
+      m_Hash: 403404768
+      m_Sprite: {fileID: 1045095109573526460, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1045095109573526460, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Zebra
+      m_Hash: 345404082
+      m_Sprite: {fileID: 1325969121368476895, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1325969121368476895, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 22
+  - m_Name: Head
+    m_Hash: 130111906
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Cat
+      m_Hash: 638780744
+      m_Sprite: {fileID: -1793492518222096463, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1793492518222096463, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Death
+      m_Hash: 646380074
+      m_Sprite: {fileID: 9030312144066169882, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 9030312144066169882, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dog
+      m_Hash: 962690973
+      m_Sprite: {fileID: -1354349745446020654, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1354349745446020654, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dolphin
+      m_Hash: 998641506
+      m_Sprite: {fileID: -3530708955298927024, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3530708955298927024, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Donkey
+      m_Hash: 272759758
+      m_Sprite: {fileID: 2012212612958538728, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2012212612958538728, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Fox
+      m_Hash: 938321414
+      m_Sprite: {fileID: 5883293531111784644, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5883293531111784644, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Horse
+      m_Hash: 593166364
+      m_Sprite: {fileID: -5323412935463690265, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5323412935463690265, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Human
+      m_Hash: 614726385
+      m_Sprite: {fileID: -6242146422782282587, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6242146422782282587, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Husky
+      m_Hash: 187111878
+      m_Sprite: {fileID: -1339967307617296562, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1339967307617296562, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Jabali
+      m_Hash: 508540316
+      m_Sprite: {fileID: 4431466382843179424, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4431466382843179424, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Leopard
+      m_Hash: 677380536
+      m_Sprite: {fileID: -5439761890008164808, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5439761890008164808, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion
+      m_Hash: 1072689921
+      m_Sprite: {fileID: -4748876192326288169, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4748876192326288169, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion King
+      m_Hash: 1014087502
+      m_Sprite: {fileID: 7371071029775608379, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7371071029775608379, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lobo
+      m_Hash: 969654632
+      m_Sprite: {fileID: -1321174220155669548, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1321174220155669548, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Monkey
+      m_Hash: 927902214
+      m_Sprite: {fileID: 4376476611551279466, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4376476611551279466, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Pig
+      m_Hash: 873780151
+      m_Sprite: {fileID: -7942599494456036012, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7942599494456036012, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Saber
+      m_Hash: 400114396
+      m_Sprite: {fileID: 9022530889536650725, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 9022530889536650725, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Shark
+      m_Hash: 159358809
+      m_Sprite: {fileID: 5575095534173213453, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5575095534173213453, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Tiger
+      m_Hash: 646345928
+      m_Sprite: {fileID: 5343270713332506724, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5343270713332506724, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn
+      m_Hash: 390521251
+      m_Sprite: {fileID: 1101764901023449214, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1101764901023449214, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn Fake
+      m_Hash: 403404768
+      m_Sprite: {fileID: 2463781220076368669, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2463781220076368669, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Zebra
+      m_Hash: 345404082
+      m_Sprite: {fileID: 1407521593224117271, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1407521593224117271, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 22
+  - m_Name: Leg Left
+    m_Hash: 767552549
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Cat
+      m_Hash: 638780744
+      m_Sprite: {fileID: -1483428583320196713, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1483428583320196713, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Death
+      m_Hash: 646380074
+      m_Sprite: {fileID: 1046738151347030729, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1046738151347030729, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dog
+      m_Hash: 962690973
+      m_Sprite: {fileID: 4687445903222119737, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4687445903222119737, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dolphin
+      m_Hash: 998641506
+      m_Sprite: {fileID: 7473175246307817168, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7473175246307817168, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Donkey
+      m_Hash: 272759758
+      m_Sprite: {fileID: 5635901067386364796, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5635901067386364796, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Fox
+      m_Hash: 938321414
+      m_Sprite: {fileID: -1829390172732277255, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1829390172732277255, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Horse
+      m_Hash: 593166364
+      m_Sprite: {fileID: 4332693208639232825, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4332693208639232825, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Human
+      m_Hash: 614726385
+      m_Sprite: {fileID: 1188276464844631779, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1188276464844631779, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Husky
+      m_Hash: 187111878
+      m_Sprite: {fileID: -3933544162914746712, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3933544162914746712, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Jabali
+      m_Hash: 508540316
+      m_Sprite: {fileID: -472405184795812320, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -472405184795812320, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Leopard
+      m_Hash: 677380536
+      m_Sprite: {fileID: -2653131319138042134, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2653131319138042134, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion
+      m_Hash: 1072689921
+      m_Sprite: {fileID: -4846451684445585123, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4846451684445585123, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion King
+      m_Hash: 1014087502
+      m_Sprite: {fileID: 6086092280678421740, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6086092280678421740, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lobo
+      m_Hash: 969654632
+      m_Sprite: {fileID: 3648223052648498515, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3648223052648498515, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Monkey
+      m_Hash: 927902214
+      m_Sprite: {fileID: 242258315657346075, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 242258315657346075, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Pig
+      m_Hash: 873780151
+      m_Sprite: {fileID: -8314798079151785897, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8314798079151785897, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Saber
+      m_Hash: 400114396
+      m_Sprite: {fileID: 8949522939966507580, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8949522939966507580, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Shark
+      m_Hash: 159358809
+      m_Sprite: {fileID: 7908105296812405269, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7908105296812405269, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Tiger
+      m_Hash: 646345928
+      m_Sprite: {fileID: 6571558310811796481, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6571558310811796481, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn
+      m_Hash: 390521251
+      m_Sprite: {fileID: -5628033430953545067, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5628033430953545067, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn Fake
+      m_Hash: 403404768
+      m_Sprite: {fileID: 2100473724697721731, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2100473724697721731, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Zebra
+      m_Hash: 345404082
+      m_Sprite: {fileID: -2014768582560961742, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2014768582560961742, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 22
+  - m_Name: Leg Right
+    m_Hash: 1009815602
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Cat
+      m_Hash: 638780744
+      m_Sprite: {fileID: 8471155506345432920, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8471155506345432920, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Death
+      m_Hash: 646380074
+      m_Sprite: {fileID: -2636521449380208422, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2636521449380208422, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dog
+      m_Hash: 962690973
+      m_Sprite: {fileID: 5599884408942738999, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5599884408942738999, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dolphin
+      m_Hash: 998641506
+      m_Sprite: {fileID: 7930704101298125892, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7930704101298125892, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Donkey
+      m_Hash: 272759758
+      m_Sprite: {fileID: 8275632199778288694, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8275632199778288694, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Fox
+      m_Hash: 938321414
+      m_Sprite: {fileID: 3115490448585083482, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3115490448585083482, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Horse
+      m_Hash: 593166364
+      m_Sprite: {fileID: -329338158645807933, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -329338158645807933, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Human
+      m_Hash: 614726385
+      m_Sprite: {fileID: -7441747313937865643, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7441747313937865643, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Husky
+      m_Hash: 187111878
+      m_Sprite: {fileID: -7209086731885033001, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7209086731885033001, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Jabali
+      m_Hash: 508540316
+      m_Sprite: {fileID: -1707974335000775569, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1707974335000775569, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Entry
+      m_Hash: 719368820
+      m_Sprite: {fileID: 4540908259708734065, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4540908259708734065, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion
+      m_Hash: 1072689921
+      m_Sprite: {fileID: -413466378286156448, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -413466378286156448, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion King
+      m_Hash: 1014087502
+      m_Sprite: {fileID: -4363928489811908472, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4363928489811908472, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lobo
+      m_Hash: 969654632
+      m_Sprite: {fileID: 86396671559029913, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 86396671559029913, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Monkey
+      m_Hash: 927902214
+      m_Sprite: {fileID: -2317852925818845556, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2317852925818845556, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Pig
+      m_Hash: 873780151
+      m_Sprite: {fileID: 7495742348981528705, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7495742348981528705, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Saber
+      m_Hash: 400114396
+      m_Sprite: {fileID: -9165742665015272717, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -9165742665015272717, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Shark
+      m_Hash: 159358809
+      m_Sprite: {fileID: 19376444802729084, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 19376444802729084, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Tiger
+      m_Hash: 646345928
+      m_Sprite: {fileID: -7630285721491385194, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7630285721491385194, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn
+      m_Hash: 390521251
+      m_Sprite: {fileID: -7850839605246169300, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7850839605246169300, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn Fake
+      m_Hash: 403404768
+      m_Sprite: {fileID: 7994513072650471789, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7994513072650471789, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Zebra
+      m_Hash: 345404082
+      m_Sprite: {fileID: -9046079466395506137, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -9046079466395506137, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 22
+  - m_Name: Tail
+    m_Hash: 470096739
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Cat
+      m_Hash: 638780744
+      m_Sprite: {fileID: -7054337371190577150, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7054337371190577150, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Death
+      m_Hash: 646380074
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Dog
+      m_Hash: 962690973
+      m_Sprite: {fileID: 6474950742407500626, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6474950742407500626, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Dolphin
+      m_Hash: 998641506
+      m_Sprite: {fileID: -3261964086250643049, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3261964086250643049, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Donkey
+      m_Hash: 272759758
+      m_Sprite: {fileID: -4191649301319222383, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4191649301319222383, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Fox
+      m_Hash: 938321414
+      m_Sprite: {fileID: -3377796180534227980, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3377796180534227980, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Horse
+      m_Hash: 593166364
+      m_Sprite: {fileID: -7301818850087187789, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7301818850087187789, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Human
+      m_Hash: 614726385
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Husky
+      m_Hash: 187111878
+      m_Sprite: {fileID: 1259244599852459400, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1259244599852459400, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Jabali
+      m_Hash: 508540316
+      m_Sprite: {fileID: -9169052882007604908, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -9169052882007604908, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Entry
+      m_Hash: 719368820
+      m_Sprite: {fileID: -128965799476757587, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -128965799476757587, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion
+      m_Hash: 1072689921
+      m_Sprite: {fileID: -2188983238973550844, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2188983238973550844, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lion King
+      m_Hash: 1014087502
+      m_Sprite: {fileID: 4508448312297207327, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4508448312297207327, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Lobo
+      m_Hash: 969654632
+      m_Sprite: {fileID: 1211988947573514446, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1211988947573514446, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Monkey
+      m_Hash: 927902214
+      m_Sprite: {fileID: -6388375801632083358, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6388375801632083358, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Pig
+      m_Hash: 873780151
+      m_Sprite: {fileID: -9143700618821290099, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -9143700618821290099, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Saber
+      m_Hash: 400114396
+      m_Sprite: {fileID: -8687629995856087815, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8687629995856087815, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Shark
+      m_Hash: 159358809
+      m_Sprite: {fileID: -7073887474846770627, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7073887474846770627, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Tiger
+      m_Hash: 646345928
+      m_Sprite: {fileID: -3664366399001641363, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3664366399001641363, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn
+      m_Hash: 390521251
+      m_Sprite: {fileID: -3055232731358316833, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3055232731358316833, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Unicorn Fake
+      m_Hash: 403404768
+      m_Sprite: {fileID: -1334720969716385069, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1334720969716385069, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    - m_Name: Zebra
+      m_Hash: 345404082
+      m_Sprite: {fileID: -392883935555845458, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -392883935555845458, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 22
+  m_PrimaryLibraryGUID: 

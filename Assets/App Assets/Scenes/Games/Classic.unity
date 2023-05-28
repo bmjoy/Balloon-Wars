@@ -163,7 +163,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       propertyPath: m_Name
-      value: Units
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       propertyPath: m_RootOrder
@@ -171,11 +171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.60252
+      value: -40.47
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.175754
+      value: -2.18
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       propertyPath: m_LocalPosition.z
@@ -249,6 +249,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.23616312
       objectReference: {fileID: 0}
+    - target: {fileID: 4378291014307944819, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7103851
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378291014307944819, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378291014307944819, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378291014307944819, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.70381325
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378291014307944819, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4800431566491611042, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5953278
@@ -285,6 +305,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8524872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 1e42564cb0359e244958170b47929207, type: 3}
 --- !u!1 &32891960
 GameObject:
   m_ObjectHideFlags: 0

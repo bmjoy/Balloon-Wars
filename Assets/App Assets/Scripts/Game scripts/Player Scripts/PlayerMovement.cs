@@ -9,14 +9,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D m_RigidBody;
     private BoxCollider2D m_Collider;
     private Animator m_Animator;
-    private SpriteRenderer m_SpriteRenderer;
     private ConstantForce2D m_ConstantForce;
     private bool m_WasOnGround = false;
     public AirTank PlayerAirTank { get; private set; }
     private bool m_InflatePerformed = false;
     private bool m_DeflatePerformed = false;
     private float m_DirectionX = 0f;
-    private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
+    private enum MovementState { Idle, Walk, Jump, Fly, Deflate}
+    private MovementState m_CurState = MovementState.Idle;
     [SerializeField] [Range(1f, 30f)] private float m_JumpForce = 15f;
     [SerializeField] [Range(0.05f, 0.5f)] private float m_jumpTime = 0.1f;
     [SerializeField] [Range(1, 15)] private int m_jumpSmooth = 8;
@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource m_JumpSoundEffect;
     [SerializeField] private AudioSource m_InflatingSoundEffect;
     [SerializeField] private AudioSource m_DeflatingSoundEffect;
+    [SerializeField] private GameObject m_Character;
+    private Transform m_CharacterTransform;
     public float JumpForce
     {
          get{return m_JumpForce;}
@@ -44,11 +46,11 @@ public class PlayerMovement : MonoBehaviour
         PlayerAirTank = FindObjectOfType<AirTank>();
         PlayerAirTank.AirFinished += InflateCancelLogic;
         m_RigidBody = GetComponent<Rigidbody2D>();
-        m_Animator = GetComponent<Animator>();
-        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_Animator = GetComponentInChildren<Animator>();
         m_Collider = GetComponent<BoxCollider2D>();
         m_ConstantForce = GetComponent<ConstantForce2D>();
         m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
+        m_CharacterTransform = m_Character.GetComponent<Transform>();
     }
 
     private void Update()
@@ -86,33 +88,39 @@ public class PlayerMovement : MonoBehaviour
 
     private void updateAnimationState()
     {
+
         MovementState state;
 
         if (m_DirectionX > 0f)
         {
-            state = MovementState.RUNNING;
+            state = MovementState.Walk;
             m_PhotonView.RPC("SetFlipX", RpcTarget.AllBuffered, false);
         }
         else if (m_DirectionX < 0f)
         {
-            state = MovementState.RUNNING;
+            state = MovementState.Walk;
             m_PhotonView.RPC("SetFlipX", RpcTarget.AllBuffered, true);
         }
         else
         {
-            state = MovementState.IDLE;
+            state = MovementState.Idle;
         }
 
-        if (m_RigidBody.velocity.y > .1f)
+        if (m_RigidBody.velocity.y > .1f || m_RigidBody.velocity.y < -.1f)
         {
-            state = MovementState.JUMPING;
-        }
-        else if (m_RigidBody.velocity.y < -.1f)
-        {
-            state = MovementState.FALLING;
+            state = MovementState.Fly;
         }
 
-        m_Animator.SetInteger("state", (int)state);
+        if (m_DeflatePerformed)
+        {
+            state = MovementState.Deflate;
+        }
+
+        if(state != m_CurState)
+        {
+            m_CurState = state;
+            m_Animator.SetTrigger(state.ToString());
+        }
     }
 
     private bool isGrounded()
@@ -241,6 +249,6 @@ public class PlayerMovement : MonoBehaviour
     [PunRPC]
     void SetFlipX(bool value)
     {
-        m_SpriteRenderer.flipX = value;
+        m_CharacterTransform.rotation = new UnityEngine.Quaternion(0, value? 180:0 ,0 ,0);
     }
 }

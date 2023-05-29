@@ -3,24 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using System.Linq;
+using System;
 
 public class SkinChanger : MonoBehaviour
 {
     private List<SpriteResolver> m_Resolvers;
-
+    private int curCharacter = 0;
+    private List<string> m_CharactersNames = Enum.GetNames(typeof(Skins.Characters)).ToList();
+    
     private void Awake()
     {
-        m_Resolvers = GetComponentsInChildren<SpriteResolver>().ToList();    
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        m_Resolvers = GetComponentsInChildren<SpriteResolver>().ToList();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeToNextCharacter()
     {
-        
+        curCharacter = curCharacter == m_CharactersNames.Count - 1? 0 : curCharacter + 1;
+        changeCharacter(curCharacter);
+    }
+
+    public void ChangeToPrevCharacter()
+    {
+        changeCharacter(curCharacter);
+    }
+
+    private void changeCharacter(Skins.Characters character)
+    {
+        foreach (SpriteResolver resolver in m_Resolvers)
+        {
+            resolver.SetCategoryAndLabel(resolver.GetCategory(),character.ToString());
+        }
+    }
+
+    private void changeCharacter(int characterNumber)
+    {
+        characterNumber %= m_CharactersNames.Count;
+        foreach (SpriteResolver resolver in m_Resolvers)
+        {
+            resolver.SetCategoryAndLabel(resolver.GetCategory(),m_CharactersNames[characterNumber]);
+        }
+    }
+
+    private void changeCharacter(string characterName)
+    {
+        if(m_CharactersNames.Contains(characterName))
+        {
+            foreach (SpriteResolver resolver in m_Resolvers)
+            {
+                resolver.SetCategoryAndLabel(resolver.GetCategory(),characterName);
+            }
+        }
     }
 }

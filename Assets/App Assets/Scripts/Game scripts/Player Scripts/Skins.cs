@@ -4,17 +4,38 @@ using UnityEngine;
 
 public class Skins
 {
-    public enum eCharacters
+    public enum Characters
     {
-        
+        Cat,
+        Leopard,
+        Lion,
+        Lion_King,
+        Saber,
+        Tiger,
+        Dog,
+        Fox,
+        Husky,
+        Lobo,
+        Dolphin,
+        Shark,
+        Donkey,
+        Horse,
+        Unicorn,
+        Unicorn_Fake,
+        Zebra,
+        Jabali,
+        Pig,
+        Human,
+        Monkey,
+        Death
     }
 
-    public enum eHats
+    public enum Hats
     {
 
     }
 
-    public enum eShirts
+    public enum Shirts
     {
 
     }

@@ -77,8 +77,8 @@ MonoBehaviour:
       m_Sprite: {fileID: 8490177202112071963, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 8490177202112071963, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Lion King
-      m_Hash: 1014087502
+    - m_Name: Lion_King
+      m_Hash: 133417040
       m_Sprite: {fileID: -9102291050646246143, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -9102291050646246143, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -117,8 +117,8 @@ MonoBehaviour:
       m_Sprite: {fileID: 4368292334577174557, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 4368292334577174557, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Unicorn Fake
-      m_Hash: 403404768
+    - m_Name: Unicorn_Fake
+      m_Hash: 596181246
       m_Sprite: {fileID: -4322588879953150402, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -4322588879953150402, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -193,8 +193,8 @@ MonoBehaviour:
       m_Sprite: {fileID: 8099324609612461584, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 8099324609612461584, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Lion King
-      m_Hash: 1014087502
+    - m_Name: Lion_King
+      m_Hash: 133417040
       m_Sprite: {fileID: 5207505445070815804, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 5207505445070815804, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -233,8 +233,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -6655634354295263585, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -6655634354295263585, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Unicorn Fake
-      m_Hash: 403404768
+    - m_Name: Unicorn_Fake
+      m_Hash: 596181246
       m_Sprite: {fileID: -8850546023928606992, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -8850546023928606992, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -309,8 +309,8 @@ MonoBehaviour:
       m_Sprite: {fileID: 58051531574349960, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 58051531574349960, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Lion King
-      m_Hash: 1014087502
+    - m_Name: Lion_King
+      m_Hash: 133417040
       m_Sprite: {fileID: 6304453050677963677, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 6304453050677963677, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -349,8 +349,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -2853701322016060757, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -2853701322016060757, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Unicorn Fake
-      m_Hash: 403404768
+    - m_Name: Unicorn_Fake
+      m_Hash: 596181246
       m_Sprite: {fileID: 1045095109573526460, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 1045095109573526460, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -425,8 +425,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -4748876192326288169, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -4748876192326288169, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Lion King
-      m_Hash: 1014087502
+    - m_Name: Lion_King
+      m_Hash: 133417040
       m_Sprite: {fileID: 7371071029775608379, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 7371071029775608379, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -465,8 +465,8 @@ MonoBehaviour:
       m_Sprite: {fileID: 1101764901023449214, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 1101764901023449214, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Unicorn Fake
-      m_Hash: 403404768
+    - m_Name: Unicorn_Fake
+      m_Hash: 596181246
       m_Sprite: {fileID: 2463781220076368669, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 2463781220076368669, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -541,8 +541,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -4846451684445585123, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -4846451684445585123, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Lion King
-      m_Hash: 1014087502
+    - m_Name: Lion_King
+      m_Hash: 133417040
       m_Sprite: {fileID: 6086092280678421740, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 6086092280678421740, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -581,8 +581,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -5628033430953545067, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -5628033430953545067, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Unicorn Fake
-      m_Hash: 403404768
+    - m_Name: Unicorn_Fake
+      m_Hash: 596181246
       m_Sprite: {fileID: 2100473724697721731, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 2100473724697721731, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -647,8 +647,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -1707974335000775569, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -1707974335000775569, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Entry
-      m_Hash: 719368820
+    - m_Name: Leopard
+      m_Hash: 677380536
       m_Sprite: {fileID: 4540908259708734065, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 4540908259708734065, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -657,8 +657,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -413466378286156448, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -413466378286156448, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Lion King
-      m_Hash: 1014087502
+    - m_Name: Lion_King
+      m_Hash: 133417040
       m_Sprite: {fileID: -4363928489811908472, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -4363928489811908472, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -697,8 +697,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -7850839605246169300, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -7850839605246169300, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Unicorn Fake
-      m_Hash: 403404768
+    - m_Name: Unicorn_Fake
+      m_Hash: 596181246
       m_Sprite: {fileID: 7994513072650471789, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 7994513072650471789, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -763,8 +763,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -9169052882007604908, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -9169052882007604908, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Entry
-      m_Hash: 719368820
+    - m_Name: Leopard
+      m_Hash: 677380536
       m_Sprite: {fileID: -128965799476757587, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -128965799476757587, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -773,8 +773,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -2188983238973550844, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -2188983238973550844, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Lion King
-      m_Hash: 1014087502
+    - m_Name: Lion_King
+      m_Hash: 133417040
       m_Sprite: {fileID: 4508448312297207327, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 4508448312297207327, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
@@ -813,8 +813,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -3055232731358316833, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -3055232731358316833, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
-    - m_Name: Unicorn Fake
-      m_Hash: 403404768
+    - m_Name: Unicorn_Fake
+      m_Hash: 596181246
       m_Sprite: {fileID: -1334720969716385069, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -1334720969716385069, guid: 5017b30bd1c1ec54b896692329450604, type: 3}

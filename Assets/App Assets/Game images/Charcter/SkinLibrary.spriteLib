@@ -26,7 +26,7 @@ MonoBehaviour:
       m_Hash: 646380074
       m_Sprite: {fileID: -1947508898829467460, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 0}
+      m_SpriteOverride: {fileID: -1947508898829467460, guid: 5017b30bd1c1ec54b896692329450604, type: 3}
     - m_Name: Dog
       m_Hash: 962690973
       m_Sprite: {fileID: 9112619046280815354, guid: 5017b30bd1c1ec54b896692329450604, type: 3}

@@ -12,7 +12,6 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D m_Rigidbody;
     private SpawnPlayers m_PlayerSpawner;
     private PhotonView m_PhotonView;
-    private float m_Fade = 1f;
     private GameObject[] m_ControllButtons;
     PhotonRoomInfo m_PhotonRoomInfo;
     [SerializeField] private GameObject m_PlayerDart;

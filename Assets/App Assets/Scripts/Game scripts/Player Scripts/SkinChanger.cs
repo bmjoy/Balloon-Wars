@@ -8,7 +8,7 @@ using System;
 public class SkinChanger : MonoBehaviour
 {
     private List<SpriteResolver> m_Resolvers;
-    private int curCharacter = 0;
+    private int m_CurCharacter = 0;
     private List<string> m_CharactersNames = Enum.GetNames(typeof(Skins.Characters)).ToList();
     
     private void Awake()
@@ -18,13 +18,14 @@ public class SkinChanger : MonoBehaviour
 
     public void ChangeToNextCharacter()
     {
-        curCharacter = curCharacter == m_CharactersNames.Count - 1? 0 : curCharacter + 1;
-        changeCharacter(curCharacter);
+        m_CurCharacter = m_CurCharacter == m_CharactersNames.Count - 1? 0 : m_CurCharacter + 1;
+        changeCharacter(m_CurCharacter);
     }
 
     public void ChangeToPrevCharacter()
     {
-        changeCharacter(curCharacter);
+        m_CurCharacter = m_CurCharacter == 0? m_CharactersNames.Count - 1 : m_CurCharacter - 1;
+        changeCharacter(m_CurCharacter);
     }
 
     private void changeCharacter(Skins.Characters character)

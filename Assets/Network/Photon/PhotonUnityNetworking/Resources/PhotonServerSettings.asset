@@ -59,6 +59,9 @@ MonoBehaviour:
   - registerToPowerUp
   - DartPopBalloonRPC
   - TrapPopBalloonRPC
+  - SetAnimationState
+  - flipDiraction
+  - StartDie
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

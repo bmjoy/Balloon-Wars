@@ -1,15 +1,19 @@
 # Balloon Wars
 
-<img src="https://user-images.githubusercontent.com/96747472/233209707-e1a03fbd-4856-4c78-b0db-9a55f0831b21.png" width="200" height="200" />
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/96747472/233209707-e1a03fbd-4856-4c78-b0db-9a55f0831b21.png" width="250" height="250" />
+</p>
 
+Balloon Wars is an exciting multiplayer mobile game that takes you on a thrilling adventure in the skies.
 
-Balloon Wars is an exciting multiplayer cross-platform mobile game developed by [Omer Cohen Shor](https://github.com/OmerCS8) and [Alon Shakaroff](https://github.com/AlonShakaroff) as the final project for the computer science degree program at the Academic College of Tel Aviv-Yaffo. The game was created using Unity, Photon, and PlayFab.
+Equipped with helium-filled balloons and sharp darts, you'll engage in intense aerial battles, strategically maneuvering through obstacles to pop your opponents' balloons.
 
-In this game, players are tasked with eliminating their opponents by popping their balloons while maneuvering in the air using two elements of control - the amount of helium in the balloons and left/right arrow keys to navigate. Each player also has a dart stick that can be used to launch arrows at other players' balloons. The last player left with balloons is declared the winner.
+To maintain your advantage, adeptly manage your limited helium reserves, which can only be recharged when touching solid ground, providing you with brief moments to strategize your next move.
 
-The game features stunning graphics and realistic physics simulations, including dynamic balloon physics and projectile motion. With room management and creation capabilities, as well as private room options, players can easily connect and play with their friends in customized game environments.
+Discover a variety of power-ups throughout the dynamic game world. Unleash chaos with temporary unlimited darts, shield yourself with invincible steel balloons, or gain advantages like quick helium recharge and extra balloons.
 
-Balloon Wars is a thrilling multiplayer experience that is sure to keep players engaged and entertained. So why wait? Join the fight, grab your dart stick, and let the balloon wars begin!
+Be the last player standing, with your balloons intact, to claim victory. Embark on this captivating journey, master aerial combat, and prove yourself as the supreme champion of Balloon Wars!
+
 ## Screenshots
 
 ### Login
@@ -47,4 +51,5 @@ Balloon Wars is a thrilling multiplayer experience that is sure to keep players 
 * Photon Unity Networking 2
 * PlayFab SDK for Unity
 
-##
+## Credits
+developed by [Omer Cohen Shor](https://github.com/OmerCS8) and [Alon Shakaroff](https://github.com/AlonShakaroff) as the final project for the computer science degree program at the Academic College of Tel Aviv-Yaffo. The game was created using Unity, Photon, and PlayFab.

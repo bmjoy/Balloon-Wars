@@ -16,7 +16,7 @@ public class QuitGame : MonoBehaviour
         if(myPlayer != null)
         {
             Debug.Log("Killing player");
-            myPlayer.GetComponent<PlayerLife>().SharpTrapDie();
+            myPlayer.GetComponent<PlayerLife>().TrapDie();
         }
         else
         {

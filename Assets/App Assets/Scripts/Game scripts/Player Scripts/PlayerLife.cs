@@ -7,13 +7,11 @@ using Photon.Realtime;
 
 public class PlayerLife : MonoBehaviour
 {
-    private Material m_Material;
     private Animator m_Animator;
     private Animator m_ScreenAnimator;
     private Rigidbody2D m_Rigidbody;
     private SpawnPlayers m_PlayerSpawner;
     private PhotonView m_PhotonView;
-    private bool m_IsDissolving = false;
     private float m_Fade = 1f;
     private GameObject[] m_ControllButtons;
     PhotonRoomInfo m_PhotonRoomInfo;
@@ -30,8 +28,7 @@ public class PlayerLife : MonoBehaviour
 
     private void Start()
     {
-        m_Material = GetComponent<SpriteRenderer>().material;
-        m_Animator = GetComponent<Animator>();
+        m_Animator = GetComponentInChildren<Animator>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_PlayerSpawner = FindAnyObjectByType<SpawnPlayers>();
         m_ScreenAnimator = GameObject.FindGameObjectWithTag("GameCanvas").GetComponent<Animator>();
@@ -44,38 +41,14 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (m_PhotonView.IsMine)
-        {
-            UpdateDissolvingState();
-        }
-    }
-
-    private void UpdateDissolvingState()
-    {
-        if (m_IsDissolving)
-        {
-            m_Fade -= Time.deltaTime;
-
-            if (m_Fade <= 0f)
-            {
-                m_Fade = 0f;
-                m_IsDissolving = false;
-                StartCoroutine(GameOver(0f, false));
-            }
-
-            m_Material.SetFloat("_Fade", m_Fade);
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision) 
     {
         if (m_PhotonView.IsMine)
         {
             if (collision.gameObject.CompareTag("Trap"))
             {
-                SharpTrapDie();
+                m_SharpTrapSound.Play();
+                TrapDie();
             }
         }
     }
@@ -87,19 +60,14 @@ public class PlayerLife : MonoBehaviour
             if (collider.gameObject.CompareTag("Fire"))
             {
                 m_BurnSound.Play();
-                m_Rigidbody.bodyType = RigidbodyType2D.Static;
-                m_PhotonView.RPC("DisablePlayerObjects", RpcTarget.All);
-                m_IsDissolving = true;
+                TrapDie();
             }
         }
     }
 
-    public void SharpTrapDie()
+    public void TrapDie()
     {
-        m_SharpTrapSound.Play();
-        m_PhotonView.RPC("DisablePlayerObjects", RpcTarget.All);
-        m_Rigidbody.bodyType = RigidbodyType2D.Static;
-        m_Animator.SetTrigger("trap_death");
+        m_PhotonView.RPC("StartDie", RpcTarget.All);
         StartCoroutine(GameOver(delay: 0.3f, didWon: false));
     }
 
@@ -140,10 +108,12 @@ public class PlayerLife : MonoBehaviour
     }
 
     [PunRPC]
-    private void DisablePlayerObjects()
+    private void StartDie()
     {
         m_PlayerDart.SetActive(false);
         m_NameLabel.SetActive(false);
+        m_Rigidbody.bodyType = RigidbodyType2D.Static;
+        m_Animator.SetTrigger("Die");
     }
 
     [PunRPC]

@@ -12,7 +12,6 @@ public class MapChooser : MonoBehaviour
     void Start()
     {
         UIBackImage.sprite = backgrounds[CurMapIndex];
-        UIBackImage.sprite = backgrounds[CurMapIndex];
     }
 
     public void MoveToNextMap()

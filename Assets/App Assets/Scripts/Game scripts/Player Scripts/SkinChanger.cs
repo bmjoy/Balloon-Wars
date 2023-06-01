@@ -8,7 +8,6 @@ using System;
 public class SkinChanger : MonoBehaviour
 {
     private List<SpriteResolver> m_Resolvers;
-    private int m_CurCharacter = 0;
     private List<string> m_CharactersNames = Enum.GetNames(typeof(Skins.Characters)).ToList();
     
     private void Awake()
@@ -16,19 +15,7 @@ public class SkinChanger : MonoBehaviour
         m_Resolvers = GetComponentsInChildren<SpriteResolver>().ToList();
     }
 
-    public void ChangeToNextCharacter()
-    {
-        m_CurCharacter = m_CurCharacter == m_CharactersNames.Count - 1? 0 : m_CurCharacter + 1;
-        changeCharacter(m_CurCharacter);
-    }
-
-    public void ChangeToPrevCharacter()
-    {
-        m_CurCharacter = m_CurCharacter == 0? m_CharactersNames.Count - 1 : m_CurCharacter - 1;
-        changeCharacter(m_CurCharacter);
-    }
-
-    private void changeCharacter(Skins.Characters character)
+    public void changeCharacter(Skins.Characters character)
     {
         foreach (SpriteResolver resolver in m_Resolvers)
         {
@@ -36,7 +23,7 @@ public class SkinChanger : MonoBehaviour
         }
     }
 
-    private void changeCharacter(int characterNumber)
+    public void changeCharacter(int characterNumber)
     {
         characterNumber %= m_CharactersNames.Count;
         foreach (SpriteResolver resolver in m_Resolvers)
@@ -45,7 +32,7 @@ public class SkinChanger : MonoBehaviour
         }
     }
 
-    private void changeCharacter(string characterName)
+    public void changeCharacter(string characterName)
     {
         if(m_CharactersNames.Contains(characterName))
         {

@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;
 public class TabItem : MonoBehaviour, IPointerClickHandler
 {
     private TabMenu m_TabMenu;
-    private Color ActiveColor = new Color32(r: 90, g: 90, b: 90, a: 255);
-    private Color DisabledColor = new Color32(r: 53, g: 53, b: 53, a: 255);
+    private Color ActiveColor = new Color32(r: 181, g: 113, b: 54, a: 255);
+    private Color DisabledColor = new Color32(r: 181, g: 113, b: 54, a: 0);
     [SerializeField] GameObject m_TabScreen;
     [SerializeField] bool m_IsSelected = false;
     void Start()

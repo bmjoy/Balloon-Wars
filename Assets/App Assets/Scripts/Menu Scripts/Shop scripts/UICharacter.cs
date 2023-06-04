@@ -16,6 +16,11 @@ public class UICharacter : MonoBehaviour
         changeUICharacter(CharacterChooser.Instance.CurCharacterIndex);
     }
 
+    private void OnDestroy()
+    {
+        CharacterChooser.Instance.CharacterChanged -= changeUICharacter;
+    }
+
     private void changeUICharacter(int characterNumber)
     {
         m_SkinChanger.changeCharacter(characterNumber);

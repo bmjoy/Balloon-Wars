@@ -1646,6 +1646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4f97c2b3fdac04395fc1c723ac7a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveColor: {r: 0.70980394, g: 0.44313726, b: 0.21176471, a: 1}
+  DisabledColor: {r: 0.70980394, g: 0.44313726, b: 0.21176471, a: 0}
   m_TabScreen: {fileID: 434262608}
   m_IsSelected: 0
 --- !u!114 &365643694
@@ -2875,9 +2877,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 689112907}
-  - component: {fileID: 689112910}
   - component: {fileID: 689112909}
   - component: {fileID: 689112908}
+  - component: {fileID: 689112910}
   m_Layer: 5
   m_Name: user tab
   m_TagString: Untagged
@@ -2956,6 +2958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4f97c2b3fdac04395fc1c723ac7a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveColor: {r: 0.70980394, g: 0.4431373, b: 0.21176472, a: 1}
+  DisabledColor: {r: 0.70980394, g: 0.44313726, b: 0.21176471, a: 0}
   m_TabScreen: {fileID: 1484203169}
   m_IsSelected: 1
 --- !u!1 &712460497
@@ -6012,6 +6016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4f97c2b3fdac04395fc1c723ac7a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveColor: {r: 0.70980394, g: 0.44313726, b: 0.21176471, a: 1}
+  DisabledColor: {r: 0.70980394, g: 0.44313726, b: 0.21176471, a: 0}
   m_TabScreen: {fileID: 2020685527}
   m_IsSelected: 0
 --- !u!114 &1141836617

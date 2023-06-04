@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackGroundScaler : MonoBehaviour
+public class ObjectWidthScaler : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     private SpriteRenderer spriteRenderer;
-    private Vector2 screenSize;
     private float spriteWidth;
-    private float spriteHeight;
+    Vector2 screenSize;
 
     private void Awake()
     {
         screenSize = new Vector2(Screen.width, Screen.height);
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteWidth = spriteRenderer.sprite.bounds.size.x;
-        spriteHeight = spriteRenderer.sprite.bounds.size.y;
     }
 
     private void Update()
@@ -24,22 +22,20 @@ public class BackGroundScaler : MonoBehaviour
         {
             screenSize.x = Screen.width;
             screenSize.y = Screen.height;
-            SpreadSpriteToScreenSize();
+            SpreadSpriteToScreenWidthSize();
         }
     }
+
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        SpreadSpriteToScreenSize();
+        SpreadSpriteToScreenWidthSize();
     }
 
-    private void SpreadSpriteToScreenSize()
+    private void SpreadSpriteToScreenWidthSize()
     {
         float targetHeight = mainCamera.orthographicSize * 2f;
         float targetWidth = targetHeight * mainCamera.aspect;
         float scaleX = targetWidth / spriteWidth;
-        float scaleY = targetHeight / spriteHeight;
-        float scale = Mathf.Max(scaleX, scaleY);
-        transform.localScale = new Vector3(scale, scale, 1f);
+        transform.localScale = new Vector3(scaleX, transform.localScale.y, 1f);
     }
 }

@@ -11,8 +11,8 @@ public class AttachObjectToLeft : MonoBehaviour
 
     [SerializeField] private bool isFromTop = false;
 
-    Vector2 screenSize;
-    Vector2 oreginalScale;
+    private Vector2 screenSize;
+    private Vector2 oreginalScale;
 
     private void Awake()
     {

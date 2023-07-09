@@ -15,11 +15,18 @@ public class Balloon : MonoBehaviour
     public Rigidbody2D PlayerBody { get; private set; }
     public event Action<GameObject> BalloonLost;
     private AudioSource m_PopAudioSource;
+    public int MetalicAmout { get; private set; } = 0;
+    private BalloonTop m_BalloonTop;
 
     private void Awake()
     {
         m_PhotonView = GetComponent<PhotonView>();
         m_PopAudioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        m_BalloonTop = GetComponentInChildren<BalloonTop>();    
     }
 
     private void OnBalloonLost()
@@ -32,6 +39,13 @@ public class Balloon : MonoBehaviour
         Debug.Log($"{m_PhotonView.Owner.NickName}'s string broke");
         OnBalloonLost();
         StartCoroutine(delayExplodeBalloon(2f));
+    }
+
+    public void OnBalloonHitTrap()
+    {
+        Debug.Log($"{m_PhotonView.Owner.NickName}'s Balloon hit trap");
+        OnBalloonLost();
+        StartCoroutine(delayExplodeBalloon(0f));        
     }
 
     [PunRPC]
@@ -52,9 +66,21 @@ public class Balloon : MonoBehaviour
     }
 
     [PunRPC]
-    private void popBalloonRPC(string BalloonOwnerName, string DartOwnerName)
+    private void DartPopBalloonRPC(string BalloonOwnerName, string DartOwnerName)
     {
         Debug.Log($"{BalloonOwnerName}'s balloon was hit by {DartOwnerName}'s dart");
+        popBalloon();
+    }
+
+    [PunRPC]
+    private void TrapPopBalloonRPC(string BalloonOwnerName)
+    {
+        Debug.Log($"{BalloonOwnerName}'s balloon was hit by a trap");
+        popBalloon();
+    }
+
+    private void popBalloon()
+    {
         OnBalloonLost();
         GetComponentInChildren<Animator>().SetTrigger("explode");
         Debug.Log("Balloon exploded");
@@ -100,6 +126,24 @@ public class Balloon : MonoBehaviour
         if(m_PopAudioSource != null)
         {
             m_PopAudioSource.Play();
+        }
+    }
+
+    public void MakeMetalic()
+    {
+        MetalicAmout ++;
+        if(MetalicAmout == 1)
+        {
+            m_BalloonTop.SetMetalicColor();
+        }
+    }
+
+    public void UnMakeMetalic()
+    {
+        MetalicAmout --;
+        if(MetalicAmout == 0)
+        {
+            m_BalloonTop.SetRegularColor();
         }
     }
 }

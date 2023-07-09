@@ -7,7 +7,7 @@ public class ItemCollector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) 
     {
-        if (collider.gameObject.CompareTag("Pineapple"))
+        if (collider.gameObject.CompareTag("PowerUp"))
         {
             m_ItemCollectionSound.Play();
             PhotonNetwork.Destroy(collider.gameObject);

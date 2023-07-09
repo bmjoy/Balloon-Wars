@@ -9,30 +9,33 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D m_RigidBody;
     private BoxCollider2D m_Collider;
     private Animator m_Animator;
-    private SpriteRenderer m_SpriteRenderer;
     private ConstantForce2D m_ConstantForce;
     private bool m_WasOnGround = false;
-
-    private enum MovementState { IDLE, RUNNING, JUMPING, FALLING }
-
-    [SerializeField] [Range(1f, 30f)] private float m_JumpPower = 15f;
-    [SerializeField] [Range(0.05f, 0.5f)] private float m_jumpTime = 0.1f;
-    [SerializeField] [Range(1, 15)] private int m_jumpSmooth = 8;
+    public AirTank PlayerAirTank { get; private set; }
+    private bool m_InflatePerformed = false;
+    private bool m_DeflatePerformed = false;
+    private bool m_JumpPerformed = false;
+    private float m_DirectionX = 0f;
+    private enum MovementState { Idle, Walk, Jump, Fly, Deflate }
+    private MovementState m_CurState = MovementState.Idle;
+    [SerializeField][Range(1f, 30f)] private float m_JumpForce = 15f;
+    [SerializeField][Range(0.05f, 0.5f)] private float m_jumpTime = 0.1f;
+    [SerializeField][Range(1, 15)] private int m_jumpSmooth = 8;
     [SerializeField] private float m_SideMovementPower = 7f;
     [SerializeField] private LayerMask m_JumpableGround;
-    [SerializeField] private float m_InflatingForce = 1f; 
+    [SerializeField] private float m_InflatingForce = 1f;
     [SerializeField] private float m_IdleForce = -0.2f;
-    [SerializeField] private float m_DeflatingForce = -1f; 
-    private float m_DirectionX = 0f;
-
+    [SerializeField] private float m_DeflatingForce = -1f;
     [SerializeField] private AudioSource m_JumpSoundEffect;
     [SerializeField] private AudioSource m_InflatingSoundEffect;
     [SerializeField] private AudioSource m_DeflatingSoundEffect;
-
-    private AirTank m_AirTank;
-
-    private bool m_InflatePerformed = false;
-    private bool m_DeflatePerformed = false;
+    [SerializeField] private GameObject m_Character;
+    private Transform m_CharacterTransform;
+    public float JumpForce
+    {
+        get { return m_JumpForce; }
+        set { m_JumpForce = value; }
+    }
 
     private void Awake()
     {
@@ -41,19 +44,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        m_AirTank = FindObjectOfType<AirTank>();
-        m_AirTank.AirFinished += InflateCancelLogic;
+        PlayerAirTank = FindObjectOfType<AirTank>();
+        PlayerAirTank.AirFinished += InflateCancelLogic;
         m_RigidBody = GetComponent<Rigidbody2D>();
-        m_Animator = GetComponent<Animator>();
-        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_Animator = GetComponentInChildren<Animator>();
         m_Collider = GetComponent<BoxCollider2D>();
         m_ConstantForce = GetComponent<ConstantForce2D>();
         m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
+        m_CharacterTransform = m_Character.GetComponent<Transform>();
     }
 
     private void Update()
     {
-        if(m_PhotonView.IsMine)
+        if (m_PhotonView.IsMine)
         {
             addAirToTankIfGrounded();
             updateMovementState();
@@ -66,19 +69,19 @@ public class PlayerMovement : MonoBehaviour
         if (!m_WasOnGround && isGrounded())
         {
             m_WasOnGround = true;
-            m_AirTank.StartAddAir();
+            PlayerAirTank.StartAddAir();
             DeflateCancelLogic();
         }
         else if (m_WasOnGround && !isGrounded())
         {
             m_WasOnGround = false;
-            m_AirTank.StopAddAir();
+            PlayerAirTank.StopAddAir();
         }
     }
 
     private void updateMovementState()
     {
-        if (m_RigidBody.bodyType != RigidbodyType2D.Static) 
+        if (m_RigidBody.bodyType != RigidbodyType2D.Static)
         {
             m_RigidBody.velocity = new Vector2(m_DirectionX * m_SideMovementPower, m_RigidBody.velocity.y);
         }
@@ -88,31 +91,41 @@ public class PlayerMovement : MonoBehaviour
     {
         MovementState state;
 
-        if (m_DirectionX > 0f)
+        flipDirIfNeeded();
+        if (isGrounded())
         {
-            state = MovementState.RUNNING;
-            m_PhotonView.RPC("SetFlipX", RpcTarget.AllBuffered, false);
-        }
-        else if (m_DirectionX < 0f)
-        {
-            state = MovementState.RUNNING;
-            m_PhotonView.RPC("SetFlipX", RpcTarget.AllBuffered, true);
+            state = m_DirectionX != 0f ? MovementState.Walk : MovementState.Idle;
         }
         else
         {
-            state = MovementState.IDLE;
+            state = m_DeflatePerformed ? MovementState.Deflate : MovementState.Fly;
         }
 
-        if (m_RigidBody.velocity.y > .1f)
+        if (m_JumpPerformed)
         {
-            state = MovementState.JUMPING;
-        }
-        else if (m_RigidBody.velocity.y < -.1f)
-        {
-            state = MovementState.FALLING;
+            state = MovementState.Jump;
+            m_JumpPerformed = false;
         }
 
-        m_Animator.SetInteger("state", (int)state);
+        if (state != m_CurState)
+        {
+            m_CurState = state == MovementState.Jump ? MovementState.Fly : state;
+            m_PhotonView.RPC("SetAnimationState", RpcTarget.AllBuffered, state.ToString());
+        }
+    }
+
+    private void flipDirIfNeeded()
+    {
+        if (m_DirectionX > 0f)
+        {
+            if (m_CharacterTransform.eulerAngles.y == 180f)
+                m_PhotonView.RPC("flipDiraction", RpcTarget.AllBuffered);
+        }
+        else if (m_DirectionX < 0f)
+        {
+            if (m_CharacterTransform.eulerAngles.y == 0)
+                m_PhotonView.RPC("flipDiraction", RpcTarget.AllBuffered);
+        }
     }
 
     private bool isGrounded()
@@ -122,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if(m_PhotonView.IsMine)
+        if (m_PhotonView.IsMine)
         {
             m_DirectionX = context.ReadValue<float>();
         }
@@ -130,9 +143,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Inflate(InputAction.CallbackContext context)
     {
-        if(m_PhotonView.IsMine)
+        if (m_PhotonView.IsMine)
         {
-            if (m_AirTank.AirAmount != 0)
+            if (PlayerAirTank.AirAmount != 0)
             {
                 if (context.performed && !m_DeflatePerformed)
                 {
@@ -154,23 +167,25 @@ public class PlayerMovement : MonoBehaviour
     {
         // Debug.Log("Inflate performed");
         m_InflatePerformed = true;
-        m_AirTank.StartReduceAir();
+        PlayerAirTank.StartReduceAir();
         m_InflatingSoundEffect.Play();
         ResetVerticalVelocity();
-        if(m_WasOnGround)
+        if (m_WasOnGround)
         {
             // Debug.Log("Adding jump boost");
+            m_JumpPerformed = true;
             m_JumpSoundEffect.Play();
-            m_RigidBody.AddForce(Vector3.up * m_JumpPower, ForceMode2D.Impulse);
-            StartCoroutine(JumpStopCoroutine(m_jumpSmooth, m_jumpTime/(float)m_jumpSmooth, m_JumpPower/(float)m_jumpSmooth));
+            m_RigidBody.AddForce(Vector3.up * m_JumpForce, ForceMode2D.Impulse);
+            StartCoroutine(JumpStopCoroutine(m_jumpSmooth, m_jumpTime / (float)m_jumpSmooth, m_JumpForce / (float)m_jumpSmooth));
         }
         m_ConstantForce.relativeForce = new Vector2(0, m_InflatingForce);
     }
 
-    IEnumerator JumpStopCoroutine(int iterations, float WaitSecondsPerIter, float JumpForceReducePerIter) 
+    IEnumerator JumpStopCoroutine(int iterations, float WaitSecondsPerIter, float JumpForceReducePerIter)
     {
         yield return new WaitForSeconds(WaitSecondsPerIter);
-        if(iterations > 0 && m_InflatePerformed == true){
+        if (iterations > 0 && m_InflatePerformed == true)
+        {
             m_RigidBody.AddForce(Vector3.down * JumpForceReducePerIter, ForceMode2D.Impulse);
             StartCoroutine(JumpStopCoroutine(iterations - 1, WaitSecondsPerIter, JumpForceReducePerIter));
         }
@@ -180,9 +195,9 @@ public class PlayerMovement : MonoBehaviour
     {
         // Debug.Log("Inflate canceled");
         m_InflatePerformed = false;
-        m_AirTank.StopReduceAir();
+        PlayerAirTank.StopReduceAir();
         m_InflatingSoundEffect.Stop();
-        if(!m_DeflatePerformed)
+        if (!m_DeflatePerformed)
         {
             ResetVerticalVelocity();
             m_ConstantForce.relativeForce = new Vector2(0, m_IdleForce);
@@ -191,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Deflate(InputAction.CallbackContext context)
     {
-        if(m_PhotonView.IsMine)
+        if (m_PhotonView.IsMine)
         {
             if (!isGrounded())
             {
@@ -232,15 +247,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetVerticalVelocity()
     {
-        if (m_RigidBody.bodyType != RigidbodyType2D.Static) 
+        if (m_RigidBody.bodyType != RigidbodyType2D.Static)
         {
             m_RigidBody.velocity = new Vector2(m_RigidBody.velocity.x, 0);
         }
     }
 
     [PunRPC]
-    void SetFlipX(bool value)
+    void flipDiraction()
     {
-        m_SpriteRenderer.flipX = value;
+        float curDiraction = m_CharacterTransform.eulerAngles.y;
+        m_CharacterTransform.eulerAngles = new Vector3(0, 180 - curDiraction, 0);
+    }
+
+    [PunRPC]
+    void SetAnimationState(string trigger)
+    {
+        m_Animator.SetTrigger(trigger);
     }
 }

@@ -11,6 +11,8 @@ public class PlayerDart : MonoBehaviour
     private PhotonView m_PhotonView;
     private AudioSource m_ThrowAudioSource;
     private Vector2 m_DefaultDartDirection;
+    public int UnlimitedDartsAmount { get; set; } = 0;
+    private Animator m_DartLoaderAnimator;
     [SerializeField] private List<AudioClip> m_ThrowSounds;
     [SerializeField] private GameObject m_DartPrefab;
     [SerializeField] private GameObject m_PointPrefab;
@@ -61,6 +63,7 @@ public class PlayerDart : MonoBehaviour
         if(m_PhotonView.IsMine)
         {
             m_DefaultDartDirection = transform.right;
+            m_DartLoaderAnimator = GameObject.FindGameObjectWithTag("DartStick").GetComponent<Animator>();
             InitializeProjectionPoints();
         }
     }
@@ -71,6 +74,10 @@ public class PlayerDart : MonoBehaviour
         newDart.GetComponent<Transform>().right = ShootDirection;
         newDart.GetComponent<Rigidbody2D>().velocity = transform.right * m_ShotForce;
         PlayRandomThrowSound();
+        if(UnlimitedDartsAmount == 0)
+        {
+            m_DartLoaderAnimator.SetTrigger("DartLoad");
+        }
     }
 
     public void PlayRandomThrowSound()

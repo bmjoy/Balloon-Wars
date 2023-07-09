@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6287487882792594981}
   - component: {fileID: 6287487882792594982}
-  - component: {fileID: 5547408274718809999}
   - component: {fileID: 3008733519997579469}
   m_Layer: 0
   m_Name: Spawner
@@ -58,22 +57,6 @@ MonoBehaviour:
   - {x: -37.5, y: -20.1}
   - {x: 38.9, y: -17.2}
   - {x: -21.26, y: -0.29}
-  m_DisableTime: 5
---- !u!114 &5547408274718809999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287487882792594983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54bdcbd5b6278b6438771f850db4ed8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlayerPrefab: {fileID: 0}
-  m_SpawnPositions: []
-  m_DisableTime: 5
 --- !u!114 &3008733519997579469
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,6 +21,9 @@ TagManager:
   - Dart
   - ControllButton
   - UsedDart
+  - PowerUp
+  - DartStick
+  - PowerUpsUI
   layers:
   - Default
   - TransparentFX
@@ -61,11 +64,14 @@ TagManager:
   - name: Over Background
     uniqueID: 96372397
     locked: 0
+  - name: Ground
+    uniqueID: 1687288891
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground
-    uniqueID: 1687288891
+  - name: Player
+    uniqueID: 3407088303
     locked: 0
   - name: Name
     uniqueID: 4197482495

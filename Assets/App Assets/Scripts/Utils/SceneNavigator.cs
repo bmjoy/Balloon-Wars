@@ -22,10 +22,15 @@ public class SceneNavigator : MonoBehaviour
         StartCoroutine(loadWantedSceneByName("Login screen"));
     }
 
+    public void MoveToShop()
+    {
+        StartCoroutine(loadWantedSceneByName("Shop"));
+    }
+
     public void LoadGameLevel(int LevelIndex)
     {
         Debug.Log("loading game");
-        StartCoroutine(loadPhotonSceneByIndex(3 + LevelIndex));
+        StartCoroutine(loadPhotonSceneByIndex(4 + LevelIndex));
     }
 
     private IEnumerator loadWantedSceneByName(string sceneName)

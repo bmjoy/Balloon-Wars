@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LocationServiceActivator : MonoBehaviour
@@ -41,8 +40,5 @@ public class LocationServiceActivator : MonoBehaviour
             double longitude = Input.location.lastData.longitude;
             print("Latitude: " + latitude + ", Longitude: " + longitude);
         }
-
-        // Stop service if there is no need to query location updates continuously
-        Input.location.Stop();
     }
 }

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Skins
 {
+    public enum Catagories
+    {
+        Character,
+        Hat,
+        Shirt,
+        Pants,
+        Weapon
+    }
+
     public enum Characters
     {
         Cat,
@@ -32,12 +41,22 @@ public class Skins
 
     public enum Hats
     {
-
+        None
     }
 
     public enum Shirts
     {
+        None
+    }
 
+    public enum Pants
+    {
+        None
+    }
+
+    public enum Weapons
+    {
+        None
     }
 }
 

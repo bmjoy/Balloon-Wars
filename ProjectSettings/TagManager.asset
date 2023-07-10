@@ -24,6 +24,8 @@ TagManager:
   - PowerUp
   - DartStick
   - PowerUpsUI
+  - BuyButton
+  - SelectButton
   layers:
   - Default
   - TransparentFX

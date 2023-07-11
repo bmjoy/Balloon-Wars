@@ -14,8 +14,7 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_NameText;
     [SerializeField] private GameObject m_CostBar;
     private Button m_ItemButton;
-    private Button m_BuyButton;
-    private Button m_SelectButton;
+    private ButtonsSaver m_ButtonsSaver;
     private bool m_IsBought = false;
     private bool m_IsSelected = false;
     private void Awake() 
@@ -26,8 +25,7 @@ public class ShopItem : MonoBehaviour
         m_IsBought = CheckIfItemBought();
         m_ItemButton.onClick.AddListener(OnClick);
         m_CostBar.SetActive(!m_IsBought);
-        m_SelectButton = GameObject.FindGameObjectWithTag("SelectButton").GetComponent<Button>();
-        m_BuyButton = GameObject.FindGameObjectWithTag("BuyButton").GetComponent<Button>();
+        m_ButtonsSaver = FindAnyObjectByType<ButtonsSaver>();
     }
 
     private bool CheckIfItemSelected()
@@ -62,27 +60,27 @@ public class ShopItem : MonoBehaviour
     private void OnClick()
     {
         m_IsSelected = CheckIfItemSelected();
-        m_BuyButton.gameObject.SetActive(!m_IsBought);
-        m_SelectButton.gameObject.SetActive(!m_IsSelected && m_IsBought);
+        m_ButtonsSaver.BuyButton.gameObject.SetActive(!m_IsBought);
+        m_ButtonsSaver.SelectButton.gameObject.SetActive(!m_IsSelected && m_IsBought);
         CharacterItemChooser.Instance.changeItem(m_Catagory, m_ItemName);
-        m_BuyButton.onClick.RemoveAllListeners();
-        m_BuyButton.onClick.AddListener(OnItemBuy);
-        m_SelectButton.onClick.RemoveAllListeners();
-        m_SelectButton.onClick.AddListener(selectItem);
+        m_ButtonsSaver.BuyButton.onClick.RemoveAllListeners();
+        m_ButtonsSaver.BuyButton.onClick.AddListener(OnItemBuy);
+        m_ButtonsSaver.SelectButton.onClick.RemoveAllListeners();
+        m_ButtonsSaver.SelectButton.onClick.AddListener(selectItem);
     }
 
     public void OnItemBuy()
     {
         // if have enough coins
         m_IsBought = true;
-        m_BuyButton.gameObject.SetActive(false);
-        m_SelectButton.gameObject.SetActive(true);
+        m_ButtonsSaver.BuyButton.gameObject.SetActive(false);
+        m_ButtonsSaver.SelectButton.gameObject.SetActive(true);
         m_CostBar.SetActive(false);
     }
 
     public void selectItem()
     {
         CharacterItemChooser.Instance.SelectItem(m_Catagory, m_ItemName);
-        m_SelectButton.gameObject.SetActive(false);
+        m_ButtonsSaver.SelectButton.gameObject.SetActive(false);
     }
 }

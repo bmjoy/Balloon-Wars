@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class TabItem : MonoBehaviour, IPointerClickHandler
 {
     private TabMenu m_TabMenu;
+    public event Action<TabItem> TabItemSelected;
     [SerializeField] private Color ActiveColor;
     [SerializeField] private Color DisabledColor;
     [SerializeField] GameObject m_TabScreen;
@@ -19,7 +20,7 @@ public class TabItem : MonoBehaviour, IPointerClickHandler
         m_TabScreen.SetActive(false);
         if(m_IsSelected)
         {
-            m_TabMenu.OnTabItemSelected(this);
+            TabItemSelected?.Invoke(this);
         }
     }
 
@@ -37,6 +38,6 @@ public class TabItem : MonoBehaviour, IPointerClickHandler
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
-        m_TabMenu.OnTabItemSelected(this);
+        TabItemSelected?.Invoke(this);
     }
 }

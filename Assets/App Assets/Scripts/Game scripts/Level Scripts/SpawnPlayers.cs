@@ -34,7 +34,7 @@ public class SpawnPlayers : MonoBehaviour
     public void SpawnPlayerRPC(Vector2 position)
     {
         PhotonNetwork.Instantiate(m_PlayerPrefab.name, position, Quaternion.identity);
-        Debug.Log($"Spawnd player");
+        Debug.Log($"Spawned player");
     }
 }
 

@@ -16,6 +16,10 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
     public event Action PlayerJoinedRoom;
     public event Action MasterPlayerSwiched;
     public List<RoomInfo> RoomList { get; private set; } = new List<RoomInfo>();
+    public static SceneNavigator.GameMode GameMode { get; set; }
+
+    private TypedLobby ClassicLobby = new TypedLobby("Classic", LobbyType.Default);
+    private TypedLobby PlayOutsideLobby = new TypedLobby("PlayOutside", LobbyType.Default);
 
     private void Start() 
     {
@@ -23,13 +27,22 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         PhotonConnector.Instance.ConnectedToMaster += JoinPhotonLobby;
     }
 
-    // --------- Loby ---------
+    // --------- Lobby ---------
 
     private void JoinPhotonLobby()
     {
         if(!PhotonNetwork.InLobby)
         {
-            PhotonNetwork.JoinLobby();
+            // Join the appropriate lobby based on the chosen game mode
+            switch (GameMode)
+            {
+                case SceneNavigator.GameMode.Classic:
+                    PhotonNetwork.JoinLobby(ClassicLobby);
+                    break;
+                case SceneNavigator.GameMode.PlayOutside:
+                    PhotonNetwork.JoinLobby(PlayOutsideLobby);
+                    break;
+            }
         }
     }
 
@@ -43,7 +56,16 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        Debug.Log("You have been connected to the Photon Lobby");
+        if (PhotonNetwork.CurrentLobby.Name == ClassicLobby.Name)
+        {
+            Debug.Log("You have joined the Classic Lobby");
+        }
+        else if (PhotonNetwork.CurrentLobby.Name == PlayOutsideLobby.Name)
+        {
+            Debug.Log("You have joined the PlayOutside Lobby");
+            // Activate location services
+            StartCoroutine(LocationServiceActivator.ActivateLocationServices());
+        }
     }
 
     public override void OnLeftLobby()
@@ -53,8 +75,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
 
     // --------- Rooms ---------
 
-    public void CreatePhotonRoom( 
-        string roomName, bool isVisible = true, int maxPlayers = 4, int level = 1, bool isOpen = true)
+    public void CreatePhotonRoom(string roomName, bool isVisible = true, int maxPlayers = 4, int level = 1, bool isOpen = true)
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.IsOpen = isOpen;
@@ -66,7 +87,7 @@ public class PhotonRoomsConnector : MonoBehaviourPunCallbacks
         if(!PhotonNetwork.InRoom)
         {  
             Debug.Log($"Try create room: {roomName}");
-            PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+            PhotonNetwork.CreateRoom(roomName, roomOptions);
         }
     }
 

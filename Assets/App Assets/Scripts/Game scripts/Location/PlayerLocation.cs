@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Photon.Pun;
 
@@ -11,7 +10,7 @@ public class PlayerLocation : MonoBehaviour
 
     private void Awake() 
     {
-        m_PhotonView = GetComponent<PhotonView>();
+        m_PhotonView = GetComponentInParent<PhotonView>();
         m_LocationManager = LocationManager.Instance;
     }
 

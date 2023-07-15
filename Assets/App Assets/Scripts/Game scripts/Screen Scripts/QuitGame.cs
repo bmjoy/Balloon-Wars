@@ -28,7 +28,7 @@ public class QuitGame : MonoBehaviour
     {
         PhotonNetwork.LeaveRoom();
         Debug.Log("Left photon room");
-        m_SceneNavigator.MoveToGameMenu();
+        m_SceneNavigator.MoveToGameMenu(PhotonNetwork.CurrentLobby.Name);
         Debug.Log("Moved to game menu");
     }
 

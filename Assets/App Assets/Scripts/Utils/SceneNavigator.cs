@@ -6,9 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigator : MonoBehaviour
 {
-    [SerializeField] Animator transition;
-    public void MoveToGameMenu()
+    public enum GameMode
     {
+        Classic,
+        PlayOutside
+    }
+    [SerializeField] Animator transition;
+    
+    public void MoveToGameMenu(string gameMode)
+    {
+        switch (gameMode)
+        {
+            case "Classic":
+                PhotonRoomsConnector.GameMode = GameMode.Classic;
+                break;
+            case "PlayOutside":
+                PhotonRoomsConnector.GameMode = GameMode.PlayOutside;
+                break;
+        }
         StartCoroutine(loadWantedSceneByName("Game menu"));
     }
 

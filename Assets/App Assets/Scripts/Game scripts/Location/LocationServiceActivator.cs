@@ -1,13 +1,22 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class LocationServiceActivator : MonoBehaviour
 {
-    IEnumerator Start()
+    public static IEnumerator ActivateLocationServices()
     {
+        Debug.Log("Activating location services");
+
+        // Request permission to use location
+        if(!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        {
+            Permission.RequestUserPermission(Permission.FineLocation);
+        }
+
         // First, check if user has location service enabled
         if (!Input.location.isEnabledByUser)
-            yield break;
+            yield return new WaitForSeconds(5);
 
         // Start service before querying location
         Input.location.Start();
@@ -23,14 +32,14 @@ public class LocationServiceActivator : MonoBehaviour
         // Service didn't initialize in 20 seconds
         if (maxWait < 1)
         {
-            print("Timed out");
+            Debug.Log("Timed out");
             yield break;
         }
 
         // Connection has failed
         if (Input.location.status == LocationServiceStatus.Failed)
         {
-            print("Unable to determine device location");
+            Debug.Log("Unable to determine device location");
             yield break;
         }
         else
@@ -38,7 +47,7 @@ public class LocationServiceActivator : MonoBehaviour
             // Access granted and location value could be retrieved
             double latitude = Input.location.lastData.latitude;
             double longitude = Input.location.lastData.longitude;
-            print("Latitude: " + latitude + ", Longitude: " + longitude);
+            Debug.Log("Latitude: " + latitude + ", Longitude: " + longitude);
         }
     }
 }

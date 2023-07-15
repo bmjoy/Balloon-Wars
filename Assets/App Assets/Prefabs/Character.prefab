@@ -192,7 +192,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Library: []
+  m_Library:
+  - m_Name: Hat
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: None
+      m_Hash: 0
+      m_Sprite: {fileID: 0}
+  - m_Name: Shirt Body
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: None
+      m_Hash: 0
+      m_Sprite: {fileID: 0}
+  - m_Name: Shirt Left Arm
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: None
+      m_Hash: 0
+      m_Sprite: {fileID: 0}
+  - m_Name: Shirt Right Arm
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: None
+      m_Hash: 0
+      m_Sprite: {fileID: 0}
+  - m_Name: Pants Body
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: None
+      m_Hash: 0
+      m_Sprite: {fileID: 0}
+  - m_Name: Pants Left Leg
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: None
+      m_Hash: 0
+      m_Sprite: {fileID: 0}
+  - m_Name: Pants Right Leg
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: None
+      m_Hash: 0
+      m_Sprite: {fileID: 0}
+  - m_Name: Weapon
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: None
+      m_Hash: 0
+      m_Sprite: {fileID: 0}
   m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 1e42564cb0359e244958170b47929207, type: 3}
 --- !u!114 &8905846437511639978
 MonoBehaviour:

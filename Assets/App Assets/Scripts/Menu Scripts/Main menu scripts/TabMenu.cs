@@ -5,25 +5,24 @@ using UnityEngine;
 
 public class TabMenu : MonoBehaviour
 {
-    public List<TabItem> m_TabItems;
-    private TabItem selectedTabItem = null;
+    public event Action<TabItem> TabItemSwiched;
+    private List<TabItem> m_TabItems = new List<TabItem>();
+    public TabItem SelectedTabItem{get; private set;} = null;
 
     public void subscribAsTabItem(TabItem item)
     {
-        if(m_TabItems == null)
-        {
-            m_TabItems = new List<TabItem>();
-        }
+        item.TabItemSelected += OnTabItemSelected;
         m_TabItems.Add(item);
     }
 
-    public void OnTabItemSelected(TabItem tabItem)
+    private void OnTabItemSelected(TabItem tabItem)
     {
-        if (tabItem != selectedTabItem)
+        if (tabItem != SelectedTabItem)
         {
-            selectedTabItem?.DeactivateScreen();
+            SelectedTabItem?.DeactivateScreen();
             tabItem?.ActivateScreen();
-            selectedTabItem = tabItem;
+            SelectedTabItem = tabItem;
+            TabItemSwiched?.Invoke(tabItem);
         }
     }
 }
